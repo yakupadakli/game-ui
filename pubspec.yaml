@@ -1,0 +1,31 @@
+name: game_ui
+description: Game-style UI widgets for Flutter
+version: 0.1.0+1
+publish_to: none
+repository: https://github.com/yakupadakli/game-ui
+
+environment:
+  sdk: ^3.11.1
+  flutter: ">=3.41.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  # Asset directories are added here as PNG/font files arrive.
+  # Example (uncomment + adjust when assets are added):
+  #
+  # assets:
+  #   - assets/images/buttons/
+  #   - assets/images/cards/
+  #
+  # fonts:
+  #   - family: GameFontExample
+  #     fonts:
+  #       - asset: assets/fonts/GameFontExample.ttf
