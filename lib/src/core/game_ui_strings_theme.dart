@@ -1,0 +1,259 @@
+import 'package:flutter/material.dart';
+
+import 'game_ui_strings.dart';
+
+/// Optional overrides for default English strings (dialogs, hints, semantics).
+///
+/// Register via [ThemeData.extensions] for localization or copy tweaks.
+///
+/// ```dart
+/// ThemeData(
+///   extensions: [
+///     GameUiStringsTheme(dialogOk: 'Tamam', dialogCancel: 'Vazgeç'),
+///   ],
+/// )
+/// ```
+@immutable
+class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
+  const GameUiStringsTheme({
+    this.dialogOk,
+    this.dialogCancel,
+    this.searchDefaultHint,
+    this.passwordShowTooltip,
+    this.passwordHideTooltip,
+    this.semanticRangeLabel,
+    this.semanticRangeSliderHint,
+    this.semanticStarRatingDefault,
+    this.semanticStarHalfHint,
+    this.semanticDivider,
+    this.semanticBanner,
+    this.semanticLoading,
+    this.semanticTooltip,
+    this.semanticSnackBar,
+    this.semanticBottomSheet,
+    this.semanticDismiss,
+  });
+
+  /// Explicit English preset; otherwise the default const constructor's null
+  /// fallbacks return English.
+  factory GameUiStringsTheme.en() => const GameUiStringsTheme(
+    dialogOk: 'OK',
+    dialogCancel: 'Cancel',
+    searchDefaultHint: 'Search...',
+    passwordShowTooltip: 'Show password',
+    passwordHideTooltip: 'Hide password',
+    semanticRangeLabel: 'Range',
+    semanticRangeSliderHint:
+        'Drag each handle or tap the track to adjust the range',
+    semanticStarRatingDefault: 'Star rating',
+    semanticStarHalfHint: 'Left half or right half for different values',
+    semanticDivider: 'Divider',
+    semanticBanner: 'Banner',
+    semanticLoading: 'Loading',
+    semanticTooltip: 'Tooltip',
+    semanticSnackBar: 'Notification',
+    semanticBottomSheet: 'Bottom sheet',
+    semanticDismiss: 'Dismiss',
+  );
+
+  /// Explicit Turkish preset; otherwise the default const constructor's null
+  /// fallbacks return English.
+  factory GameUiStringsTheme.tr() => const GameUiStringsTheme(
+    dialogOk: 'Tamam',
+    dialogCancel: 'Vazgeç',
+    searchDefaultHint: 'Ara...',
+    passwordShowTooltip: 'Şifreyi göster',
+    passwordHideTooltip: 'Şifreyi gizle',
+    semanticRangeLabel: 'Aralık',
+    semanticRangeSliderHint:
+        'Aralığı ayarlamak için her tutamağı sürükleyin veya iz üzerine dokunun',
+    semanticStarRatingDefault: 'Yıldız değerlendirmesi',
+    semanticStarHalfHint: 'Farklı değerler için sol yarı veya sağ yarı',
+    semanticDivider: 'Ayırıcı',
+    semanticBanner: 'Bildirim',
+    semanticLoading: 'Yükleniyor',
+    semanticTooltip: 'İpucu',
+    semanticSnackBar: 'Bildirim',
+    semanticBottomSheet: 'Alt panel',
+    semanticDismiss: 'Kapat',
+  );
+
+  /// Resolves a preset by [Locale.languageCode]. Returns [tr] for `'tr'`,
+  /// otherwise [en].
+  ///
+  /// Deliberately avoids ARB / `flutter gen-l10n` / `intl` to keep the package
+  /// dependency-free; consumers that need richer locale handling can build
+  /// their own [GameUiStringsTheme] from their own translation system.
+  static GameUiStringsTheme forLocale(Locale locale) {
+    if (locale.languageCode == 'tr') return GameUiStringsTheme.tr();
+    return GameUiStringsTheme.en();
+  }
+
+  final String? dialogOk;
+  final String? dialogCancel;
+  final String? searchDefaultHint;
+  final String? passwordShowTooltip;
+  final String? passwordHideTooltip;
+  final String? semanticRangeLabel;
+  final String? semanticRangeSliderHint;
+  final String? semanticStarRatingDefault;
+  final String? semanticStarHalfHint;
+  final String? semanticDivider;
+  final String? semanticBanner;
+  final String? semanticLoading;
+  final String? semanticTooltip;
+  final String? semanticSnackBar;
+  final String? semanticBottomSheet;
+  final String? semanticDismiss;
+
+  static const GameUiStringsTheme empty = GameUiStringsTheme();
+
+  @override
+  GameUiStringsTheme copyWith({
+    String? dialogOk,
+    String? dialogCancel,
+    String? searchDefaultHint,
+    String? passwordShowTooltip,
+    String? passwordHideTooltip,
+    String? semanticRangeLabel,
+    String? semanticRangeSliderHint,
+    String? semanticStarRatingDefault,
+    String? semanticStarHalfHint,
+    String? semanticDivider,
+    String? semanticBanner,
+    String? semanticLoading,
+    String? semanticTooltip,
+    String? semanticSnackBar,
+    String? semanticBottomSheet,
+    String? semanticDismiss,
+  }) {
+    return GameUiStringsTheme(
+      dialogOk: dialogOk ?? this.dialogOk,
+      dialogCancel: dialogCancel ?? this.dialogCancel,
+      searchDefaultHint: searchDefaultHint ?? this.searchDefaultHint,
+      passwordShowTooltip: passwordShowTooltip ?? this.passwordShowTooltip,
+      passwordHideTooltip: passwordHideTooltip ?? this.passwordHideTooltip,
+      semanticRangeLabel: semanticRangeLabel ?? this.semanticRangeLabel,
+      semanticRangeSliderHint:
+          semanticRangeSliderHint ?? this.semanticRangeSliderHint,
+      semanticStarRatingDefault:
+          semanticStarRatingDefault ?? this.semanticStarRatingDefault,
+      semanticStarHalfHint: semanticStarHalfHint ?? this.semanticStarHalfHint,
+      semanticDivider: semanticDivider ?? this.semanticDivider,
+      semanticBanner: semanticBanner ?? this.semanticBanner,
+      semanticLoading: semanticLoading ?? this.semanticLoading,
+      semanticTooltip: semanticTooltip ?? this.semanticTooltip,
+      semanticSnackBar: semanticSnackBar ?? this.semanticSnackBar,
+      semanticBottomSheet: semanticBottomSheet ?? this.semanticBottomSheet,
+      semanticDismiss: semanticDismiss ?? this.semanticDismiss,
+    );
+  }
+
+  @override
+  GameUiStringsTheme lerp(ThemeExtension<GameUiStringsTheme>? other, double t) {
+    if (other is! GameUiStringsTheme) return this;
+    if (t < 0.5) return this;
+    return other;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is GameUiStringsTheme &&
+        dialogOk == other.dialogOk &&
+        dialogCancel == other.dialogCancel &&
+        searchDefaultHint == other.searchDefaultHint &&
+        passwordShowTooltip == other.passwordShowTooltip &&
+        passwordHideTooltip == other.passwordHideTooltip &&
+        semanticRangeLabel == other.semanticRangeLabel &&
+        semanticRangeSliderHint == other.semanticRangeSliderHint &&
+        semanticStarRatingDefault == other.semanticStarRatingDefault &&
+        semanticStarHalfHint == other.semanticStarHalfHint &&
+        semanticDivider == other.semanticDivider &&
+        semanticBanner == other.semanticBanner &&
+        semanticLoading == other.semanticLoading &&
+        semanticTooltip == other.semanticTooltip &&
+        semanticSnackBar == other.semanticSnackBar &&
+        semanticBottomSheet == other.semanticBottomSheet &&
+        semanticDismiss == other.semanticDismiss;
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    dialogOk,
+    dialogCancel,
+    searchDefaultHint,
+    passwordShowTooltip,
+    passwordHideTooltip,
+    semanticRangeLabel,
+    semanticRangeSliderHint,
+    semanticStarRatingDefault,
+    semanticStarHalfHint,
+    semanticDivider,
+    semanticBanner,
+    semanticLoading,
+    semanticTooltip,
+    semanticSnackBar,
+    semanticBottomSheet,
+    semanticDismiss,
+  ]);
+}
+
+/// Resolved strings: [GameUiStringsTheme] over package `kGame*` defaults.
+extension GameUiStringsContext on BuildContext {
+  GameUiStringsResolved get gameUiStrings =>
+      GameUiStringsResolved(Theme.of(this).extension<GameUiStringsTheme>());
+}
+
+/// Bundle of resolved UI strings for the current [BuildContext].
+class GameUiStringsResolved {
+  GameUiStringsResolved(this._theme);
+
+  final GameUiStringsTheme? _theme;
+
+  String get dialogOk => _theme?.dialogOk ?? kGameDialogOk;
+
+  String get dialogCancel => _theme?.dialogCancel ?? kGameDialogCancel;
+
+  String get searchDefaultHint =>
+      _theme?.searchDefaultHint ?? kGameSearchDefaultHint;
+
+  String get passwordShowTooltip =>
+      _theme?.passwordShowTooltip ?? kGamePasswordShowTooltip;
+
+  String get passwordHideTooltip =>
+      _theme?.passwordHideTooltip ?? kGamePasswordHideTooltip;
+
+  String get semanticRangeLabel =>
+      _theme?.semanticRangeLabel ?? kGameSemanticRangeDefaultLabel;
+
+  String get semanticRangeSliderHint =>
+      _theme?.semanticRangeSliderHint ?? kGameSemanticRangeSliderHint;
+
+  String get semanticStarRatingDefault =>
+      _theme?.semanticStarRatingDefault ?? kGameSemanticStarRatingDefault;
+
+  String get semanticStarHalfHint =>
+      _theme?.semanticStarHalfHint ?? kGameSemanticStarHalfHint;
+
+  String get semanticDivider =>
+      _theme?.semanticDivider ?? kGameSemanticDividerDefault;
+
+  String get semanticBanner =>
+      _theme?.semanticBanner ?? kGameSemanticBannerDefault;
+
+  String get semanticLoading =>
+      _theme?.semanticLoading ?? kGameSemanticLoadingDefault;
+
+  String get semanticTooltip =>
+      _theme?.semanticTooltip ?? kGameSemanticTooltipDefault;
+
+  String get semanticSnackBar =>
+      _theme?.semanticSnackBar ?? kGameSemanticSnackBarDefault;
+
+  String get semanticBottomSheet =>
+      _theme?.semanticBottomSheet ?? kGameSemanticBottomSheetDefault;
+
+  String get semanticDismiss =>
+      _theme?.semanticDismiss ?? kGameSemanticDismissDefault;
+}

@@ -21,11 +21,32 @@ flutter:
   # Asset directories are added here as PNG/font files arrive.
   # Example (uncomment + adjust when assets are added):
   #
-  # assets:
-  #   - assets/images/buttons/
-  #   - assets/images/cards/
-  #
-  # fonts:
-  #   - family: GameFontExample
-  #     fonts:
-  #       - asset: assets/fonts/GameFontExample.ttf
+  assets:
+    - assets/images/buttons/
+    - assets/images/cards/
+
+  fonts:
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/Fredoka-Variable.ttf
+          weight: 300
+        - asset: assets/fonts/Fredoka-Variable.ttf
+          weight: 400
+        - asset: assets/fonts/Fredoka-Variable.ttf
+          weight: 500
+        - asset: assets/fonts/Fredoka-Variable.ttf
+          weight: 600
+        - asset: assets/fonts/Fredoka-Variable.ttf
+          weight: 700
+    - family: BalooChettan2
+      fonts:
+        - asset: assets/fonts/BalooChettan2-Variable.ttf
+          weight: 400
+        - asset: assets/fonts/BalooChettan2-Variable.ttf
+          weight: 500
+        - asset: assets/fonts/BalooChettan2-Variable.ttf
+          weight: 600
+        - asset: assets/fonts/BalooChettan2-Variable.ttf
+          weight: 700
+        - asset: assets/fonts/BalooChettan2-Variable.ttf
+          weight: 800

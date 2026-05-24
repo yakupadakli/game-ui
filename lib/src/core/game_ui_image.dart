@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart' show gameUiPackageName;
 
 /// [Image.asset] scoped to the [gameUiPackageName] bundle.
-abstract final class GamePackageImage {
-  GamePackageImage._();
+abstract final class GameUiImage {
+  GameUiImage._();
 
   /// Same as [Image.asset] with [package] set to [gameUiPackageName].
   static Image asset(

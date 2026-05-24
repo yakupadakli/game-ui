@@ -2,8 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:game_ui_example/main.dart';
 
 void main() {
-  testWidgets('Gallery renders title', (tester) async {
+  testWidgets('HomePage renders title and index card', (tester) async {
     await tester.pumpWidget(const GameUiExampleApp());
-    expect(find.text('game_ui Gallery'), findsOneWidget);
+    await tester.pumpAndSettle();
+
+    expect(find.text('game_ui'), findsWidgets);
+    expect(find.text('Gallery (single screen)'), findsOneWidget);
+    expect(find.text('GameColors'), findsOneWidget);
   });
 }
