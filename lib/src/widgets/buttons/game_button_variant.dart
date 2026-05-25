@@ -1,24 +1,20 @@
-import 'buttons_assets.dart';
-
-/// Visual variants of [GameButton]. Each variant binds to a bundled PNG asset
-/// and the per-asset face-lift ratio used to center [GameButton.child] on the
-/// visible face (above the depth rim baked into the PNG).
+/// Visual variants of [GameButton]. Each variant decides how its background
+/// renders (bundled PNG or pure code) and where its content should sit on
+/// the visible face.
 ///
-/// Currently only [circle] is implemented. Future variants (primary,
-/// secondary, warning, etc.) will be added as the asset library grows.
+/// Currently ships [circle] (PNG-asset) and [square] (code-rendered).
+/// Future variants (primary, secondary, warning, etc.) will land as the
+/// asset library grows.
 enum GameButtonVariant {
-  /// Glossy 3D circular button.
-  circle(assetPath: ButtonAssets.circle, faceLiftRatio: 0.01);
+  /// Glossy 3D circular button — bundled PNG.
+  circle(faceLiftRatio: 0.01),
 
-  const GameButtonVariant({
-    required this.assetPath,
-    required this.faceLiftRatio,
-  });
+  /// Glossy 3D squircle button — rendered entirely in code.
+  square(faceLiftRatio: 0.0);
 
-  /// Bundled PNG asset path for this variant.
-  final String assetPath;
+  const GameButtonVariant({required this.faceLiftRatio});
 
   /// Ratio of the button size to shift the child upward so it sits on the
-  /// visible face of the PNG (above the bottom depth rim).
+  /// visible face (above the bottom depth rim).
   final double faceLiftRatio;
 }

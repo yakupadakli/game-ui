@@ -51,6 +51,14 @@ class _GameButtonPageState extends State<GameButtonPage> {
               ),
             ),
             const DocSection(
+              title: 'Square variant (code-rendered)',
+              description:
+                  'GameButtonVariant.square draws a glossy squircle entirely '
+                  'in code — no PNG asset. Layered depth rim, radial-gradient '
+                  'face, specular blob, and outer purple-blue glow.',
+              child: _SquareRow(),
+            ),
+            const DocSection(
               title: 'Sizes',
               description:
                   '48 · 64 · 96 · 128. The PNG scales via fit.contain and '
@@ -65,6 +73,14 @@ class _GameButtonPageState extends State<GameButtonPage> {
                   'the child renders ON TOP of it; swap to a blank template '
                   'for fully custom content.',
               child: _ChildRow(),
+            ),
+            const DocSection(
+              title: 'Tint',
+              description:
+                  'Optional [tint] applies BlendMode.modulate to the bundled '
+                  'PNG. Works best with grayscale / white-base assets; '
+                  'preserves highlights and shadows.',
+              child: _TintRow(),
             ),
             const DocSection(
               title: 'Disabled',
@@ -86,6 +102,44 @@ class _GameButtonPageState extends State<GameButtonPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SquareRow extends StatelessWidget {
+  const _SquareRow();
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      alignment: WrapAlignment.center,
+      children: [
+        GameButton(
+          variant: GameButtonVariant.square,
+          size: 96,
+          onTap: () {},
+          child: const _Number('1'),
+        ),
+        GameButton(
+          variant: GameButtonVariant.square,
+          size: 96,
+          onTap: () {},
+          child: const Icon(
+            Icons.play_arrow_rounded,
+            color: Colors.white,
+            size: 44,
+          ),
+        ),
+        GameButton(
+          variant: GameButtonVariant.square,
+          size: 64,
+          onTap: () {},
+          child: const _Number('2', buttonSize: 64),
+        ),
+        const GameButton(variant: GameButtonVariant.square, enabled: false),
+      ],
     );
   }
 }
@@ -141,6 +195,37 @@ class _ChildRow extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _TintRow extends StatelessWidget {
+  const _TintRow();
+
+  @override
+  Widget build(BuildContext context) {
+    const tints = <Color?>[
+      null,
+      Color(0xFFE53935), // red
+      Color(0xFF43A047), // green
+      Color(0xFFFFB300), // amber
+      Color(0xFF8E24AA), // purple
+      Colors.red,
+      GameColors.primary,
+      GameColors.warning,
+      GameColors.success,
+      GameColors.danger,
+      GameColors.accent,
+    ];
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      alignment: WrapAlignment.center,
+      children: tints
+          .map(
+            (t) => GameButton(tint: t, onTap: () {}, child: const _Number('1')),
+          )
+          .toList(),
     );
   }
 }

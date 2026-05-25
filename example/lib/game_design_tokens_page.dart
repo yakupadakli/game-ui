@@ -57,6 +57,13 @@ class GameDesignTokensPage extends StatelessWidget {
                   'offset with stronger alpha for the lifted feel.',
               child: _Shadows(),
             ),
+            const DocSection(
+              title: 'Gradients',
+              description:
+                  'GameGradients.softBlue1/2/3 — pale to deep horizontal '
+                  'sweeps for hero, header, and surface fills.',
+              child: _Gradients(),
+            ),
           ],
         ),
       ),
@@ -235,6 +242,49 @@ class _Shadows extends StatelessWidget {
         _ShadowTile('card', GameShadows.card),
         _ShadowTile('button', GameShadows.button),
       ],
+    );
+  }
+}
+
+class _Gradients extends StatelessWidget {
+  const _Gradients();
+
+  @override
+  Widget build(BuildContext context) {
+    const entries = <(String, LinearGradient)>[
+      ('softBlue1', GameGradients.softBlue1),
+      ('softBlue2', GameGradients.softBlue2),
+      ('softBlue3', GameGradients.softBlue3),
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: entries
+          .map(
+            (e) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Container(
+                height: 36,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  gradient: e.$2,
+                  borderRadius: BorderRadius.circular(
+                    GameDesignTokens.radiusSM,
+                  ),
+                ),
+                child: Text(
+                  e.$1,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'BalooChettan2',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

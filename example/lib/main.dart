@@ -2,8 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'doc_widgets.dart';
+import 'game_blinking_cursor_page.dart';
 import 'game_button_page.dart';
 import 'game_colors_page.dart';
+import 'game_feedback_overlay_page.dart';
+import 'game_indicators_page.dart';
+import 'game_painters_page.dart';
+import 'game_text_effects_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_disabled_overlay_page.dart';
 import 'game_gallery_page.dart';
@@ -188,6 +193,46 @@ class _HomePageState extends State<HomePage> {
             'Default English copy + GameUiStringsTheme overrides. Built-in '
             'English and Turkish presets via .en() / .tr() / .forLocale().',
         onOpen: () => open((_) => const GameUiStringsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.foundation,
+        title: 'Text effects',
+        description:
+            'GameStrokedText (Fredoka, numbers/labels) and GameStrokedTitle '
+            '(BalooChettan2, hero headlines) — chunky stroke + fill text.',
+        onOpen: () => open((_) => const GameTextEffectsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameBlinkingCursor',
+        description:
+            'Fading text cursor for input position; configurable color, '
+            'size, and blink interval.',
+        onOpen: () => open((_) => const GameBlinkingCursorPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameFeedbackOverlay',
+        description:
+            'Bouncy correct / wrong circle overlay for answer feedback. '
+            'Inline widget or full-screen via showGameFeedbackOverlay().',
+        onOpen: () => open((_) => const GameFeedbackOverlayPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'Indicators',
+        description:
+            'GameStarRating (earned out of total) and GameStatItem '
+            '(icon + value + label) for summary screens.',
+        onOpen: () => open((_) => const GameIndicatorsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.foundation,
+        title: 'Painters',
+        description:
+            'GameEllipsePainter (solid oval) and GameGlossPainter (single '
+            'curved highlight stroke) — primitives for button backgrounds.',
+        onOpen: () => open((_) => const GamePaintersPage()),
       ),
     ];
   }

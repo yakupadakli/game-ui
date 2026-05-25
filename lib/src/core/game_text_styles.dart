@@ -50,4 +50,14 @@ abstract final class GameTextStyles {
     color: GameColors.textOnPrimary,
     height: 1.0,
   );
+
+  /// Display style for math problems ("15 + 8 = ?"). Larger and chunkier than
+  /// [heading1], rendered in [GameColors.textNavy].
+  static const TextStyle mathProblem = TextStyle(
+    fontFamily: GameDesignTokens.fontFamily,
+    fontWeight: FontWeight.w800,
+    fontSize: GameDesignTokens.font3XL,
+    color: GameColors.textNavy,
+    height: 1.2,
+  );
 }

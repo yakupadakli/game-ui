@@ -75,6 +75,7 @@ class _Scale extends StatelessWidget {
           sample,
           GameTextStyles.buttonLabel.copyWith(color: GameColors.textPrimary),
         ),
+        _row('mathProblem', '15 + 8 = ?', GameTextStyles.mathProblem),
       ],
     );
   }

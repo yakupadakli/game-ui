@@ -7,5 +7,5 @@ abstract final class ButtonAssets {
   static const String _root = '$kGameAssetRoot/buttons';
 
   /// Glossy 3D circular button base.
-  static const String circle = '$_root/button_circle.png';
+  static const String circle = '$_root/circle.png';
 }

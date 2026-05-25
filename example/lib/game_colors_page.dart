@@ -39,6 +39,13 @@ class GameColorsPage extends StatelessWidget {
               child: _BrandPalette(),
             ),
             const DocSection(
+              title: 'Animal palette',
+              description:
+                  'iOS system-style colors from the secondary design guide. '
+                  'Live alongside the brand palette without semantic aliases.',
+              child: _AnimalPalette(),
+            ),
+            const DocSection(
               title: 'Semantic aliases',
               description:
                   'Use these when intent matters more than the specific hue. '
@@ -81,6 +88,21 @@ class _BrandPalette extends StatelessWidget {
   }
 }
 
+class _AnimalPalette extends StatelessWidget {
+  const _AnimalPalette();
+
+  @override
+  Widget build(BuildContext context) {
+    const swatches = [
+      _Swatch('Bear Blue', '#007AFF', GameColors.bearBlue),
+      _Swatch('Penguin Green', '#34C759', GameColors.penguinGreen),
+      _Swatch('Fox Yellow', '#FFCC00', GameColors.foxYellow),
+      _Swatch('Elephant Orange', '#FF9500', GameColors.elephantOrange),
+    ];
+    return const Wrap(spacing: 16, runSpacing: 16, children: swatches);
+  }
+}
+
 class _SemanticAliases extends StatelessWidget {
   const _SemanticAliases();
 
@@ -107,6 +129,7 @@ class _Neutrals extends StatelessWidget {
       _NeutralRow('surface', GameColors.surface),
       _NeutralRow('textPrimary', GameColors.textPrimary),
       _NeutralRow('textOnPrimary', GameColors.textOnPrimary),
+      _NeutralRow('textNavy', GameColors.textNavy),
       _NeutralRow('disabled', GameColors.disabled),
     ];
     return const Column(children: neutrals);

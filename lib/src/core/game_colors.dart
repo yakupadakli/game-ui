@@ -15,6 +15,12 @@ abstract final class GameColors {
   static const Color friendlyOrange = Color(0xFFFF6B6B);
   static const Color purple = Color(0xFF9B59B6);
 
+  // Animal palette — iOS system-style colors from the secondary design guide.
+  static const Color bearBlue = Color(0xFF007AFF);
+  static const Color penguinGreen = Color(0xFF34C759);
+  static const Color foxYellow = Color(0xFFFFCC00);
+  static const Color elephantOrange = Color(0xFFFF9500);
+
   // Semantic aliases (mapped to the brand palette).
   static const Color primary = vibrantBlue;
   static const Color warning = sunnyYellow;
@@ -27,5 +33,6 @@ abstract final class GameColors {
   static const Color surface = Color(0xFFFFFFFF);
   static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textOnPrimary = Color(0xFFFFFFFF);
+  static const Color textNavy = Color(0xFF1A2E5C);
   static const Color disabled = Color(0xFFB0B0B0);
 }
