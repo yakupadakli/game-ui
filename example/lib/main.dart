@@ -2,33 +2,49 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'doc_widgets.dart';
-import 'game_blinking_cursor_page.dart';
 import 'game_action_button_page.dart';
 import 'game_avatar_item_page.dart';
+import 'game_backgrounds_page.dart';
+import 'game_banner_page.dart';
+import 'game_blinking_cursor_page.dart';
+import 'game_bottom_sheet_page.dart';
 import 'game_button_page.dart';
+import 'game_chip_page.dart';
 import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
-import 'game_feedback_overlay_page.dart';
-import 'game_backgrounds_page.dart';
-import 'game_frames_page.dart';
-import 'game_icons_page.dart';
-import 'game_indicators_page.dart';
-import 'game_input_display_page.dart';
-import 'game_layouts_page.dart';
-import 'game_result_card_page.dart';
-import 'game_mascots_page.dart';
-import 'game_numpad_page.dart';
-import 'game_painters_page.dart';
-import 'game_progress_bar_page.dart';
-import 'game_return_button_page.dart';
-import 'game_true_false_button_page.dart';
-import 'game_text_effects_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_dialog_page.dart';
 import 'game_disabled_overlay_page.dart';
+import 'game_divider_page.dart';
+import 'game_empty_state_page.dart';
+import 'game_feedback_overlay_page.dart';
+import 'game_frames_page.dart';
 import 'game_gallery_page.dart';
+import 'game_icons_page.dart';
+import 'game_indicators_page.dart';
+import 'game_input_display_page.dart';
+import 'game_keyboard_page.dart';
+import 'game_layouts_page.dart';
+import 'game_mascots_page.dart';
+import 'game_numpad_page.dart';
+import 'game_page_indicator_page.dart';
+import 'game_painters_page.dart';
+import 'game_premium_badge_page.dart';
+import 'game_progress_bar_page.dart';
+import 'game_result_card_page.dart';
+import 'game_return_button_page.dart';
+import 'game_skeleton_page.dart';
+import 'game_snack_bar_page.dart';
+import 'game_social_button_page.dart';
+import 'game_step_indicator_page.dart';
+import 'game_summary_row_page.dart';
+import 'game_tab_bar_page.dart';
 import 'game_tap_scale_page.dart';
+import 'game_text_effects_page.dart';
 import 'game_text_styles_page.dart';
+import 'game_timeline_page.dart';
+import 'game_tooltip_page.dart';
+import 'game_true_false_button_page.dart';
 import 'game_ui_strings_page.dart';
 import 'game_validators_page.dart';
 
@@ -229,6 +245,14 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameDisabledOverlayPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameEmptyState',
+        description:
+            'Vertical empty-list placeholder — illustration / title / '
+            'message / action button slots for "no data yet" screens.',
+        onOpen: () => open((_) => const GameEmptyStatePage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.forms,
         title: 'GameValidators',
         description:
@@ -327,6 +351,14 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameProgressBarPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GamePageIndicator',
+        description:
+            'Animated dots that pill on the active index — pair with a '
+            'PageView for onboarding / carousel screens.',
+        onOpen: () => open((_) => const GamePageIndicatorPage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.foundation,
         title: 'Painters',
         description:
@@ -376,6 +408,118 @@ class _HomePageState extends State<HomePage> {
             'Bundled illustrated icon PNGs — game (check, lightbulb, '
             'pencil…), system (gear, lock, shield…), audio, stars/trophies.',
         onOpen: () => open((_) => const GameIconsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameDivider',
+        description:
+            'Horizontal rule with an optional centered widget (star, icon, '
+            'label) between two line halves.',
+        onOpen: () => open((_) => const GameDividerPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameChip',
+        description:
+            'Selectable filter chip — pill border, color-driven foreground, '
+            'optional leading widget. Pair with Wrap for tag rows.',
+        onOpen: () => open((_) => const GameChipPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameTooltip',
+        description:
+            'Chunky Tooltip wrapper — thick border, soft drop shadow, '
+            'game-friendly font.',
+        onOpen: () => open((_) => const GameTooltipPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GamePremiumBadge',
+        description:
+            'Gold gradient PRO / PREMIUM pill — icon + uppercase label, glow '
+            'shadow for visibility on light surfaces.',
+        onOpen: () => open((_) => const GamePremiumBadgePage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameSnackBar',
+        description:
+            'Floating toast — info / success / warning / error tints. Use '
+            'showGameSnackBar() to push via ScaffoldMessenger.',
+        onOpen: () => open((_) => const GameSnackBarPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameBanner',
+        description:
+            'Page-top info banner — icon + message + optional action + '
+            'dismiss. Tinted background driven by the brand color.',
+        onOpen: () => open((_) => const GameBannerPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameSummaryRow',
+        description:
+            'Bordered stats panel — optional title above + Row of widgets '
+            '(typically GameStatItem) spread spaceEvenly.',
+        onOpen: () => open((_) => const GameSummaryRowPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameBottomSheet',
+        description:
+            'Modal bottom sheet — rounded top corners, drag handle, title / '
+            'child / actions slots. Use showGameBottomSheet() helper.',
+        onOpen: () => open((_) => const GameBottomSheetPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameTabBar',
+        description:
+            'Pill-shape tab bar — active tab morphs into a colored pill, '
+            'inactive tabs sit on a muted background.',
+        onOpen: () => open((_) => const GameTabBarPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameStepIndicator',
+        description:
+            '1-2-3 wizard progress — completed steps show a check, the '
+            'active one shows its number, upcoming are muted.',
+        onOpen: () => open((_) => const GameStepIndicatorPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameTimeline',
+        description:
+            'Vertical event list — left column of dots + connecting line, '
+            'right column of free-form content per entry.',
+        onOpen: () => open((_) => const GameTimelinePage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameSkeleton',
+        description:
+            'Shimmer placeholder — animated horizontal gradient sweep '
+            'across a rounded rectangle.',
+        onOpen: () => open((_) => const GameSkeletonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameSocialButton',
+        description:
+            'Branded auth button — Google / Apple / Facebook / X presets. '
+            'Override the label or build your own row.',
+        onOpen: () => open((_) => const GameSocialButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameKeyboard',
+        description:
+            'Game-style QWERTY keyboard — chunky keys with depth shadow, '
+            'optional space bar, ⌫ for delete.',
+        onOpen: () => open((_) => const GameKeyboardPage()),
       ),
     ];
   }
