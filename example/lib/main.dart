@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'doc_widgets.dart';
 import 'game_blinking_cursor_page.dart';
+import 'game_action_button_page.dart';
 import 'game_button_page.dart';
 import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
@@ -175,6 +176,14 @@ class _HomePageState extends State<HomePage> {
             'Square back button — chevron-left icon on the square variant. '
             'Convenience wrapper for app bars and headers.',
         onOpen: () => open((_) => const GameReturnButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameActionButton',
+        description:
+            'Wide pill-shaped primary action button (label + gloss highlight) '
+            'plus GameActionGrid for auto 2 / 3 / 4-item row layouts.',
+        onOpen: () => open((_) => const GameActionButtonPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.foundation,
