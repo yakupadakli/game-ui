@@ -13,6 +13,7 @@ import 'game_icons_page.dart';
 import 'game_indicators_page.dart';
 import 'game_input_display_page.dart';
 import 'game_layouts_page.dart';
+import 'game_result_card_page.dart';
 import 'game_mascots_page.dart';
 import 'game_numpad_page.dart';
 import 'game_painters_page.dart';
@@ -288,6 +289,14 @@ class _HomePageState extends State<HomePage> {
             'Rounded card with thick rim, drop shadow, optional bottom slot, '
             'and an optional mascot floating off the left edge.',
         onOpen: () => open((_) => const GameContentCardPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameResultCard',
+        description:
+            'End-of-level summary panel — GameStarRating floating on the top '
+            'edge, plus optional title, subtitle, badge, and stats slots.',
+        onOpen: () => open((_) => const GameResultCardPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.foundation,
