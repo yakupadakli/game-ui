@@ -6,8 +6,15 @@ import 'game_blinking_cursor_page.dart';
 import 'game_button_page.dart';
 import 'game_colors_page.dart';
 import 'game_feedback_overlay_page.dart';
+import 'game_backgrounds_page.dart';
+import 'game_frames_page.dart';
+import 'game_icons_page.dart';
 import 'game_indicators_page.dart';
+import 'game_mascots_page.dart';
+import 'game_numpad_page.dart';
 import 'game_painters_page.dart';
+import 'game_return_button_page.dart';
+import 'game_true_false_button_page.dart';
 import 'game_text_effects_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_disabled_overlay_page.dart';
@@ -55,6 +62,7 @@ enum DocExampleCategory {
   forms,
   layout,
   feedback,
+  assets,
 }
 
 extension on DocExampleCategory {
@@ -66,6 +74,7 @@ extension on DocExampleCategory {
     DocExampleCategory.forms => 'Forms',
     DocExampleCategory.layout => 'Layout',
     DocExampleCategory.feedback => 'Feedback',
+    DocExampleCategory.assets => 'Assets',
   };
 }
 
@@ -137,6 +146,31 @@ class _HomePageState extends State<HomePage> {
             'Currently ships the glossy 3D circle variant; future variants '
             '(primary, secondary, warning…) land as the asset library grows.',
         onOpen: () => open((_) => const GameButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameNumpad',
+        description:
+            'Numeric keypad: 1-2-3 / 4-5-6 / 7-8-9 / [C] 0 ⌫. Each key is a '
+            'GameNumpadButton (layered face + depth rim), color-coded by '
+            'type (blue digits, red delete, orange clear).',
+        onOpen: () => open((_) => const GameNumpadPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameTrueFalseButton',
+        description:
+            'Paired green / red boolean answer buttons with check / cancel '
+            'icons. Pass isSelected to draw the active outer ring.',
+        onOpen: () => open((_) => const GameTrueFalseButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameReturnButton',
+        description:
+            'Square back button — chevron-left icon on the square variant. '
+            'Convenience wrapper for app bars and headers.',
+        onOpen: () => open((_) => const GameReturnButtonPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.foundation,
@@ -233,6 +267,41 @@ class _HomePageState extends State<HomePage> {
             'GameEllipsePainter (solid oval) and GameGlossPainter (single '
             'curved highlight stroke) — primitives for button backgrounds.',
         onOpen: () => open((_) => const GamePaintersPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Mascots',
+        description:
+            'Bundled animal characters (bear, elephant, fox, penguin) in 11 '
+            'matching poses each. Use GameMascotImage or read MascotAssets '
+            'paths directly.',
+        onOpen: () => open((_) => const GameMascotsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Backgrounds',
+        description:
+            '6 bundled full-screen backgrounds (4 generic + congrats + '
+            'stars). GameBackground wraps Scaffold body; BackgroundAssets '
+            'exposes path constants.',
+        onOpen: () => open((_) => const GameBackgroundsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Frames',
+        description:
+            '5 colored decorative frame panels (blue, green, orange, '
+            'purple, yellow). GameFrame wraps any child with the bundled '
+            'rim PNG behind it.',
+        onOpen: () => open((_) => const GameFramesPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Icons',
+        description:
+            'Bundled illustrated icon PNGs — game (check, lightbulb, '
+            'pencil…), system (gear, lock, shield…), audio, stars/trophies.',
+        onOpen: () => open((_) => const GameIconsPage()),
       ),
     ];
   }

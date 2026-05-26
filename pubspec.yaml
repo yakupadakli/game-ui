@@ -22,8 +22,16 @@ flutter:
   # Example (uncomment + adjust when assets are added):
   #
   assets:
+    - assets/images/backgrounds/
     - assets/images/buttons/
     - assets/images/cards/
+    - assets/images/frames/
+    - assets/images/icons/common/
+    - assets/images/icons/game/
+    - assets/images/mascots/bears/
+    - assets/images/mascots/elephants/
+    - assets/images/mascots/foxes/
+    - assets/images/mascots/penguins/
 
   fonts:
     - family: Fredoka

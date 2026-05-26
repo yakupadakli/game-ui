@@ -36,15 +36,16 @@ class GameFeedbackOverlayPage extends StatelessWidget {
                   'Tap to show a centered overlay for ~600ms; the helper '
                   'inserts an OverlayEntry and removes it on completion.',
               child: Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
                   children: [
                     FilledButton.tonal(
                       onPressed: () =>
                           showGameFeedbackOverlay(context, isCorrect: true),
                       child: const Text('SHOW CORRECT'),
                     ),
-                    const SizedBox(width: 12),
                     FilledButton.tonal(
                       style: FilledButton.styleFrom(
                         backgroundColor: GameColors.danger.withValues(
@@ -65,9 +66,7 @@ class GameFeedbackOverlayPage extends StatelessWidget {
               description:
                   'The widget plays once on mount; rebuild to replay. Useful '
                   'when embedded above a question card.',
-              child: Center(
-                child: SizedBox(height: 140, child: _InlineReplay()),
-              ),
+              child: Center(child: _InlineReplay()),
             ),
             const DocCode(
               "import 'package:game_ui/game_ui.dart';\n"

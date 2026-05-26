@@ -47,6 +47,12 @@ class GameIndicatorsPage extends StatelessWidget {
                   'Stack: icon + bold value + label. Use in summary rows.',
               child: _StatRow(),
             ),
+            DocSection(
+              title: 'GameBadge',
+              description:
+                  'Compact rounded label for tags, status, difficulty levels.',
+              child: _BadgeRow(),
+            ),
             DocCode(
               "import 'package:game_ui/game_ui.dart';\n"
               '\n'
@@ -119,6 +125,26 @@ class _StatRow extends StatelessWidget {
           label: 'accuracy',
           color: GameColors.success,
         ),
+      ],
+    );
+  }
+}
+
+class _BadgeRow extends StatelessWidget {
+  const _BadgeRow();
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      alignment: WrapAlignment.center,
+      children: const [
+        GameBadge(label: 'EASY', color: GameColors.success),
+        GameBadge(label: 'MEDIUM', color: GameColors.warning),
+        GameBadge(label: 'HARD', color: GameColors.danger),
+        GameBadge(label: 'PRO', color: GameColors.accent),
+        GameBadge(label: 'NEW'),
       ],
     );
   }
