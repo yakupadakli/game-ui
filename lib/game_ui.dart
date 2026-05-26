@@ -24,15 +24,18 @@ export 'src/core/game_ui_strings.dart';
 export 'src/core/game_ui_strings_theme.dart';
 export 'src/painters/game_painters.dart';
 export 'src/validators/game_validators.dart';
+export 'src/widgets/avatars/game_avatars.dart';
 export 'src/widgets/backgrounds/game_backgrounds.dart';
 export 'src/widgets/buttons/game_buttons.dart';
 export 'src/widgets/cards/game_cards.dart';
+export 'src/widgets/dialogs/game_dialogs.dart';
 export 'src/widgets/feedback/game_feedbacks.dart';
 export 'src/widgets/frames/game_frames.dart';
 export 'src/widgets/icons/game_icons.dart';
 export 'src/widgets/indicators/game_indicators.dart';
 export 'src/widgets/inputs/game_inputs.dart';
 export 'src/widgets/layouts/game_layouts.dart';
+export 'src/widgets/loading/game_loading.dart';
 export 'src/widgets/mascots/game_mascots.dart';
 export 'src/widgets/text/game_texts.dart';
 

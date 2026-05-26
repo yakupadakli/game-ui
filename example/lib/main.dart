@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'doc_widgets.dart';
 import 'game_blinking_cursor_page.dart';
 import 'game_action_button_page.dart';
+import 'game_avatar_item_page.dart';
 import 'game_button_page.dart';
 import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
@@ -18,10 +19,12 @@ import 'game_result_card_page.dart';
 import 'game_mascots_page.dart';
 import 'game_numpad_page.dart';
 import 'game_painters_page.dart';
+import 'game_progress_bar_page.dart';
 import 'game_return_button_page.dart';
 import 'game_true_false_button_page.dart';
 import 'game_text_effects_page.dart';
 import 'game_design_tokens_page.dart';
+import 'game_dialog_page.dart';
 import 'game_disabled_overlay_page.dart';
 import 'game_gallery_page.dart';
 import 'game_tap_scale_page.dart';
@@ -266,6 +269,14 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameFeedbackOverlayPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameDialog',
+        description:
+            'Chunky modal card with title / content / actions slots — use '
+            'showGameDialog() or push manually.',
+        onOpen: () => open((_) => const GameDialogPage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.layout,
         title: 'Indicators',
         description:
@@ -308,12 +319,28 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameResultCardPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameProgressBar',
+        description:
+            'Pill-shaped progress fill — animated tween, optional label '
+            'overlay, customizable colors and height.',
+        onOpen: () => open((_) => const GameProgressBarPage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.foundation,
         title: 'Painters',
         description:
             'GameEllipsePainter (solid oval) and GameGlossPainter (single '
             'curved highlight stroke) — primitives for button backgrounds.',
         onOpen: () => open((_) => const GamePaintersPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameAvatarItem',
+        description:
+            'Selectable circular item with glow + check badge — wrap any '
+            'child (mascot, icon, image) for avatar / character pickers.',
+        onOpen: () => open((_) => const GameAvatarItemPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.assets,
