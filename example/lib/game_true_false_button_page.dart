@@ -45,8 +45,10 @@ class _GameTrueFalseButtonPageState extends State<GameTrueFalseButtonPage> {
                   'Two buttons in a row; the selected one renders the thick '
                   'outer ring.',
               child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
                   children: [
                     GameTrueFalseButton(
                       text: 'TRUE',
@@ -54,7 +56,6 @@ class _GameTrueFalseButtonPageState extends State<GameTrueFalseButtonPage> {
                       isSelected: _picked == true,
                       onTap: () => setState(() => _picked = true),
                     ),
-                    const SizedBox(width: 12),
                     GameTrueFalseButton(
                       text: 'FALSE',
                       isTrue: false,
@@ -69,15 +70,16 @@ class _GameTrueFalseButtonPageState extends State<GameTrueFalseButtonPage> {
               title: 'Different copy',
               description: 'Text is free-form — use any short label.',
               child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
                   children: [
                     GameTrueFalseButton(
                       text: 'YES',
                       isTrue: true,
                       onTap: _noop,
                     ),
-                    SizedBox(width: 12),
                     GameTrueFalseButton(
                       text: 'NO',
                       isTrue: false,
@@ -91,8 +93,10 @@ class _GameTrueFalseButtonPageState extends State<GameTrueFalseButtonPage> {
               title: 'Disabled',
               description: 'Wrapped in GameDisabledOverlay (opacity 0.38).',
               child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
                   children: [
                     GameTrueFalseButton(
                       text: 'TRUE',
@@ -100,7 +104,6 @@ class _GameTrueFalseButtonPageState extends State<GameTrueFalseButtonPage> {
                       enabled: false,
                       onTap: _noop,
                     ),
-                    SizedBox(width: 12),
                     GameTrueFalseButton(
                       text: 'FALSE',
                       isTrue: false,

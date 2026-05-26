@@ -5,11 +5,14 @@ import 'doc_widgets.dart';
 import 'game_blinking_cursor_page.dart';
 import 'game_button_page.dart';
 import 'game_colors_page.dart';
+import 'game_content_card_page.dart';
 import 'game_feedback_overlay_page.dart';
 import 'game_backgrounds_page.dart';
 import 'game_frames_page.dart';
 import 'game_icons_page.dart';
 import 'game_indicators_page.dart';
+import 'game_input_display_page.dart';
+import 'game_layouts_page.dart';
 import 'game_mascots_page.dart';
 import 'game_numpad_page.dart';
 import 'game_painters_page.dart';
@@ -259,6 +262,32 @@ class _HomePageState extends State<HomePage> {
             'GameStarRating (earned out of total) and GameStatItem '
             '(icon + value + label) for summary screens.',
         onOpen: () => open((_) => const GameIndicatorsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'Layouts',
+        description:
+            'GameScaffold (transparent Scaffold over a bundled background '
+            'PNG) and GameAppBar (transparent AppBar with stroked title + '
+            'GameReturnButton in the leading slot).',
+        onOpen: () => open((_) => const GameLayoutsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameInputDisplay',
+        description:
+            'Read-only value field with a blinking cursor — pair with '
+            'GameNumpad / GameKeyboard when the typed value lives in parent '
+            'state rather than a TextField.',
+        onOpen: () => open((_) => const GameInputDisplayPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'GameContentCard',
+        description:
+            'Rounded card with thick rim, drop shadow, optional bottom slot, '
+            'and an optional mascot floating off the left edge.',
+        onOpen: () => open((_) => const GameContentCardPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.foundation,
