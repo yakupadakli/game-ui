@@ -6,6 +6,14 @@ import '../../core/game_design_tokens.dart';
 /// Supported third-party identity providers for [GameSocialButton].
 enum GameSocialProvider { google, apple, facebook, x }
 
+/// Named default height for [GameSocialButton] (logical pixels). [height]
+/// also accepts any raw number; this is the recommended default.
+abstract final class GameSocialButtonSize {
+  GameSocialButtonSize._();
+
+  static const double height = 56;
+}
+
 /// Full-width sign-in button branded for a specific [GameSocialProvider].
 ///
 /// Pass a [label] to override the per-provider default copy. Each provider
@@ -15,7 +23,7 @@ class GameSocialButton extends StatelessWidget {
     required this.provider,
     required this.onTap,
     this.label,
-    this.height = 56.0,
+    this.height = GameSocialButtonSize.height,
     super.key,
   });
 

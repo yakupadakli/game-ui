@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import '../../animations/game_blinking_cursor.dart';
 import '../../core/game_design_tokens.dart';
 
+/// Named default height for [GameInputDisplay] (logical pixels). [height]
+/// also accepts any raw number; this is the recommended default.
+abstract final class GameInputDisplaySize {
+  GameInputDisplaySize._();
+
+  static const double height = 50;
+}
+
 /// Read-only display showing a typed [value] followed by a
 /// [GameBlinkingCursor] — used to surface the in-progress answer in numpad /
 /// keypad flows where the actual text input lives elsewhere (e.g. in a
@@ -13,7 +21,7 @@ import '../../core/game_design_tokens.dart';
 class GameInputDisplay extends StatelessWidget {
   const GameInputDisplay({
     required this.value,
-    this.height = 50.0,
+    this.height = GameInputDisplaySize.height,
     this.fontSize = GameDesignTokens.font3XL,
     this.backgroundColor = const Color(0xFFDBE5EE),
     this.borderColor = const Color(0xFF567F91),

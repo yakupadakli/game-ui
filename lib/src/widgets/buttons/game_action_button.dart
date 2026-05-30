@@ -7,6 +7,17 @@ import '../../core/game_disabled_overlay.dart';
 import '../../painters/game_gloss_painter.dart';
 import '../text/game_stroked_text.dart';
 
+/// Named default size for [GameActionButton] (logical pixels). [width],
+/// [height], and [fontSize] also accept any raw number; these are the
+/// recommended defaults.
+abstract final class GameActionButtonSize {
+  GameActionButtonSize._();
+
+  static const double width = 120;
+  static const double height = 60;
+  static const double fontSize = 32;
+}
+
 /// Wide pill-shaped primary action button — outer white frame + colored
 /// inner face, with a stroked label and a corner gloss highlight.
 ///
@@ -17,14 +28,14 @@ class GameActionButton extends StatelessWidget {
   const GameActionButton({
     required this.label,
     required this.onTap,
-    this.width = 120.0,
-    this.height = 60.0,
+    this.width = GameActionButtonSize.width,
+    this.height = GameActionButtonSize.height,
     this.color = GameColors.success,
     this.borderColor,
     this.textColor = const Color(0xFFFDFFFE),
     this.strokeColor,
     this.glossColor,
-    this.fontSize = 32.0,
+    this.fontSize = GameActionButtonSize.fontSize,
     this.borderRadius = GameDesignTokens.radiusMD,
     this.borderWidth = 3.0,
     this.outerColor = Colors.white,

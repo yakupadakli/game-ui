@@ -1,5 +1,13 @@
 import 'package:flutter/widgets.dart';
 
+/// Named default height for [GameSkeleton] (logical pixels). [height] also
+/// accepts any raw number; this is the recommended default.
+abstract final class GameSkeletonSize {
+  GameSkeletonSize._();
+
+  static const double height = 16;
+}
+
 /// Animated shimmer placeholder used while content is loading.
 ///
 /// Renders a rounded rectangle of ([width], [height]) with a linear gradient
@@ -8,7 +16,7 @@ import 'package:flutter/widgets.dart';
 class GameSkeleton extends StatefulWidget {
   const GameSkeleton({
     this.width,
-    this.height = 16.0,
+    this.height = GameSkeletonSize.height,
     this.borderRadius = 8.0,
     this.baseColor = const Color(0xFFE5E9F0),
     this.highlightColor = const Color(0xFFF5F7FA),

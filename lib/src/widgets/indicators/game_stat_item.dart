@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
+/// Named default icon size for [GameStatItem] (logical pixels). [iconSize]
+/// also accepts any raw number; this is the recommended default.
+abstract final class GameStatItemSize {
+  GameStatItemSize._();
+
+  static const double iconSize = 22;
+}
+
 /// Vertical stat tile — icon + value + label, stacked. Used in summary
 /// cards (e.g. "best streak: 12").
 class GameStatItem extends StatelessWidget {
@@ -11,7 +19,7 @@ class GameStatItem extends StatelessWidget {
     required this.value,
     required this.label,
     this.color = GameColors.primary,
-    this.iconSize = 22.0,
+    this.iconSize = GameStatItemSize.iconSize,
     this.valueFontSize = GameDesignTokens.fontLG,
     this.labelFontSize = GameDesignTokens.fontSM,
     this.labelColor = const Color(0xFF8B95A5),

@@ -6,6 +6,16 @@ import '../../core/game_ui_image.dart';
 import 'buttons_assets.dart';
 import 'game_button_variant.dart';
 
+/// Named size presets for [GameButton] (logical pixels). [size] also accepts
+/// any raw number; these are the recommended defaults.
+abstract final class GameButtonSize {
+  GameButtonSize._();
+
+  static const double sm = 64;
+  static const double md = 96;
+  static const double lg = 128;
+}
+
 /// A game-style button. The [variant] decides what background renders
 /// (bundled PNG or pure code). [GameTapScale] + [GameDisabledOverlay] handle
 /// the press animation and disabled state.
@@ -18,7 +28,7 @@ class GameButton extends StatelessWidget {
   const GameButton({
     super.key,
     this.variant = GameButtonVariant.circle,
-    this.size = 96,
+    this.size = GameButtonSize.md,
     this.child = const SizedBox.shrink(),
     this.onTap,
     this.onLongPress,

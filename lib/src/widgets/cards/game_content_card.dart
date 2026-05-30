@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../core/game_design_tokens.dart';
 
+/// Named default heights for [GameContentCard] (logical pixels). [height] /
+/// [bottomSlotHeight] also accept any raw number; these are the recommended
+/// defaults.
+abstract final class GameContentCardSize {
+  GameContentCardSize._();
+
+  static const double height = 120;
+  static const double bottomSlotHeight = 70;
+}
+
 /// Rounded white card with a thick game-style border + soft drop shadow.
 /// Holds a free-form [child] (e.g. math expression, prompt, illustration),
 /// with an optional [bottom] slot beneath it (e.g. input display, buttons)
@@ -23,8 +33,8 @@ class GameContentCard extends StatelessWidget {
     this.mascotLeft = -30.0,
     this.mascotBottom = 19.0,
     this.mascotBottomWithBottomSlot = 75.0,
-    this.height = 120.0,
-    this.bottomSlotHeight = 70.0,
+    this.height = GameContentCardSize.height,
+    this.bottomSlotHeight = GameContentCardSize.bottomSlotHeight,
     this.outerPadding = const EdgeInsets.symmetric(
       horizontal: GameDesignTokens.spacingXL,
       vertical: GameDesignTokens.spacingSM,

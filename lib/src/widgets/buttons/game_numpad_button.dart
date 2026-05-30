@@ -11,6 +11,15 @@ import 'game_button_palette.dart';
 /// red/orange to stand out).
 enum GameNumpadButtonType { number, delete, clear }
 
+/// Named default size for [GameNumpadButton] (logical pixels). [width] /
+/// [height] also accept any raw number; these are the recommended defaults.
+abstract final class GameNumpadButtonSize {
+  GameNumpadButtonSize._();
+
+  static const double width = 80;
+  static const double height = 64;
+}
+
 /// A single key in a numeric pad — layered "rect button" look (depth rim +
 /// gradient face + dark border + curved gloss).
 ///
@@ -21,8 +30,8 @@ class GameNumpadButton extends StatelessWidget {
     required this.value,
     required this.onTap,
     this.type = GameNumpadButtonType.number,
-    this.width = 80,
-    this.height = 64,
+    this.width = GameNumpadButtonSize.width,
+    this.height = GameNumpadButtonSize.height,
     this.enabled = true,
     super.key,
   });

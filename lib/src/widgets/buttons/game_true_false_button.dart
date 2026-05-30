@@ -6,6 +6,15 @@ import '../../core/game_disabled_overlay.dart';
 import '../text/game_stroked_text.dart';
 import 'game_button_palette.dart';
 
+/// Named default size for [GameTrueFalseButton] (logical pixels). [width] /
+/// [height] also accept any raw number; these are the recommended defaults.
+abstract final class GameTrueFalseButtonSize {
+  GameTrueFalseButtonSize._();
+
+  static const double width = 160;
+  static const double height = 72;
+}
+
 /// Paired true/false answer button — green when [isTrue], red otherwise.
 ///
 /// Used in two-up rows for boolean answer questions. Pass [isSelected] to
@@ -16,8 +25,8 @@ class GameTrueFalseButton extends StatelessWidget {
     required this.isTrue,
     required this.onTap,
     this.isSelected = false,
-    this.width = 160,
-    this.height = 72,
+    this.width = GameTrueFalseButtonSize.width,
+    this.height = GameTrueFalseButtonSize.height,
     this.enabled = true,
     super.key,
   });

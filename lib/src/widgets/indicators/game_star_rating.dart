@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+/// Named size presets for [GameStarRating] (per-star, logical pixels). [size]
+/// also accepts any raw number; these are the recommended defaults.
+abstract final class GameStarRatingSize {
+  GameStarRatingSize._();
+
+  static const double sm = 24;
+  static const double md = 36;
+  static const double lg = 48;
+}
+
 /// Row of star icons showing [starCount] earned out of [maxStars].
 ///
 /// Earned and unearned stars render with separate opacity values; pass a
@@ -9,7 +19,7 @@ class GameStarRating extends StatelessWidget {
   const GameStarRating({
     required this.starCount,
     this.maxStars = 3,
-    this.size = 36.0,
+    this.size = GameStarRatingSize.md,
     this.earnedOpacity = 1.0,
     this.unearnedOpacity = 0.3,
     this.icon = Icons.star_rounded,

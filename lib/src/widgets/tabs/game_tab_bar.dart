@@ -3,6 +3,14 @@ import 'package:flutter/widgets.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
+/// Named default height for [GameTabBar] (logical pixels). [height] also
+/// accepts any raw number; this is the recommended default.
+abstract final class GameTabBarSize {
+  GameTabBarSize._();
+
+  static const double height = 44;
+}
+
 /// Rounded pill tab bar — a row of equal-width tabs with an animated active
 /// pill that morphs between selections.
 ///
@@ -17,7 +25,7 @@ class GameTabBar extends StatelessWidget {
     this.activeColor = GameColors.primary,
     this.inactiveColor = const Color(0xFF8B95A5),
     this.backgroundColor = const Color(0xFFF0F2F5),
-    this.height = 44.0,
+    this.height = GameTabBarSize.height,
     this.animationDuration = const Duration(milliseconds: 220),
     super.key,
   });
