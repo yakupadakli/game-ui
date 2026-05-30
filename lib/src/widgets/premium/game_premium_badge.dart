@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_design_tokens.dart';
+
 /// Small gradient pill marking premium / PRO content. Icon + uppercase
 /// label sit on a vertical gradient with a matching darker border and a
 /// soft glow shadow in the badge color.
@@ -27,7 +29,7 @@ class GamePremiumBadge extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [color, darkColor],
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(GameDesignTokens.radiusSM),
         border: Border.all(color: darkColor, width: 1.5),
         boxShadow: [
           BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 8),

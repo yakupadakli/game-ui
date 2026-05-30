@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
+import '../../core/game_design_tokens.dart';
 import '../../core/game_disabled_overlay.dart';
+import '../text/game_stroked_text.dart';
+import 'game_button_palette.dart';
+
+/// Named default size for [GameTrueFalseButton] (logical pixels). [width] /
+/// [height] also accept any raw number; these are the recommended defaults.
+abstract final class GameTrueFalseButtonSize {
+  GameTrueFalseButtonSize._();
+
+  static const double width = 160;
+  static const double height = 72;
+}
 
 /// Paired true/false answer button — green when [isTrue], red otherwise.
 ///
@@ -13,8 +25,8 @@ class GameTrueFalseButton extends StatelessWidget {
     required this.isTrue,
     required this.onTap,
     this.isSelected = false,
-    this.width = 160,
-    this.height = 72,
+    this.width = GameTrueFalseButtonSize.width,
+    this.height = GameTrueFalseButtonSize.height,
     this.enabled = true,
     super.key,
   });
@@ -27,7 +39,7 @@ class GameTrueFalseButton extends StatelessWidget {
   final double height;
   final bool enabled;
 
-  static const _TruePalette _truePalette = _TruePalette(
+  static const GameButtonPalette _truePalette = GameButtonPalette(
     face: Color(0xFF8BC53D),
     depth: Color(0xFF2C4F2E),
     innerRing: Color(0xFF335815),
@@ -36,7 +48,7 @@ class GameTrueFalseButton extends StatelessWidget {
     stroke: Color(0xFF335815),
   );
 
-  static const _TruePalette _falsePalette = _TruePalette(
+  static const GameButtonPalette _falsePalette = GameButtonPalette(
     face: Color(0xFFF14D4C),
     depth: Color(0xFF8A1414),
     innerRing: Color(0xFF691F1B),
@@ -106,34 +118,14 @@ class GameTrueFalseButton extends StatelessWidget {
                         size: fontSize,
                       ),
                       SizedBox(width: fontSize * 0.25),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Text(
-                            text,
-                            style: TextStyle(
-                              fontFamily: 'BalooChettan2',
-                              fontSize: fontSize,
-                              fontWeight: FontWeight.w800,
-                              height: 1.0,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..strokeWidth = fontSize * 0.10
-                                ..strokeJoin = StrokeJoin.round
-                                ..color = palette.stroke,
-                            ),
-                          ),
-                          Text(
-                            text,
-                            style: TextStyle(
-                              fontFamily: 'BalooChettan2',
-                              fontSize: fontSize,
-                              fontWeight: FontWeight.w800,
-                              height: 1.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                      GameStrokedText(
+                        text,
+                        color: Colors.white,
+                        strokeColor: palette.stroke,
+                        fontSize: fontSize,
+                        strokeWidth: fontSize * 0.10,
+                        fontFamily: GameDesignTokens.fontFamilyDisplay,
+                        fontWeight: FontWeight.w800,
                       ),
                     ],
                   ),
@@ -150,22 +142,4 @@ class GameTrueFalseButton extends StatelessWidget {
       child: GameTapScale(enabled: enabled, onTap: onTap, child: button),
     );
   }
-}
-
-class _TruePalette {
-  const _TruePalette({
-    required this.face,
-    required this.depth,
-    required this.innerRing,
-    required this.highlight,
-    required this.shadow,
-    required this.stroke,
-  });
-
-  final Color face;
-  final Color depth;
-  final Color innerRing;
-  final Color highlight;
-  final Color shadow;
-  final Color stroke;
 }

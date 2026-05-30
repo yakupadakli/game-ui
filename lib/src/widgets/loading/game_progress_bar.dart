@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
+/// Named default height for [GameProgressBar] (logical pixels). [height]
+/// also accepts any raw number; this is the recommended default.
+abstract final class GameProgressBarSize {
+  GameProgressBarSize._();
+
+  static const double height = 24;
+}
+
 /// Pill-shaped progress bar — chunky rim + inner fill that grows from left
 /// to right. Use for level progress, XP, loading screens, etc.
 ///
@@ -11,7 +19,7 @@ import '../../core/game_design_tokens.dart';
 class GameProgressBar extends StatelessWidget {
   const GameProgressBar({
     required this.value,
-    this.height = 24.0,
+    this.height = GameProgressBarSize.height,
     this.backgroundColor = const Color(0xFFEDEDED),
     this.fillColor = GameColors.primary,
     this.borderColor = const Color(0xFFB7C8D9),

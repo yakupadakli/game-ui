@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../core/game_colors.dart';
 
+/// Named default size for [GameFeedbackOverlay] (logical pixels). [size] /
+/// [iconSize] also accept any raw number; these are the recommended defaults.
+abstract final class GameFeedbackOverlaySize {
+  GameFeedbackOverlaySize._();
+
+  static const double size = 120;
+  static const double iconSize = 70;
+}
+
 /// Animated correct/wrong overlay — a circle that bounces in, holds, then
 /// fades out. Used inline (e.g. centered on the answer field) or as a
 /// full-screen overlay via [showGameFeedbackOverlay].
@@ -13,8 +22,8 @@ class GameFeedbackOverlay extends StatefulWidget {
     this.wrongColor = GameColors.danger,
     this.correctIcon = Icons.check_circle,
     this.wrongIcon = Icons.cancel,
-    this.size = 120.0,
-    this.iconSize = 70.0,
+    this.size = GameFeedbackOverlaySize.size,
+    this.iconSize = GameFeedbackOverlaySize.iconSize,
     this.duration = const Duration(milliseconds: 600),
     super.key,
   });

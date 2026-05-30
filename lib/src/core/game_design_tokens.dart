@@ -34,4 +34,8 @@ abstract final class GameDesignTokens {
   /// Default font family bundled with the package.
   /// Consumers may override via [TextStyle.fontFamily] on their own widgets.
   static const String fontFamily = 'Fredoka';
+
+  /// Chunky display font for stroked button/number labels (e.g. numpad keys,
+  /// true/false buttons, badges).
+  static const String fontFamilyDisplay = 'BalooChettan2';
 }

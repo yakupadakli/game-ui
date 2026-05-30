@@ -12,7 +12,7 @@ class GameStrokedTitle extends StatelessWidget {
     this.strokeColor = GameColors.primary,
     this.fillColor = const Color(0xFFFFFFFF),
     this.strokeWidth = 2.0,
-    this.fontFamily = 'BalooChettan2',
+    this.fontFamily = GameDesignTokens.fontFamilyDisplay,
     this.fontWeight = FontWeight.w700,
     this.textAlign = TextAlign.center,
     this.lineHeight,
