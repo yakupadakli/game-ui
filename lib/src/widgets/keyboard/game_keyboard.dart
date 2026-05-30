@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
+import '../../core/game_design_tokens.dart';
 
 const List<String> _row1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 const List<String> _row2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
@@ -151,7 +152,7 @@ class _KeyButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(GameDesignTokens.radiusSM),
           border: Border.all(color: shadowColor, width: 1),
           boxShadow: [
             BoxShadow(

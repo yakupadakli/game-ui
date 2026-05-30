@@ -15,7 +15,7 @@ class GameBadge extends StatelessWidget {
     this.textColor = const Color(0xFFFFFFFF),
     this.fontSize = GameDesignTokens.fontSM,
     this.fontWeight = FontWeight.w700,
-    this.fontFamily = 'BalooChettan2',
+    this.fontFamily = GameDesignTokens.fontFamilyDisplay,
     this.icon,
     this.padding = const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
     this.borderRadius,

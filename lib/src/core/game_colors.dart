@@ -35,4 +35,20 @@ abstract final class GameColors {
   static const Color textOnPrimary = Color(0xFFFFFFFF);
   static const Color textNavy = Color(0xFF1A2E5C);
   static const Color disabled = Color(0xFFB0B0B0);
+
+  /// Returns [color] darkened by [amount] (0–1) in HSL lightness space.
+  /// Used to derive border/stroke shades from a single base color.
+  static Color darken(Color color, double amount) {
+    final hsl = HSLColor.fromColor(color);
+    final lightness = (hsl.lightness - amount).clamp(0.0, 1.0);
+    return hsl.withLightness(lightness).toColor();
+  }
+
+  /// Returns [color] lightened by [amount] (0–1) in HSL lightness space.
+  /// Used to derive gloss/highlight shades from a single base color.
+  static Color lighten(Color color, double amount) {
+    final hsl = HSLColor.fromColor(color);
+    final lightness = (hsl.lightness + amount).clamp(0.0, 1.0);
+    return hsl.withLightness(lightness).toColor();
+  }
 }

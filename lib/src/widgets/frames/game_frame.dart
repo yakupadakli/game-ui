@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../animations/game_tap_scale.dart';
 import '../../core/constants.dart' show gameUiPackageName;
+import '../../core/game_design_tokens.dart';
 import 'frames_assets.dart';
 
 /// Variant selector for [GameFrame] — matches the bundled colored PNGs.
@@ -28,7 +29,7 @@ class GameFrame extends StatelessWidget {
   const GameFrame({
     required this.child,
     this.variant = GameFrameVariant.blue,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(GameDesignTokens.spacingLG),
     this.width,
     this.height,
     this.onTap,

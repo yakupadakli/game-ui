@@ -49,9 +49,11 @@ class GameActionButton extends StatelessWidget {
 
   static const double _innerPadding = 4.0;
 
-  Color get _effectiveBorderColor => borderColor ?? _darken(color, 0.35);
+  Color get _effectiveBorderColor =>
+      borderColor ?? GameColors.darken(color, 0.35);
   Color get _effectiveStrokeColor => strokeColor ?? _effectiveBorderColor;
-  Color get _effectiveGlossColor => glossColor ?? _lighten(color, 0.25);
+  Color get _effectiveGlossColor =>
+      glossColor ?? GameColors.lighten(color, 0.25);
 
   @override
   Widget build(BuildContext context) {
@@ -127,16 +129,4 @@ class GameActionButton extends StatelessWidget {
       ),
     );
   }
-}
-
-Color _darken(Color color, double amount) {
-  final hsl = HSLColor.fromColor(color);
-  final lightness = (hsl.lightness - amount).clamp(0.0, 1.0);
-  return hsl.withLightness(lightness).toColor();
-}
-
-Color _lighten(Color color, double amount) {
-  final hsl = HSLColor.fromColor(color);
-  final lightness = (hsl.lightness + amount).clamp(0.0, 1.0);
-  return hsl.withLightness(lightness).toColor();
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
+import '../../core/game_design_tokens.dart';
 import '../../core/game_disabled_overlay.dart';
+import '../text/game_stroked_text.dart';
+import 'game_button_palette.dart';
 
 /// Visual variants of [GameNumpadButton]. The variant decides which palette
 /// the button uses (digits get the calm blue palette, special keys get
@@ -32,7 +35,7 @@ class GameNumpadButton extends StatelessWidget {
   final bool enabled;
 
   // Palettes — face, depth, innerRing, highlight, shadow, stroke.
-  static const _NumpadPalette _blue = _NumpadPalette(
+  static const GameButtonPalette _blue = GameButtonPalette(
     face: Color(0xFF4A90FF),
     depth: Color(0xFF1E5BCC),
     innerRing: Color(0xFF0030A0),
@@ -40,7 +43,7 @@ class GameNumpadButton extends StatelessWidget {
     shadow: Color(0xFF3070D0),
     stroke: Color(0xFF003E91),
   );
-  static const _NumpadPalette _red = _NumpadPalette(
+  static const GameButtonPalette _red = GameButtonPalette(
     face: Color(0xFFE45A5A),
     depth: Color(0xFFAF2B2B),
     innerRing: Color(0xFF6B1414),
@@ -48,7 +51,7 @@ class GameNumpadButton extends StatelessWidget {
     shadow: Color(0xFFB23C3C),
     stroke: Color(0xFF691F1B),
   );
-  static const _NumpadPalette _orange = _NumpadPalette(
+  static const GameButtonPalette _orange = GameButtonPalette(
     face: Color(0xFFFF9F43),
     depth: Color(0xFFCC7A2E),
     innerRing: Color(0xFF8A4B14),
@@ -57,7 +60,7 @@ class GameNumpadButton extends StatelessWidget {
     stroke: Color(0xFF7A4A11),
   );
 
-  _NumpadPalette get _palette => switch (type) {
+  GameButtonPalette get _palette => switch (type) {
     GameNumpadButtonType.number => _blue,
     GameNumpadButtonType.delete => _red,
     GameNumpadButtonType.clear => _orange,
@@ -115,34 +118,14 @@ class GameNumpadButton extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Text(
-                        value,
-                        style: TextStyle(
-                          fontFamily: 'BalooChettan2',
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.w800,
-                          height: 1.0,
-                          foreground: Paint()
-                            ..style = PaintingStyle.stroke
-                            ..strokeWidth = fontSize * 0.10
-                            ..strokeJoin = StrokeJoin.round
-                            ..color = palette.stroke,
-                        ),
-                      ),
-                      Text(
-                        value,
-                        style: TextStyle(
-                          fontFamily: 'BalooChettan2',
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.w800,
-                          height: 1.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
+                  child: GameStrokedText(
+                    value,
+                    color: Colors.white,
+                    strokeColor: palette.stroke,
+                    fontSize: fontSize,
+                    strokeWidth: fontSize * 0.10,
+                    fontFamily: GameDesignTokens.fontFamilyDisplay,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
@@ -157,22 +140,4 @@ class GameNumpadButton extends StatelessWidget {
       child: GameTapScale(enabled: enabled, onTap: onTap, child: button),
     );
   }
-}
-
-class _NumpadPalette {
-  const _NumpadPalette({
-    required this.face,
-    required this.depth,
-    required this.innerRing,
-    required this.highlight,
-    required this.shadow,
-    required this.stroke,
-  });
-
-  final Color face;
-  final Color depth;
-  final Color innerRing;
-  final Color highlight;
-  final Color shadow;
-  final Color stroke;
 }
