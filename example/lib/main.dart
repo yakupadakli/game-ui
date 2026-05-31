@@ -14,6 +14,7 @@ import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_dialog_page.dart';
+import 'game_difficulty_button_page.dart';
 import 'game_disabled_overlay_page.dart';
 import 'game_divider_page.dart';
 import 'game_empty_state_page.dart';
@@ -195,6 +196,14 @@ class _HomePageState extends State<HomePage> {
             'Square back button — chevron-left icon on the square variant. '
             'Convenience wrapper for app bars and headers.',
         onOpen: () => open((_) => const GameReturnButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameDifficultyButton',
+        description:
+            'Glossy rounded-square difficulty tile — easy / medium / hard '
+            'presets with an image placeholder icon and stroked label.',
+        onOpen: () => open((_) => const GameDifficultyButtonPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.buttons,
