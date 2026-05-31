@@ -85,6 +85,13 @@ class _GameMascotsPageState extends State<GameMascotsPage> {
                   'only for the bear family.',
               child: const _BearPoseGrid(),
             ),
+            const DocSection(
+              title: 'Large showcase',
+              description:
+                  'A few bear poses at the largest size — good for hero '
+                  'banners, celebration screens, and onboarding.',
+              child: _BearShowcase(),
+            ),
             const DocCode(
               "import 'package:game_ui/game_ui.dart';\n"
               '\n'
@@ -159,6 +166,37 @@ class _BearPoseGrid extends StatelessWidget {
                   Text(p.name, style: DocTheme.caption),
                 ],
               ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+class _BearShowcase extends StatelessWidget {
+  const _BearShowcase();
+
+  static const List<GameBearPose> _poses = [
+    GameBearPose.champion,
+    GameBearPose.superHeroFlying,
+    GameBearPose.wizard,
+    GameBearPose.scientist,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      alignment: WrapAlignment.center,
+      children: _poses
+          .map(
+            (p) => Column(
+              children: [
+                GameMascotImage.bear(pose: p, size: 200),
+                const SizedBox(height: 4),
+                Text(p.name, style: DocTheme.caption),
+              ],
             ),
           )
           .toList(),
