@@ -1,14 +1,12 @@
 import 'package:flutter/widgets.dart';
 
-/// Opacity used to dim a control when it is disabled (Material guideline:
-/// 0.38 for disabled foreground content).
-const double kGameDisabledOpacity = 0.38;
+import 'game_design_tokens.dart';
 
-/// Wraps [child] in an [Opacity] of [kGameDisabledOpacity] when [disabled]
-/// is `true`; otherwise returns [child] untouched.
+/// Dims [child] to [GameDesignTokens.disabledOpacity] and blocks pointer
+/// events when [disabled] is `true`; otherwise returns [child] untouched.
 ///
-/// Used by game_ui controls to render a consistent dimmed look for
-/// `enabled: false` states without rebuilding the underlying asset.
+/// Used by game_ui controls to render a consistent dimmed, non-interactive
+/// look for `enabled: false` states without rebuilding the underlying asset.
 class GameDisabledOverlay extends StatelessWidget {
   const GameDisabledOverlay({
     super.key,
@@ -22,6 +20,9 @@ class GameDisabledOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!disabled) return child;
-    return Opacity(opacity: kGameDisabledOpacity, child: child);
+    return Opacity(
+      opacity: GameDesignTokens.disabledOpacity,
+      child: IgnorePointer(child: child),
+    );
   }
 }

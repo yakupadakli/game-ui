@@ -75,7 +75,7 @@ class _ColorPalette extends StatelessWidget {
       _Swatch('Vibrant Blue', GameColors.vibrantBlue),
       _Swatch('Sunny Yellow', GameColors.sunnyYellow),
       _Swatch('Grass Green', GameColors.grassGreen),
-      _Swatch('Friendly Orange', GameColors.friendlyOrange),
+      _Swatch('Friendly Coral', GameColors.friendlyCoral),
       _Swatch('Purple', GameColors.purple),
     ];
     return const Wrap(spacing: 16, runSpacing: 16, children: swatches);

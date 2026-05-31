@@ -5,7 +5,8 @@
 abstract final class GameDesignTokens {
   GameDesignTokens._();
 
-  // Spacing scale (logical pixels).
+  // Spacing scale (logical pixels). Follows a 4pt grid (8·12·16·24·32);
+  // [spacingXS] is a deliberate 6px fine inset that sits below the grid.
   static const double spacingXS = 6;
   static const double spacingSM = 8;
   static const double spacingMD = 12;
@@ -23,7 +24,15 @@ abstract final class GameDesignTokens {
 
   // Tap target sizes.
   static const double tapTargetDefault = 48;
+
+  /// Compact tap target for dense layouts. Note: 32 is below Material's 48dp
+  /// minimum accessible touch target — widgets using it should enlarge the
+  /// hit area (e.g. a larger [GestureDetector]) where reachability matters.
   static const double tapTargetCompact = 32;
+
+  /// Opacity used to dim a control when it is disabled
+  /// (Material guideline: 0.38 for disabled foreground content).
+  static const double disabledOpacity = 0.38;
 
   // Border radius scale.
   static const double radiusSM = 8;

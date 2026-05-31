@@ -13,6 +13,20 @@ import 'game_ui_strings.dart';
 ///   ],
 /// )
 /// ```
+/// Builds the "Star N of M" semantic label.
+typedef GameStarIndexLabel = String Function(int indexOneBased, int maxStars);
+
+/// Builds the "All N steps completed" semantic label.
+typedef GameStepAllCompletedLabel = String Function(int total);
+
+/// Builds the "Step N of M, <label>" semantic label.
+typedef GameStepCurrentLabel =
+    String Function({
+      required int stepDisplayOneBased,
+      required int total,
+      required String stepLabel,
+    });
+
 @immutable
 class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   const GameUiStringsTheme({
@@ -32,6 +46,9 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     this.semanticSnackBar,
     this.semanticBottomSheet,
     this.semanticDismiss,
+    this.semanticStarIndexLabel,
+    this.semanticStepAllCompleted,
+    this.semanticStepCurrent,
   });
 
   /// Explicit English preset; otherwise the default const constructor's null
@@ -54,6 +71,10 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     semanticSnackBar: 'Notification',
     semanticBottomSheet: 'Bottom sheet',
     semanticDismiss: 'Dismiss',
+    // Top-level tear-offs are canonical, so two .en() instances stay equal.
+    semanticStarIndexLabel: kGameSemanticStarIndexLabel,
+    semanticStepAllCompleted: kGameSemanticStepAllCompleted,
+    semanticStepCurrent: kGameSemanticStepCurrent,
   );
 
   /// Explicit Turkish preset; otherwise the default const constructor's null
@@ -70,12 +91,16 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     semanticStarRatingDefault: 'Yıldız değerlendirmesi',
     semanticStarHalfHint: 'Farklı değerler için sol yarı veya sağ yarı',
     semanticDivider: 'Ayırıcı',
-    semanticBanner: 'Bildirim',
+    semanticBanner: 'Afiş',
     semanticLoading: 'Yükleniyor',
     semanticTooltip: 'İpucu',
     semanticSnackBar: 'Bildirim',
     semanticBottomSheet: 'Alt panel',
     semanticDismiss: 'Kapat',
+    // Top-level tear-offs are canonical, so two .tr() instances stay equal.
+    semanticStarIndexLabel: _trStarIndexLabel,
+    semanticStepAllCompleted: _trStepAllCompleted,
+    semanticStepCurrent: _trStepCurrent,
   );
 
   /// Resolves a preset by [Locale.languageCode]. Returns [tr] for `'tr'`,
@@ -106,6 +131,18 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   final String? semanticBottomSheet;
   final String? semanticDismiss;
 
+  /// Override for the parameterized "Star N of M" semantic label. Falls back
+  /// to [kGameSemanticStarIndexLabel] (English) when null.
+  final GameStarIndexLabel? semanticStarIndexLabel;
+
+  /// Override for "All N steps completed". Falls back to
+  /// [kGameSemanticStepAllCompleted] (English) when null.
+  final GameStepAllCompletedLabel? semanticStepAllCompleted;
+
+  /// Override for "Step N of M, <label>". Falls back to
+  /// [kGameSemanticStepCurrent] (English) when null.
+  final GameStepCurrentLabel? semanticStepCurrent;
+
   static const GameUiStringsTheme empty = GameUiStringsTheme();
 
   @override
@@ -126,6 +163,9 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     String? semanticSnackBar,
     String? semanticBottomSheet,
     String? semanticDismiss,
+    GameStarIndexLabel? semanticStarIndexLabel,
+    GameStepAllCompletedLabel? semanticStepAllCompleted,
+    GameStepCurrentLabel? semanticStepCurrent,
   }) {
     return GameUiStringsTheme(
       dialogOk: dialogOk ?? this.dialogOk,
@@ -146,6 +186,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
       semanticSnackBar: semanticSnackBar ?? this.semanticSnackBar,
       semanticBottomSheet: semanticBottomSheet ?? this.semanticBottomSheet,
       semanticDismiss: semanticDismiss ?? this.semanticDismiss,
+      semanticStarIndexLabel:
+          semanticStarIndexLabel ?? this.semanticStarIndexLabel,
+      semanticStepAllCompleted:
+          semanticStepAllCompleted ?? this.semanticStepAllCompleted,
+      semanticStepCurrent: semanticStepCurrent ?? this.semanticStepCurrent,
     );
   }
 
@@ -175,7 +220,10 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
         semanticTooltip == other.semanticTooltip &&
         semanticSnackBar == other.semanticSnackBar &&
         semanticBottomSheet == other.semanticBottomSheet &&
-        semanticDismiss == other.semanticDismiss;
+        semanticDismiss == other.semanticDismiss &&
+        semanticStarIndexLabel == other.semanticStarIndexLabel &&
+        semanticStepAllCompleted == other.semanticStepAllCompleted &&
+        semanticStepCurrent == other.semanticStepCurrent;
   }
 
   @override
@@ -196,6 +244,9 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     semanticSnackBar,
     semanticBottomSheet,
     semanticDismiss,
+    semanticStarIndexLabel,
+    semanticStepAllCompleted,
+    semanticStepCurrent,
   ]);
 }
 
@@ -256,4 +307,27 @@ class GameUiStringsResolved {
 
   String get semanticDismiss =>
       _theme?.semanticDismiss ?? kGameSemanticDismissDefault;
+
+  GameStarIndexLabel get semanticStarIndexLabel =>
+      _theme?.semanticStarIndexLabel ?? kGameSemanticStarIndexLabel;
+
+  GameStepAllCompletedLabel get semanticStepAllCompleted =>
+      _theme?.semanticStepAllCompleted ?? kGameSemanticStepAllCompleted;
+
+  GameStepCurrentLabel get semanticStepCurrent =>
+      _theme?.semanticStepCurrent ?? kGameSemanticStepCurrent;
 }
+
+// Turkish counterparts of the parameterized labels. Kept as top-level
+// functions so their tear-offs are canonical — two `.tr()` instances compare
+// equal, avoiding spurious ThemeExtension rebuilds.
+String _trStarIndexLabel(int indexOneBased, int maxStars) =>
+    '$maxStars yıldızdan $indexOneBased. yıldız';
+
+String _trStepAllCompleted(int total) => '$total adımın tümü tamamlandı';
+
+String _trStepCurrent({
+  required int stepDisplayOneBased,
+  required int total,
+  required String stepLabel,
+}) => 'Adım $stepDisplayOneBased / $total, $stepLabel';

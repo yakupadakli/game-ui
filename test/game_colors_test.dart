@@ -15,8 +15,8 @@ void main() {
       expect(GameColors.success, GameColors.grassGreen);
     });
 
-    test('danger maps to friendlyOrange', () {
-      expect(GameColors.danger, GameColors.friendlyOrange);
+    test('danger maps to friendlyCoral', () {
+      expect(GameColors.danger, GameColors.friendlyCoral);
     });
 
     test('accent maps to purple', () {

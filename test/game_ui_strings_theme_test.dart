@@ -44,6 +44,108 @@ void main() {
     });
   });
 
+  // Field-parity guard: every string field must be wired through the presets,
+  // copyWith, and GameUiStringsResolved. When adding a new field, extend the
+  // `fullFields`/`presetFields`/`resolved*` lists below so the parity holds.
+  group('GameUiStringsTheme field parity', () {
+    // A fully-populated instance with a unique sentinel per field.
+    final full = GameUiStringsTheme(
+      dialogOk: 's_dialogOk',
+      dialogCancel: 's_dialogCancel',
+      searchDefaultHint: 's_searchDefaultHint',
+      passwordShowTooltip: 's_passwordShowTooltip',
+      passwordHideTooltip: 's_passwordHideTooltip',
+      semanticRangeLabel: 's_semanticRangeLabel',
+      semanticRangeSliderHint: 's_semanticRangeSliderHint',
+      semanticStarRatingDefault: 's_semanticStarRatingDefault',
+      semanticStarHalfHint: 's_semanticStarHalfHint',
+      semanticDivider: 's_semanticDivider',
+      semanticBanner: 's_semanticBanner',
+      semanticLoading: 's_semanticLoading',
+      semanticTooltip: 's_semanticTooltip',
+      semanticSnackBar: 's_semanticSnackBar',
+      semanticBottomSheet: 's_semanticBottomSheet',
+      semanticDismiss: 's_semanticDismiss',
+    );
+
+    List<String?> fields(GameUiStringsTheme t) => [
+      t.dialogOk,
+      t.dialogCancel,
+      t.searchDefaultHint,
+      t.passwordShowTooltip,
+      t.passwordHideTooltip,
+      t.semanticRangeLabel,
+      t.semanticRangeSliderHint,
+      t.semanticStarRatingDefault,
+      t.semanticStarHalfHint,
+      t.semanticDivider,
+      t.semanticBanner,
+      t.semanticLoading,
+      t.semanticTooltip,
+      t.semanticSnackBar,
+      t.semanticBottomSheet,
+      t.semanticDismiss,
+    ];
+
+    List<String> resolvedValues(GameUiStringsResolved r) => [
+      r.dialogOk,
+      r.dialogCancel,
+      r.searchDefaultHint,
+      r.passwordShowTooltip,
+      r.passwordHideTooltip,
+      r.semanticRangeLabel,
+      r.semanticRangeSliderHint,
+      r.semanticStarRatingDefault,
+      r.semanticStarHalfHint,
+      r.semanticDivider,
+      r.semanticBanner,
+      r.semanticLoading,
+      r.semanticTooltip,
+      r.semanticSnackBar,
+      r.semanticBottomSheet,
+      r.semanticDismiss,
+    ];
+
+    test('.en() populates every field', () {
+      expect(fields(GameUiStringsTheme.en()), everyElement(isNotNull));
+    });
+
+    test('.tr() populates every field', () {
+      expect(fields(GameUiStringsTheme.tr()), everyElement(isNotNull));
+    });
+
+    test('.tr() has no duplicate values (each concept distinct)', () {
+      final values = fields(GameUiStringsTheme.tr()).cast<String>();
+      expect(values.toSet().length, values.length);
+    });
+
+    test('copyWith() preserves every field', () {
+      expect(fields(full.copyWith()), fields(full));
+    });
+
+    test('resolved prefers the theme override for every field', () {
+      expect(resolvedValues(GameUiStringsResolved(full)), fields(full));
+    });
+
+    test('resolved falls back to a non-empty default for every field', () {
+      // A null theme must yield the package kGame* defaults — never empty.
+      final defaults = resolvedValues(GameUiStringsResolved(null));
+      expect(defaults, everyElement(isNotEmpty));
+    });
+
+    test('equality and hashCode cover every field', () {
+      expect(full, equals(full.copyWith()));
+      expect(full.hashCode, full.copyWith().hashCode);
+      for (final mutated in [
+        full.copyWith(dialogOk: 'x'),
+        full.copyWith(semanticDismiss: 'x'),
+        full.copyWith(semanticBanner: 'x'),
+      ]) {
+        expect(full, isNot(equals(mutated)));
+      }
+    });
+  });
+
   group('GameUiStringsContext', () {
     testWidgets('falls back to package defaults when no theme extension', (
       tester,

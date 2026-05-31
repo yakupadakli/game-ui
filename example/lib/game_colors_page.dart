@@ -81,7 +81,7 @@ class _BrandPalette extends StatelessWidget {
       _Swatch('Vibrant Blue', '#4A90E2', GameColors.vibrantBlue),
       _Swatch('Sunny Yellow', '#FFD700', GameColors.sunnyYellow),
       _Swatch('Grass Green', '#50C878', GameColors.grassGreen),
-      _Swatch('Friendly Orange', '#FF6B6B', GameColors.friendlyOrange),
+      _Swatch('Friendly Coral', '#FF6B6B', GameColors.friendlyCoral),
       _Swatch('Purple', '#9B59B6', GameColors.purple),
     ];
     return const Wrap(spacing: 16, runSpacing: 16, children: swatches);
@@ -112,7 +112,7 @@ class _SemanticAliases extends StatelessWidget {
       _AliasRow('primary', 'vibrantBlue', GameColors.primary),
       _AliasRow('warning', 'sunnyYellow', GameColors.warning),
       _AliasRow('success', 'grassGreen', GameColors.success),
-      _AliasRow('danger', 'friendlyOrange', GameColors.danger),
+      _AliasRow('danger', 'friendlyCoral', GameColors.danger),
       _AliasRow('accent', 'purple', GameColors.accent),
     ];
     return const Column(children: aliases);

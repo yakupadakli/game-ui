@@ -51,6 +51,17 @@ abstract final class GameTextStyles {
     height: 1.0,
   );
 
+  /// Chunky label for stroked keys and badges — the display-font counterpart
+  /// to [buttonLabel], rendered in [GameDesignTokens.fontFamilyDisplay]
+  /// (`BalooChettan2`). Used by numpad keys, true/false buttons, and badges.
+  static const TextStyle displayLabel = TextStyle(
+    fontFamily: GameDesignTokens.fontFamilyDisplay,
+    fontWeight: FontWeight.w800,
+    fontSize: GameDesignTokens.fontXL,
+    color: GameColors.textOnPrimary,
+    height: 1.0,
+  );
+
   /// Display style for math problems ("15 + 8 = ?"). Larger and chunkier than
   /// [heading1], rendered in [GameColors.textNavy].
   static const TextStyle mathProblem = TextStyle(

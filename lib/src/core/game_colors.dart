@@ -12,7 +12,7 @@ abstract final class GameColors {
   static const Color vibrantBlue = Color(0xFF4A90E2);
   static const Color sunnyYellow = Color(0xFFFFD700);
   static const Color grassGreen = Color(0xFF50C878);
-  static const Color friendlyOrange = Color(0xFFFF6B6B);
+  static const Color friendlyCoral = Color(0xFFFF6B6B);
   static const Color purple = Color(0xFF9B59B6);
 
   // Animal palette — iOS system-style colors from the secondary design guide.
@@ -25,7 +25,7 @@ abstract final class GameColors {
   static const Color primary = vibrantBlue;
   static const Color warning = sunnyYellow;
   static const Color success = grassGreen;
-  static const Color danger = friendlyOrange;
+  static const Color danger = friendlyCoral;
   static const Color accent = purple;
 
   // Neutrals (inferred from the design guide scaffold + cards).
@@ -35,6 +35,18 @@ abstract final class GameColors {
   static const Color textOnPrimary = Color(0xFFFFFFFF);
   static const Color textNavy = Color(0xFF1A2E5C);
   static const Color disabled = Color(0xFFB0B0B0);
+
+  // Shadow inks — neutral black at preset opacities. Drive the [GameShadows]
+  // drop shadows.
+  static const Color shadowSoft = Color(0x14000000); // ~8% — cards/panels.
+  static const Color shadowStrong = Color(0x33000000); // ~20% — raised buttons.
+
+  // Soft blue surface ramp (pale → deep). Drives the [GameGradients] bands.
+  static const Color softBlue50 = Color(0xFFDCE9F5);
+  static const Color softBlue100 = Color(0xFFBED4ED);
+  static const Color softBlue200 = Color(0xFFA9C7E8);
+  static const Color softBlue300 = Color(0xFF7DA8D8);
+  static const Color softBlue400 = Color(0xFF5089C7);
 
   /// Returns [color] darkened by [amount] (0–1) in HSL lightness space.
   /// Used to derive border/stroke shades from a single base color.

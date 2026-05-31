@@ -24,7 +24,7 @@ void main() {
         ),
       );
       final opacity = tester.widget<Opacity>(find.byType(Opacity));
-      expect(opacity.opacity, kGameDisabledOpacity);
+      expect(opacity.opacity, GameDesignTokens.disabledOpacity);
     });
   });
 }
