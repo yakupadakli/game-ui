@@ -3,7 +3,8 @@ import 'package:game_ui/game_ui.dart';
 
 import 'doc_widgets.dart';
 
-/// [GameMascotImage] examples — all 4 mascot families × 11 poses.
+/// [GameMascotImage] examples — 4 mascot families × 11 shared poses, plus
+/// the bear-only extended [GameBearPose] set.
 class GameMascotsPage extends StatefulWidget {
   const GameMascotsPage({super.key});
 
@@ -30,12 +31,13 @@ class _GameMascotsPageState extends State<GameMascotsPage> {
           children: [
             const DocIntro(
               title: 'GameMascotImage',
-              subtitle: '4 mascot families · 11 poses each',
+              subtitle: '4 mascot families · 11 shared poses · bear extras',
               body:
                   'Bundled animal characters (bear, elephant, fox, penguin) '
                   'in eleven matching poses. Pick a mascot below to browse '
                   'its full pose set, or use the static MascotAssets paths '
-                  'directly with any Image widget.',
+                  'directly with any Image widget. The bear family adds an '
+                  'extended pose set via GameMascotImage.bear.',
             ),
             const SizedBox(height: 24),
             DocSection(
@@ -75,6 +77,14 @@ class _GameMascotsPageState extends State<GameMascotsPage> {
               description: 'Larger format, useful for empty states / intros.',
               child: _CrossRow(pose: GameMascotPose.hero, size: 120),
             ),
+            DocSection(
+              title: 'Bear-only poses (${GameBearPose.values.length})',
+              description:
+                  'Bear has an extended pose set beyond the shared 11 — '
+                  'render it with GameMascotImage.bear(pose: …). These exist '
+                  'only for the bear family.',
+              child: const _BearPoseGrid(),
+            ),
             const DocCode(
               "import 'package:game_ui/game_ui.dart';\n"
               '\n'
@@ -84,7 +94,13 @@ class _GameMascotsPageState extends State<GameMascotsPage> {
               '  size: 96,\n'
               ')\n'
               '\n'
-              '// Or use the path directly:\n'
+              '// Bear-only extended poses:\n'
+              'GameMascotImage.bear(\n'
+              '  pose: GameBearPose.scientist,\n'
+              '  size: 96,\n'
+              ')\n'
+              '\n'
+              '// Or use a path directly:\n'
               'Image.asset(MascotAssets.bearHero, package: "game_ui")',
             ),
           ],
@@ -112,6 +128,33 @@ class _PoseGrid extends StatelessWidget {
               child: Column(
                 children: [
                   GameMascotImage(mascot: mascot, pose: p, size: 72),
+                  const SizedBox(height: 4),
+                  Text(p.name, style: DocTheme.caption),
+                ],
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+class _BearPoseGrid extends StatelessWidget {
+  const _BearPoseGrid();
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      alignment: WrapAlignment.center,
+      children: GameBearPose.values
+          .map(
+            (p) => SizedBox(
+              width: 88,
+              child: Column(
+                children: [
+                  GameMascotImage.bear(pose: p, size: 72),
                   const SizedBox(height: 4),
                   Text(p.name, style: DocTheme.caption),
                 ],

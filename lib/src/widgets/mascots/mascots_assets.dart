@@ -15,6 +15,11 @@ abstract final class MascotAssets {
     return '$_root/${mascot.folderName}/${mascot.name}_${pose.name}.png';
   }
 
+  /// Returns the bundled PNG path for a bear-only [pose] (see [GameBearPose]).
+  static String bearPath(GameBearPose pose) {
+    return '$_root/${GameMascot.bear.folderName}/${pose.file}.png';
+  }
+
   // Bear
   static const String bearAngry = '$_root/bears/bear_angry.png';
   static const String bearCongrats = '$_root/bears/bear_congrats.png';
