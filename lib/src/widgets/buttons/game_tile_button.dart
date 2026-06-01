@@ -1,14 +1,9 @@
-import 'dart:math' as math;
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
 import '../../core/game_button_size.dart';
-import '../../core/game_colors.dart';
 import '../../core/game_disabled_overlay.dart';
-
-part 'game_tile_button_gloss_face.dart';
+import '../../core/game_gloss_surface.dart';
 
 /// Glossy rounded-square tile button, drawn entirely in code from a single
 /// [color]: a white outer frame with a soft drop shadow, a rounded inner face
@@ -80,10 +75,10 @@ class GameTileButton extends StatelessWidget {
             padding: EdgeInsets.all(frameThickness),
             child: SizedBox.square(
               dimension: innerSize,
-              child: _GlossFace(
-                face: color,
-                radius: innerRadius,
-                innerSize: innerSize,
+              child: GameGlossSurface(
+                color: color,
+                borderRadius: BorderRadius.circular(innerRadius),
+                referenceSize: innerSize,
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.all(innerSize * 0.15),

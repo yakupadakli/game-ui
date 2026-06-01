@@ -45,6 +45,7 @@ import 'game_text_effects_page.dart';
 import 'game_tile_button_page.dart';
 import 'game_text_styles_page.dart';
 import 'game_timeline_page.dart';
+import 'game_toggle_page.dart';
 import 'game_tooltip_page.dart';
 import 'game_true_false_button_page.dart';
 import 'game_ui_strings_page.dart';
@@ -280,6 +281,15 @@ class _HomePageState extends State<HomePage> {
             'FormField validators: required, email, number, '
             'positiveAmount, password, passwordMatch, minLength, combine.',
         onOpen: () => open((_) => const GameValidatorsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.forms,
+        title: 'GameToggle',
+        description:
+            'Glossy 3D on/off pill switch with a sliding candy knob and '
+            'ON/OFF labels. Controlled (value + onChanged); custom labels, '
+            'active color, and width.',
+        onOpen: () => open((_) => const GameTogglePage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.layout,
