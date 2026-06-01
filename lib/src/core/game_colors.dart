@@ -63,4 +63,16 @@ abstract final class GameColors {
     final lightness = (hsl.lightness + amount).clamp(0.0, 1.0);
     return hsl.withLightness(lightness).toColor();
   }
+
+  /// Returns [color] both darkened by [darkenAmount] and saturated by
+  /// [saturateAmount] (each 0–1) in HSL space. Richer than a plain lightness
+  /// drop — glossy surfaces darken *and* intensify toward their shaded edges,
+  /// which [darken] alone can't reproduce.
+  static Color deepen(Color color, double darkenAmount, double saturateAmount) {
+    final hsl = HSLColor.fromColor(color);
+    return hsl
+        .withLightness((hsl.lightness - darkenAmount).clamp(0.0, 1.0))
+        .withSaturation((hsl.saturation + saturateAmount).clamp(0.0, 1.0))
+        .toColor();
+  }
 }

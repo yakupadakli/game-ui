@@ -42,6 +42,7 @@ import 'game_summary_row_page.dart';
 import 'game_tab_bar_page.dart';
 import 'game_tap_scale_page.dart';
 import 'game_text_effects_page.dart';
+import 'game_tile_button_page.dart';
 import 'game_text_styles_page.dart';
 import 'game_timeline_page.dart';
 import 'game_tooltip_page.dart';
@@ -199,10 +200,21 @@ class _HomePageState extends State<HomePage> {
       ),
       _DocIndexEntry(
         category: DocExampleCategory.buttons,
+        title: 'GameTileButton',
+        description:
+            'Base glossy plastic tile, drawn entirely in code from a single '
+            'color (frame, body→lip gradient, top rim, inset edge, corner '
+            'highlight) with an arbitrary child. GameDifficultyButton is a '
+            'preset of it.',
+        onOpen: () => open((_) => const GameTileButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
         title: 'GameDifficultyButton',
         description:
             'Glossy rounded-square difficulty tile — easy / medium / hard '
-            'presets with an image placeholder icon and stroked label.',
+            'code-rendered presets with an image placeholder icon and '
+            'soft-shadowed label.',
         onOpen: () => open((_) => const GameDifficultyButtonPage()),
       ),
       _DocIndexEntry(

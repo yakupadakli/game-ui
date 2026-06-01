@@ -11,6 +11,7 @@ library;
 export 'src/animations/game_blinking_cursor.dart';
 export 'src/animations/game_tap_scale.dart';
 export 'src/core/constants.dart';
+export 'src/core/game_button_size.dart';
 export 'src/core/game_colors.dart';
 export 'src/core/game_design_tokens.dart';
 export 'src/core/game_disabled_overlay.dart';

@@ -26,10 +26,11 @@ class GameDifficultyButtonPage extends StatelessWidget {
               title: 'GameDifficultyButton',
               subtitle: 'easy · medium · hard',
               body:
-                  'Glossy rounded-square tile with a pale outer frame, a '
-                  'colored gradient face, a corner gloss, an image placeholder '
-                  'icon, and a stroked label. The difficulty picks the preset '
-                  'palette and label.',
+                  'Glossy rounded-square tile drawn entirely in code: a white '
+                  'frame, a colored face with a bright top rim and a deep '
+                  'bottom lip, a crisp inset edge, a corner highlight, an image '
+                  'placeholder icon, and a soft-shadowed label. The difficulty '
+                  'picks the preset palette and label.',
             ),
             const SizedBox(height: 24),
             DocSection(
@@ -48,7 +49,9 @@ class GameDifficultyButtonPage extends StatelessWidget {
             ),
             DocSection(
               title: 'Sizes',
-              description: 'sm · md · lg (size also accepts any number).',
+              description:
+                  'Shared GameButtonSize scale — medium / large / xLarge '
+                  'shown (size controls the square tile edge).',
               child: Wrap(
                 spacing: 16,
                 runSpacing: 16,
@@ -57,15 +60,15 @@ class GameDifficultyButtonPage extends StatelessWidget {
                 children: const [
                   GameDifficultyButton(
                     difficulty: GameDifficulty.easy,
-                    size: GameDifficultyButtonSize.sm,
+                    size: GameButtonSize.medium,
                   ),
                   GameDifficultyButton(
                     difficulty: GameDifficulty.easy,
-                    size: GameDifficultyButtonSize.md,
+                    size: GameButtonSize.large,
                   ),
                   GameDifficultyButton(
                     difficulty: GameDifficulty.easy,
-                    size: GameDifficultyButtonSize.lg,
+                    size: GameButtonSize.xLarge,
                   ),
                 ],
               ),
@@ -114,7 +117,7 @@ class GameDifficultyButtonPage extends StatelessWidget {
               '  difficulty: GameDifficulty.hard,\n'
               "  label: 'Boss',\n"
               '  color: GameColors.accent,\n'
-              '  size: GameDifficultyButtonSize.lg,\n'
+              '  size: GameButtonSize.xLarge,\n'
               ')',
             ),
           ],
