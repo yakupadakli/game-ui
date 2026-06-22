@@ -86,13 +86,15 @@ class _GameTogglePageState extends State<GameTogglePage> {
             DocSection(
               title: 'Custom active color',
               description:
-                  'activeColor derives its own gloss ramp; off stays '
-                  'grey.',
+                  'Set the on-knob color via palette.copyWith(onColor:); its '
+                  'gloss ramp derives from it.',
               child: Center(
                 child: GameToggle(
                   value: _power,
                   onChanged: (v) => setState(() => _power = v),
-                  activeColor: GameColors.primary,
+                  palette: GameTogglePalette.light.copyWith(
+                    onColor: GameColors.primary,
+                  ),
                 ),
               ),
             ),
@@ -156,13 +158,12 @@ class _GameTogglePageState extends State<GameTogglePage> {
               '  onChanged: (v) => setState(() => soundOn = v),\n'
               ')\n'
               '\n'
-              '// Custom labels / color / palette / size:\n'
+              '// Custom labels / palette / size:\n'
               'GameToggle(\n'
               '  value: soundOn,\n'
               '  onChanged: (v) => setState(() => soundOn = v),\n'
               "  onLabel: 'YES',\n"
               "  offLabel: 'NO',\n"
-              '  activeColor: GameColors.primary,\n'
               '  palette: GameTogglePalette.grey,\n'
               '  width: 220,\n'
               ')',

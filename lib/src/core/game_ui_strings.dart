@@ -18,6 +18,13 @@ const String kGamePasswordShowTooltip = 'Show password';
 const String kGamePasswordHideTooltip = 'Hide password';
 
 // ---------------------------------------------------------------------------
+// Toggle — default on/off labels
+// ---------------------------------------------------------------------------
+
+const String kGameToggleOnLabel = 'ON';
+const String kGameToggleOffLabel = 'OFF';
+
+// ---------------------------------------------------------------------------
 // Semantics — defaults
 // ---------------------------------------------------------------------------
 

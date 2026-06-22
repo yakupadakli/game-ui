@@ -35,6 +35,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     this.searchDefaultHint,
     this.passwordShowTooltip,
     this.passwordHideTooltip,
+    this.toggleOnLabel,
+    this.toggleOffLabel,
     this.semanticRangeLabel,
     this.semanticRangeSliderHint,
     this.semanticStarRatingDefault,
@@ -59,6 +61,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     searchDefaultHint: 'Search...',
     passwordShowTooltip: 'Show password',
     passwordHideTooltip: 'Hide password',
+    toggleOnLabel: 'ON',
+    toggleOffLabel: 'OFF',
     semanticRangeLabel: 'Range',
     semanticRangeSliderHint:
         'Drag each handle or tap the track to adjust the range',
@@ -85,6 +89,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     searchDefaultHint: 'Ara...',
     passwordShowTooltip: 'Şifreyi göster',
     passwordHideTooltip: 'Şifreyi gizle',
+    toggleOnLabel: 'AÇIK',
+    toggleOffLabel: 'KAPALI',
     semanticRangeLabel: 'Aralık',
     semanticRangeSliderHint:
         'Aralığı ayarlamak için her tutamağı sürükleyin veya iz üzerine dokunun',
@@ -119,6 +125,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   final String? searchDefaultHint;
   final String? passwordShowTooltip;
   final String? passwordHideTooltip;
+  final String? toggleOnLabel;
+  final String? toggleOffLabel;
   final String? semanticRangeLabel;
   final String? semanticRangeSliderHint;
   final String? semanticStarRatingDefault;
@@ -152,6 +160,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     String? searchDefaultHint,
     String? passwordShowTooltip,
     String? passwordHideTooltip,
+    String? toggleOnLabel,
+    String? toggleOffLabel,
     String? semanticRangeLabel,
     String? semanticRangeSliderHint,
     String? semanticStarRatingDefault,
@@ -173,6 +183,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
       searchDefaultHint: searchDefaultHint ?? this.searchDefaultHint,
       passwordShowTooltip: passwordShowTooltip ?? this.passwordShowTooltip,
       passwordHideTooltip: passwordHideTooltip ?? this.passwordHideTooltip,
+      toggleOnLabel: toggleOnLabel ?? this.toggleOnLabel,
+      toggleOffLabel: toggleOffLabel ?? this.toggleOffLabel,
       semanticRangeLabel: semanticRangeLabel ?? this.semanticRangeLabel,
       semanticRangeSliderHint:
           semanticRangeSliderHint ?? this.semanticRangeSliderHint,
@@ -210,6 +222,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
         searchDefaultHint == other.searchDefaultHint &&
         passwordShowTooltip == other.passwordShowTooltip &&
         passwordHideTooltip == other.passwordHideTooltip &&
+        toggleOnLabel == other.toggleOnLabel &&
+        toggleOffLabel == other.toggleOffLabel &&
         semanticRangeLabel == other.semanticRangeLabel &&
         semanticRangeSliderHint == other.semanticRangeSliderHint &&
         semanticStarRatingDefault == other.semanticStarRatingDefault &&
@@ -233,6 +247,8 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     searchDefaultHint,
     passwordShowTooltip,
     passwordHideTooltip,
+    toggleOnLabel,
+    toggleOffLabel,
     semanticRangeLabel,
     semanticRangeSliderHint,
     semanticStarRatingDefault,
@@ -274,6 +290,10 @@ class GameUiStringsResolved {
 
   String get passwordHideTooltip =>
       _theme?.passwordHideTooltip ?? kGamePasswordHideTooltip;
+
+  String get toggleOnLabel => _theme?.toggleOnLabel ?? kGameToggleOnLabel;
+
+  String get toggleOffLabel => _theme?.toggleOffLabel ?? kGameToggleOffLabel;
 
   String get semanticRangeLabel =>
       _theme?.semanticRangeLabel ?? kGameSemanticRangeDefaultLabel;

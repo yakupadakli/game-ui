@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/game_colors.dart';
 import '../../core/game_disabled_overlay.dart';
 import '../../core/game_gloss_surface.dart';
+import '../../core/game_ui_strings_theme.dart';
 import '../text/game_stroked_text.dart';
 import 'game_toggle_palette.dart';
 
@@ -12,17 +14,17 @@ import 'game_toggle_palette.dart';
 /// track.
 ///
 /// Controlled like Material's `Switch`: pass [value] and handle [onChanged]
-/// (pass `null`, or set [enabled] to false, to disable). All proportions and
-/// the knob/track shading scale from [width].
+/// (pass `null`, or set [enabled] to false, to disable). Tap, horizontal drag,
+/// or keyboard (Space / Enter when focused) toggle it. All proportions and the
+/// knob/track shading scale from [width].
 class GameToggle extends StatefulWidget {
   const GameToggle({
     required this.value,
     required this.onChanged,
     this.width = 200,
-    this.onLabel = 'ON',
-    this.offLabel = 'OFF',
+    this.onLabel,
+    this.offLabel,
     this.palette = GameTogglePalette.light,
-    this.activeColor,
     this.enabled = true,
     super.key,
   });
@@ -30,26 +32,24 @@ class GameToggle extends StatefulWidget {
   /// Whether the toggle is on (knob on the left, [onLabel] showing).
   final bool value;
 
-  /// Called with the new value when tapped. `null` disables interaction.
+  /// Called with the new value when toggled. `null` disables interaction.
   final ValueChanged<bool>? onChanged;
 
   /// Overall pill width; height and all internal shading derive from it.
   final double width;
 
-  /// Label for the on state (knob when on, track when off).
-  final String onLabel;
+  /// Label for the on state. Defaults to the localized
+  /// [GameUiStringsResolved.toggleOnLabel] (English `ON`).
+  final String? onLabel;
 
-  /// Label for the off state.
-  final String offLabel;
+  /// Label for the off state. Defaults to the localized
+  /// [GameUiStringsResolved.toggleOffLabel] (English `OFF`).
+  final String? offLabel;
 
   /// Color variation for the knob faces + labels. Defaults to
   /// [GameTogglePalette.light]; pass [GameTogglePalette.grey] for the earlier
-  /// grey-off look, or a custom palette.
+  /// grey-off look, or a custom palette (e.g. `…light.copyWith(onColor: …)`).
   final GameTogglePalette palette;
-
-  /// Overrides [palette].onColor for the on state (the on knob face). A custom
-  /// color derives its own gloss ramp and drop shadow.
-  final Color? activeColor;
 
   final bool enabled;
 
@@ -62,6 +62,7 @@ class _GameToggleState extends State<GameToggle>
   late final AnimationController _controller;
   late final Animation<double> _pos; // 0 = on (left), 1 = off (right)
   late final Animation<double> _fade; // eased, no overshoot
+  bool _focused = false;
 
   @override
   void initState() {
@@ -95,6 +96,14 @@ class _GameToggleState extends State<GameToggle>
 
   bool get _interactive => widget.enabled && widget.onChanged != null;
 
+  void _toggle() => _setValue(!widget.value);
+
+  void _setValue(bool next) {
+    if (!_interactive || next == widget.value) return;
+    HapticFeedback.lightImpact();
+    widget.onChanged!(next);
+  }
+
   @override
   Widget build(BuildContext context) {
     final w = widget.width;
@@ -102,135 +111,120 @@ class _GameToggleState extends State<GameToggle>
     final h = w * (176 / 360);
     final rim = 14 * k;
 
-    final onColor = widget.activeColor ?? widget.palette.onColor;
+    final strings = context.gameUiStrings;
+    final onLabel = widget.onLabel ?? strings.toggleOnLabel;
+    final offLabel = widget.offLabel ?? strings.toggleOffLabel;
+    final onColor = widget.palette.onColor;
     final offColor = widget.palette.offColor;
 
     return GameDisabledOverlay(
       disabled: !_interactive,
-      child: GestureDetector(
-        onTap: _interactive ? () => widget.onChanged!(!widget.value) : null,
-        child: SizedBox(
-          width: w,
-          height: h,
-          child: AnimatedBuilder(
-            animation: _controller,
-            builder: (context, _) {
-              final pos = _pos.value;
-              final fade = _fade.value;
-              final knobColor = Color.lerp(onColor, offColor, fade)!;
-              final knobShadow = Color.lerp(
-                _dropShadow(onColor),
-                _dropShadow(offColor),
-                fade,
-              )!;
+      child: FocusableActionDetector(
+        enabled: _interactive,
+        onShowFocusHighlight: (value) => setState(() => _focused = value),
+        actions: {
+          ActivateIntent: CallbackAction<ActivateIntent>(
+            onInvoke: (_) {
+              _toggle();
+              return null;
+            },
+          ),
+        },
+        child: GestureDetector(
+          onTap: _interactive ? _toggle : null,
+          onHorizontalDragEnd: _interactive
+              ? (details) {
+                  final v = details.primaryVelocity ?? 0;
+                  if (v.abs() < 1) return;
+                  _setValue(v < 0); // drag left → on, right → off
+                }
+              : null,
+          child: SizedBox(
+            width: w,
+            height: h,
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, _) {
+                final pos = _pos.value;
+                final fade = _fade.value;
+                final knobColor = Color.lerp(onColor, offColor, fade)!;
+                final knobShadow = Color.lerp(
+                  _dropShadow(onColor),
+                  _dropShadow(offColor),
+                  fade,
+                )!;
 
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(h),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF96A5B9).withValues(alpha: 0.30),
-                      blurRadius: 5 * k,
-                      offset: Offset(0, 3 * k),
-                    ),
-                    BoxShadow(
-                      color: const Color(0xFF94A4BA).withValues(alpha: 0.45),
-                      blurRadius: 38 * k,
-                      offset: Offset(0, 20 * k),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(rim),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Positioned.fill(child: _track(k)),
-                      // Track labels sit in the half the knob does NOT cover
-                      // (the knob is wider than half the track), so long text
-                      // fits clear of the knob instead of being clipped by it.
-                      Positioned(
-                        left: 16 * k,
-                        top: 0,
-                        bottom: 0,
-                        width: 116 * k,
-                        child: _trackLabel(widget.onLabel, onColor, fade, k),
-                      ),
-                      Positioned(
-                        right: 16 * k,
-                        top: 0,
-                        bottom: 0,
-                        width: 116 * k,
-                        child: _trackLabel(
-                          widget.offLabel,
-                          const Color(0xFF8B9298),
-                          1 - fade,
-                          k,
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(h),
+                    boxShadow: [
+                      if (_focused)
+                        BoxShadow(
+                          color: GameColors.primary.withValues(alpha: 0.6),
+                          blurRadius: 2 * k,
+                          spreadRadius: 3 * k,
                         ),
+                      BoxShadow(
+                        color: const Color(0xFF96A5B9).withValues(alpha: 0.30),
+                        blurRadius: 5 * k,
+                        offset: Offset(0, 3 * k),
                       ),
-                      Positioned(
-                        top: 8 * k,
-                        left: 8 * k + pos * (132 * k),
-                        width: 184 * k,
-                        height: (176 - 2 * 14 - 16) * k,
-                        child: _knob(
-                          knobColor,
-                          knobShadow,
-                          onColor,
-                          offColor,
-                          fade,
-                          k,
-                        ),
+                      BoxShadow(
+                        color: const Color(0xFF94A4BA).withValues(alpha: 0.45),
+                        blurRadius: 38 * k,
+                        offset: Offset(0, 20 * k),
                       ),
                     ],
                   ),
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Recessed light track; the inset shadow is approximated with a top-dark /
-  /// bottom-light vertical gradient.
-  Widget _track(double k) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFE2E8EE), // recessed top edge
-            Color(0xFFF4F7F9),
-            Color(0xFFE6ECF1),
-            Color(0xFFF1F6F9), // light bottom catch
-          ],
-          stops: [0.0, 0.14, 0.86, 1.0],
-        ),
-      ),
-    );
-  }
-
-  /// A track label, centered in its clear-zone slot, faded by [opacity] and
-  /// scaled down so long text fits.
-  Widget _trackLabel(String text, Color color, double opacity, double k) {
-    return Center(
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Opacity(
-          opacity: opacity,
-          child: GameStrokedText(
-            text,
-            color: color,
-            // Soft white halo on the light track.
-            strokeColor: const Color(0xCCFFFFFF),
-            strokeWidth: 40 * k * 0.06,
-            fontSize: 40 * k,
-            fontWeight: FontWeight.w800,
+                  child: Padding(
+                    padding: EdgeInsets.all(rim),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        const Positioned.fill(child: _Track()),
+                        // Track labels sit in the half the knob does NOT cover
+                        // (the knob is wider than half the track), so long text
+                        // fits clear of the knob instead of being clipped.
+                        Positioned(
+                          left: 16 * k,
+                          top: 0,
+                          bottom: 0,
+                          width: 116 * k,
+                          child: _trackLabel(onLabel, onColor, fade, k),
+                        ),
+                        Positioned(
+                          right: 16 * k,
+                          top: 0,
+                          bottom: 0,
+                          width: 116 * k,
+                          child: _trackLabel(
+                            offLabel,
+                            const Color(0xFF8B9298),
+                            1 - fade,
+                            k,
+                          ),
+                        ),
+                        Positioned(
+                          top: 8 * k,
+                          left: 8 * k + pos * (132 * k),
+                          width: 184 * k,
+                          height: (176 - 2 * 14 - 16) * k,
+                          child: _knob(
+                            knobColor,
+                            knobShadow,
+                            onLabel,
+                            offLabel,
+                            fade,
+                            k,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -240,8 +234,8 @@ class _GameToggleState extends State<GameToggle>
   Widget _knob(
     Color faceColor,
     Color dropShadow,
-    Color onColor,
-    Color offColor,
+    String onText,
+    String offText,
     double fade,
     double k,
   ) {
@@ -278,22 +272,44 @@ class _GameToggleState extends State<GameToggle>
                   // Each label is styled for its own state and cross-fades;
                   // the off label stays readable on a light knob.
                   _knobText(
-                    widget.onLabel,
+                    onText,
                     widget.palette.onLabelColor,
-                    onColor,
+                    widget.palette.onColor,
                     1 - fade,
                     k,
                   ),
                   _knobText(
-                    widget.offLabel,
+                    offText,
                     widget.palette.offLabelColor,
-                    offColor,
+                    widget.palette.offColor,
                     fade,
                     k,
                   ),
                 ],
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// A track label, centered in its clear-zone slot, faded by [opacity] and
+  /// scaled down so long text fits.
+  Widget _trackLabel(String text, Color color, double opacity, double k) {
+    return Center(
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Opacity(
+          opacity: opacity,
+          child: GameStrokedText(
+            text,
+            color: color,
+            // Soft white halo on the light track.
+            strokeColor: const Color(0xCCFFFFFF),
+            strokeWidth: 40 * k * 0.06,
+            fontSize: 40 * k,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),
@@ -332,4 +348,85 @@ class _GameToggleState extends State<GameToggle>
         ? GameColors.darken(faceColor, 0.34)
         : const Color(0xFFFFFFFF);
   }
+}
+
+/// Recessed light track with a real inset shadow (dark at the top inner edge,
+/// light at the bottom) painted under a top→bottom gradient.
+class _Track extends StatelessWidget {
+  const _Track();
+
+  @override
+  Widget build(BuildContext context) {
+    return const CustomPaint(painter: _TrackPainter());
+  }
+}
+
+class _TrackPainter extends CustomPainter {
+  const _TrackPainter();
+
+  static const _gradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xFFEDF1F4), Color(0xFFF4F7F9), Color(0xFFE6ECF1)],
+    stops: [0.0, 0.5, 1.0],
+  );
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final rrect = RRect.fromRectAndRadius(
+      rect,
+      Radius.circular(size.height / 2),
+    );
+
+    canvas.drawRRect(rrect, Paint()..shader = _gradient.createShader(rect));
+
+    canvas.save();
+    canvas.clipRRect(rrect);
+    final blur = size.height * 0.12;
+    // Dark inset shadow biting in from the top edge.
+    _innerShadow(
+      canvas,
+      rrect,
+      size,
+      const Color(0xFF8595A8).withValues(alpha: 0.55),
+      Offset(0, blur * 0.6),
+      blur,
+    );
+    // Soft light catch along the bottom edge.
+    _innerShadow(
+      canvas,
+      rrect,
+      size,
+      const Color(0xFFFFFFFF).withValues(alpha: 0.85),
+      Offset(0, -blur * 0.5),
+      blur * 0.8,
+    );
+    canvas.restore();
+  }
+
+  /// Casts a blurred shadow *inside* [rrect] from the edge nearest [shift]:
+  /// fills everything outside the shifted shape, clipped to the real shape, so
+  /// only the blur near that edge shows.
+  void _innerShadow(
+    Canvas canvas,
+    RRect rrect,
+    Size size,
+    Color color,
+    Offset shift,
+    double blur,
+  ) {
+    final paint = Paint()
+      ..color = color
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, blur);
+    final outer = Path()..addRect((Offset.zero & size).inflate(size.height));
+    final inner = Path()..addRRect(rrect.shift(shift));
+    canvas.drawPath(
+      Path.combine(PathOperation.difference, outer, inner),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _TrackPainter oldDelegate) => false;
 }
