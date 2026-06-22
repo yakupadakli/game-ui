@@ -39,7 +39,7 @@ class GameResultCard extends StatelessWidget {
   final double starSize;
 
   /// Override the default [GameStarRating] entirely (e.g. swap the Material
-  /// star for an illustrated PNG via an [iconBuilder]).
+  /// star for an illustrated PNG via a [GameStarRating.iconBuilder]).
   final Widget? starRow;
 
   final Color color;

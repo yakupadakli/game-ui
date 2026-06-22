@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
-/// Large stroked headline, typically rendered in [BalooChettan2] for the
+/// Large stroked headline, typically rendered in `BalooChettan2` for the
 /// chunky game-title feel. Defaults to white fill + brand-primary stroke.
 class GameStrokedTitle extends StatelessWidget {
   const GameStrokedTitle(

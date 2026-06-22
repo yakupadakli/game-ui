@@ -4,9 +4,9 @@ import '../../core/game_button_size.dart';
 import 'game_button.dart';
 import 'game_button_variant.dart';
 
-/// Small square back button — convenience wrapper around
-/// [GameButton.square] with a chevron-left icon child. Defaults to the compact
-/// [GameButtonSize.xSmall]; pass any [GameButtonSize] or raw number.
+/// Small square back button — convenience wrapper around a [GameButton] with
+/// [GameButtonVariant.square] and a chevron-left icon child. Defaults to the
+/// compact [GameButtonSize.xSmall]; pass any [GameButtonSize] or raw number.
 class GameReturnButton extends StatelessWidget {
   const GameReturnButton({
     this.onTap,

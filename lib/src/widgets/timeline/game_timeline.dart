@@ -22,8 +22,8 @@ class GameTimelineEntry {
 /// thin rail, with arbitrary widgets to the right of each dot.
 ///
 /// Useful for quest progress, level milestones, changelogs. The last entry
-/// has no trailing rail. Each row stretches to fit its [child] using
-/// [IntrinsicHeight] so the connecting line always reaches the next dot.
+/// has no trailing rail. Each row stretches to fit its [GameTimelineEntry.child]
+/// using [IntrinsicHeight] so the connecting line always reaches the next dot.
 class GameTimeline extends StatelessWidget {
   const GameTimeline({
     required this.entries,

@@ -22,4 +22,4 @@ Each widget renders a PNG frame asset behind its content via `GamePackageImage.a
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+MIT — see [LICENSE](https://github.com/yakupadakli/game-ui/blob/main/LICENSE).

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Named size presets for [GameStarRating] (per-star, logical pixels). [size]
-/// also accepts any raw number; these are the recommended defaults.
+/// Named size presets for [GameStarRating] (per-star, logical pixels).
+/// [GameStarRating.size] also accepts any raw number; these are the
+/// recommended defaults.
 abstract final class GameStarRatingSize {
   GameStarRatingSize._();
 

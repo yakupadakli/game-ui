@@ -7,7 +7,7 @@ import 'constants.dart' show gameUiPackageName;
 abstract final class GameUiImage {
   GameUiImage._();
 
-  /// Same as [Image.asset] with [package] set to [gameUiPackageName].
+  /// Same as [Image.asset] with `package` set to [gameUiPackageName].
   static Image asset(
     String name, {
     Key? key,
