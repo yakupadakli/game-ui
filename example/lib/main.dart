@@ -12,6 +12,7 @@ import 'game_button_page.dart';
 import 'game_chip_page.dart';
 import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
+import 'game_design_system_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_dialog_page.dart';
 import 'game_difficulty_button_page.dart';
@@ -164,6 +165,15 @@ class _HomePageState extends State<HomePage> {
             'typography, tokens, shadows, disabled overlay, tap scale, '
             'i18n strings.',
         onOpen: () => open((_) => const GameGalleryPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.gallery,
+        title: 'Design System (Matematik Dünyası)',
+        description:
+            'The full design-system reference screen: typography, color '
+            'palette, the Oyna primary button, color-coded GameOperationCards '
+            '(operation islands), mascot icons, UI icons, and a background.',
+        onOpen: () => open((_) => const GameDesignSystemPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.buttons,
