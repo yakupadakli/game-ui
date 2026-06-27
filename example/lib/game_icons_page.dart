@@ -82,6 +82,32 @@ class GameIconsPage extends StatelessWidget {
                 ],
               ),
             ),
+            DocSection(
+              title: 'Status / feedback',
+              description: 'Answer feedback and add glyphs.',
+              child: _IconRow(
+                entries: [
+                  ('check', GameIconAssets.checkmarkGreen),
+                  ('check_v2', GameIconAssets.checkmarkGreenV2),
+                  ('plus', GameIconAssets.plusBlueGlossy),
+                ],
+              ),
+            ),
+            DocSection(
+              title: 'Progress / stats',
+              description: 'Bar-chart and user glyphs for dashboards.',
+              child: _IconRow(
+                entries: [
+                  ('bars', GameIconAssets.progressBars),
+                  ('bars_outline', GameIconAssets.progressBarsOutline),
+                  ('bars_pastel', GameIconAssets.progressBarsPastel),
+                  ('bars_v2', GameIconAssets.progressBarsV2),
+                  ('user', GameIconAssets.userProfile),
+                  ('user_black', GameIconAssets.userOutlineBlack),
+                  ('user_blue', GameIconAssets.userOutlineBlue),
+                ],
+              ),
+            ),
             DocCode(
               "import 'package:game_ui/game_ui.dart';\n"
               '\n'

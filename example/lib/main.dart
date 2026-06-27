@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 import 'doc_widgets.dart';
 import 'game_action_button_page.dart';
 import 'game_avatar_item_page.dart';
+import 'game_avatars_page.dart';
+import 'game_awards_page.dart';
 import 'game_backgrounds_page.dart';
+import 'game_balloons_page.dart';
 import 'game_banner_page.dart';
 import 'game_blinking_cursor_page.dart';
 import 'game_bottom_sheet_page.dart';
 import 'game_button_page.dart';
+import 'game_characters_page.dart';
 import 'game_chip_page.dart';
+import 'game_cloud_label_page.dart';
 import 'game_colors_page.dart';
 import 'game_content_card_page.dart';
+import 'game_currencies_page.dart';
+import 'game_decorations_page.dart';
 import 'game_design_system_page.dart';
 import 'game_design_tokens_page.dart';
 import 'game_dialog_page.dart';
@@ -20,17 +27,25 @@ import 'game_disabled_overlay_page.dart';
 import 'game_divider_page.dart';
 import 'game_empty_state_page.dart';
 import 'game_feedback_overlay_page.dart';
+import 'game_flags_page.dart';
 import 'game_frames_page.dart';
 import 'game_gallery_page.dart';
+import 'game_icon_button_page.dart';
 import 'game_icons_page.dart';
+import 'game_image_button_page.dart';
 import 'game_indicators_page.dart';
 import 'game_input_display_page.dart';
+import 'game_items_page.dart';
 import 'game_keyboard_page.dart';
 import 'game_layouts_page.dart';
+import 'game_level_islands_page.dart';
+import 'game_level_platforms_page.dart';
 import 'game_mascots_page.dart';
 import 'game_numpad_page.dart';
+import 'game_operations_page.dart';
 import 'game_page_indicator_page.dart';
 import 'game_painters_page.dart';
+import 'game_panels_page.dart';
 import 'game_premium_badge_page.dart';
 import 'game_progress_bar_page.dart';
 import 'game_result_card_page.dart';
@@ -38,7 +53,9 @@ import 'game_return_button_page.dart';
 import 'game_skeleton_page.dart';
 import 'game_snack_bar_page.dart';
 import 'game_social_button_page.dart';
+import 'game_spin_wheel_page.dart';
 import 'game_step_indicator_page.dart';
+import 'game_streaks_page.dart';
 import 'game_summary_row_page.dart';
 import 'game_tab_bar_page.dart';
 import 'game_tap_scale_page.dart';
@@ -48,9 +65,11 @@ import 'game_text_styles_page.dart';
 import 'game_timeline_page.dart';
 import 'game_toggle_page.dart';
 import 'game_tooltip_page.dart';
+import 'game_treasures_page.dart';
 import 'game_true_false_button_page.dart';
 import 'game_ui_strings_page.dart';
 import 'game_validators_page.dart';
+import 'game_xp_bar_page.dart';
 
 void main() {
   runApp(const GameUiExampleApp());
@@ -237,6 +256,31 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameActionButtonPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameImageButton',
+        description:
+            'PNG-backed button (rect colors, glossy circle/square, orange '
+            'pill, white outline) with an optional centered child label / '
+            'icon. 14 GameImageButtonStyle bases.',
+        onOpen: () => open((_) => const GameImageButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameIconButton',
+        description:
+            '14 nav buttons with baked-in glyphs — home / book / settings / '
+            'play in color, outline, and glossy treatments.',
+        onOpen: () => open((_) => const GameIconButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameCloudLabel',
+        description:
+            'Soft cloud-shaped plate wrapping a short caption — two tones '
+            '(white, green). Pass onTap to make it a button.',
+        onOpen: () => open((_) => const GameCloudLabelPage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.foundation,
         title: 'GameColors',
         description:
@@ -392,6 +436,41 @@ class _HomePageState extends State<HomePage> {
         onOpen: () => open((_) => const GameProgressBarPage()),
       ),
       _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameXpBar',
+        description:
+            'PNG-backed XP bar — a bundled empty frame plus a fill revealed '
+            'left-to-right by progress (0..1). 5 GameXpBarStyle pairs '
+            '(blue, purple, fire, rainbow, orange).',
+        onOpen: () => open((_) => const GameXpBarPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'Streaks',
+        description:
+            '4 streak / combo HUD pieces (cloud platforms, coin-fire badge). '
+            'GameStreakImage sizes any GameStreak and overlays a count child.',
+        onOpen: () => open((_) => const GameStreaksPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.layout,
+        title: 'Panels',
+        description:
+            'GamePanel paints a bundled framed-panel PNG (blue card, answer '
+            'box, wood board) behind a child; GameSpeechBubble does the same '
+            'with the answer bubble art.',
+        onOpen: () => open((_) => const GamePanelsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.feedback,
+        title: 'GameSpinWheel',
+        description:
+            'Spinnable reward wheel — divide the bundled art into segments '
+            'and drive it with GameSpinWheelController.spinTo(index); '
+            'onSpinEnd reports the landed segment.',
+        onOpen: () => open((_) => const GameSpinWheelPage()),
+      ),
+      _DocIndexEntry(
         category: DocExampleCategory.layout,
         title: 'GamePageIndicator',
         description:
@@ -449,6 +528,108 @@ class _HomePageState extends State<HomePage> {
             'Bundled illustrated icon PNGs — game (check, lightbulb, '
             'pencil…), system (gear, lock, shield…), audio, stars/trophies.',
         onOpen: () => open((_) => const GameIconsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Characters',
+        description:
+            '20 full-body scene characters (astronauts, animals, fire '
+            'mascot). GameCharacterImage sizes any GameCharacter; pass onTap '
+            'for a picker.',
+        onOpen: () => open((_) => const GameCharactersPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Avatars (faces)',
+        description:
+            'Bundled avatar face portraits. GameAvatarImage renders one; '
+            'compose inside GameAvatarItem for a selectable picker.',
+        onOpen: () => open((_) => const GameAvatarsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Items',
+        description:
+            '7 collectible props — keys, jar, scrolls, crystal, snowball. '
+            'GameItemImage sizes any GameItem; pass onTap for an inventory '
+            'tile.',
+        onOpen: () => open((_) => const GameItemsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Balloons',
+        description:
+            '4 floating color balloons (blue, green, purple, yellow). '
+            'GameBalloonImage sizes any GameBalloon.',
+        onOpen: () => open((_) => const GameBalloonsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Flags',
+        description:
+            '4 checkpoint / goal flags (blue, green, pink, purple). '
+            'GameFlagImage sizes any GameFlag.',
+        onOpen: () => open((_) => const GameFlagsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Decorations',
+        description:
+            '7 ambient scenery pieces — clouds and flowers. '
+            'GameDecorationImage sizes any GameDecoration (excluded from '
+            'semantics by default).',
+        onOpen: () => open((_) => const GameDecorationsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Treasures',
+        description:
+            '8 treasure chests — closed/open in gold and silver, plus coin / '
+            'star / gem spills. GameTreasureImage sizes any GameTreasure; '
+            'pass onTap for a tap-to-open chest.',
+        onOpen: () => open((_) => const GameTreasuresPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Currencies',
+        description:
+            '3 coin tokens — star coin, gold stack, double star-coin. '
+            'GameCoinImage sizes any GameCoin.',
+        onOpen: () => open((_) => const GameCurrenciesPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Awards',
+        description:
+            '19 award illustrations — medals, trophies, badges, a ribbon, '
+            'and presentation stars. GameAwardImage sizes any GameAward.',
+        onOpen: () => open((_) => const GameAwardsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Level islands',
+        description:
+            '52 floating island map nodes across biomes (grass, desert, ice, '
+            'lava, mountain, cave, mine, cloud) in empty / locked / character '
+            '/ reward states. GameLevelIslandImage sizes any GameLevelIsland.',
+        onOpen: () => open((_) => const GameLevelIslandsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Level platforms',
+        description:
+            '21 grounded biome platforms (desert, ice, jungle, meadow, moon, '
+            'volcano) in empty / locked / character / trophy / streak states. '
+            'GameLevelPlatformImage sizes any GameLevelPlatform.',
+        onOpen: () => open((_) => const GameLevelPlatformsPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.assets,
+        title: 'Operation labels',
+        description:
+            'Themed signs for the four operations, reusing the shared '
+            'GameOperation enum. GameOperationLabel renders the bundled sign.',
+        onOpen: () => open((_) => const GameOperationsPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.layout,

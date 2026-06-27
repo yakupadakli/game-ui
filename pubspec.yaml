@@ -22,16 +22,34 @@ flutter:
   # Example (uncomment + adjust when assets are added):
   #
   assets:
+    - assets/images/avatars/
+    - assets/images/awards/
     - assets/images/backgrounds/
+    - assets/images/balloons/
     - assets/images/buttons/
     - assets/images/cards/
+    - assets/images/characters/
+    - assets/images/currencies/
+    - assets/images/decorations/
+    - assets/images/flags/
     - assets/images/frames/
+    - assets/images/icon_buttons/
     - assets/images/icons/common/
     - assets/images/icons/game/
+    - assets/images/items/
+    - assets/images/labels/
+    - assets/images/level_islands/
+    - assets/images/level_platforms/
     - assets/images/mascots/bears/
     - assets/images/mascots/elephants/
     - assets/images/mascots/foxes/
     - assets/images/mascots/penguins/
+    - assets/images/operations/
+    - assets/images/panels/
+    - assets/images/spin_wheel/
+    - assets/images/streaks/
+    - assets/images/toggles/
+    - assets/images/xp_bars/
 
   fonts:
     - family: Fredoka

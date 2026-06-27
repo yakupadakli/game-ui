@@ -25,8 +25,9 @@ class GameBackgroundsPage extends StatelessWidget {
               title: 'GameBackground',
               subtitle: 'Bundled full-screen background images',
               body:
-                  'Six decorated backgrounds for scaffold bodies — four '
-                  'generic, a "congrats" confetti pattern, and a starry one. '
+                  '17 decorated backgrounds for scaffold bodies — generic '
+                  'tones, a "congrats" confetti pattern, sky / cloud scenes, '
+                  'and themed scenery (main menu, meadow, night sky, ocean). '
                   'Wrap a scaffold body with GameBackground or use the path '
                   'constants directly.',
             ),
@@ -34,7 +35,7 @@ class GameBackgroundsPage extends StatelessWidget {
             const DocSection(
               title: 'All bundled backgrounds',
               description:
-                  '6 thumbnails — tap-friendly cards. Use BackgroundAssets '
+                  '17 thumbnails — tap-friendly cards. Use BackgroundAssets '
                   'path constants to address them.',
               child: _BackgroundGrid(),
             ),
@@ -65,6 +66,17 @@ class _BackgroundGrid extends StatelessWidget {
     (BackgroundAssets.bg4, 'bg4'),
     (BackgroundAssets.congrats, 'congrats'),
     (BackgroundAssets.stars, 'stars'),
+    (BackgroundAssets.cloudsPortrait, 'cloudsPortrait'),
+    (BackgroundAssets.skyLandscape, 'skyLandscape'),
+    (BackgroundAssets.skyPortrait, 'skyPortrait'),
+    (BackgroundAssets.skyClouds, 'skyClouds'),
+    (BackgroundAssets.skyCloudsV2, 'skyCloudsV2'),
+    (BackgroundAssets.skyMath, 'skyMath'),
+    (BackgroundAssets.mainMenu, 'mainMenu'),
+    (BackgroundAssets.meadowHills, 'meadowHills'),
+    (BackgroundAssets.nightSkyMoon, 'nightSkyMoon'),
+    (BackgroundAssets.nightSkyMoonV2, 'nightSkyMoonV2'),
+    (BackgroundAssets.ocean, 'ocean'),
   ];
 
   @override

@@ -35,4 +35,22 @@ abstract final class GameIconAssets {
   static const String starV2 = '$_commonRoot/star_v2.png';
   static const String starWithTail = '$_commonRoot/star_with_tail.png';
   static const String trophyWithStar = '$_commonRoot/trophy_with_star.png';
+
+  // Status / feedback.
+  static const String checkmarkGreen = '$_commonRoot/checkmark_green.png';
+  static const String checkmarkGreenV2 = '$_commonRoot/checkmark_green_v2.png';
+  static const String plusBlueGlossy = '$_commonRoot/plus_blue_glossy.png';
+
+  // Progress / stats.
+  static const String progressBars = '$_commonRoot/progress_bars.png';
+  static const String progressBarsOutline =
+      '$_commonRoot/progress_bars_outline.png';
+  static const String progressBarsPastel =
+      '$_commonRoot/progress_bars_pastel.png';
+  static const String progressBarsV2 = '$_commonRoot/progress_bars_v2.png';
+
+  // User / profile.
+  static const String userOutlineBlack = '$_commonRoot/user_outline_black.png';
+  static const String userOutlineBlue = '$_commonRoot/user_outline_blue.png';
+  static const String userProfile = '$_commonRoot/user_profile.png';
 }
