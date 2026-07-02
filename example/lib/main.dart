@@ -28,6 +28,7 @@ import 'game_divider_page.dart';
 import 'game_empty_state_page.dart';
 import 'game_feedback_overlay_page.dart';
 import 'game_flags_page.dart';
+import 'game_framed_button_page.dart';
 import 'game_frames_page.dart';
 import 'game_gallery_page.dart';
 import 'game_icon_button_page.dart';
@@ -202,6 +203,14 @@ class _HomePageState extends State<HomePage> {
             'Currently ships the glossy 3D circle variant; future variants '
             '(primary, secondary, warning…) land as the asset library grows.',
         onOpen: () => open((_) => const GameButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameFramedButton',
+        description:
+            'Code-rendered white-framed blue tile with a soft sheen, inset '
+            'edge, neutral shadow, and arbitrary child.',
+        onOpen: () => open((_) => const GameFramedButtonPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.buttons,
