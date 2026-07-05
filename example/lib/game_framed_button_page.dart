@@ -26,8 +26,8 @@ class GameFramedButtonPage extends StatelessWidget {
               subtitle: 'white frame · saturated blue · code-rendered',
               body:
                   'An independent square button matching the supplied visual. '
-                  'The frame, gradient face, sheen, inset edge, and shadow are '
-                  'drawn in Flutter, with no PNG asset.',
+                  'The thin outer outline, white frame, gradient face, sheen, '
+                  'inset edge, and shadow are drawn in Flutter, with no PNG asset.',
             ),
             SizedBox(height: 24),
             DocSection(
@@ -41,6 +41,13 @@ class GameFramedButtonPage extends StatelessWidget {
                   'Use the text or icon constructors for common content, or '
                   'child for custom layouts. All support the shared size scale.',
               child: _FramedButtonRow(),
+            ),
+            DocSection(
+              title: 'Wide rectangle',
+              description:
+                  'GameFramedWideButton keeps the same frame and face while '
+                  'providing small, medium, large, and full-width sizes.',
+              child: _FramedWideButtonColumn(),
             ),
             DocSection(
               title: 'Disabled',
@@ -66,11 +73,57 @@ class GameFramedButtonPage extends StatelessWidget {
               "\n"
               "GameFramedButton.text('Play', onTap: handlePress)\n"
               "\n"
-              "GameFramedButton.icon(Icons.star, onTap: handlePress)",
+              "GameFramedButton.icon(Icons.star, onTap: handlePress)\n"
+              "\n"
+              "GameFramedWideButton.text(\n"
+              "  'Continue',\n"
+              "  size: GameFramedWideButtonSize.full,\n"
+              "  backgroundColor: GameColors.success,\n"
+              "  onTap: handlePress,\n"
+              ")",
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _FramedWideButtonColumn extends StatelessWidget {
+  const _FramedWideButtonColumn();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GameFramedWideButton.text(
+          'Small',
+          size: GameFramedWideButtonSize.small,
+          backgroundColor: GameColors.success,
+          onTap: () {},
+        ),
+        const SizedBox(height: 16),
+        GameFramedWideButton.text(
+          'Medium',
+          size: GameFramedWideButtonSize.medium,
+          backgroundColor: GameColors.primary,
+          onTap: () {},
+        ),
+        const SizedBox(height: 16),
+        GameFramedWideButton.text(
+          'Large',
+          size: GameFramedWideButtonSize.large,
+          backgroundColor: GameColors.accent,
+          onTap: () {},
+        ),
+        const SizedBox(height: 16),
+        GameFramedWideButton.text(
+          'Full width',
+          size: GameFramedWideButtonSize.full,
+          backgroundColor: GameColors.danger,
+          onTap: () {},
+        ),
+      ],
     );
   }
 }

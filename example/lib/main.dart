@@ -25,6 +25,7 @@ import 'game_dialog_page.dart';
 import 'game_difficulty_button_page.dart';
 import 'game_disabled_overlay_page.dart';
 import 'game_divider_page.dart';
+import 'game_double_framed_button_page.dart';
 import 'game_empty_state_page.dart';
 import 'game_feedback_overlay_page.dart';
 import 'game_flags_page.dart';
@@ -211,6 +212,14 @@ class _HomePageState extends State<HomePage> {
             'Code-rendered white-framed blue tile with a soft sheen, inset '
             'edge, neutral shadow, and arbitrary child.',
         onOpen: () => open((_) => const GameFramedButtonPage()),
+      ),
+      _DocIndexEntry(
+        category: DocExampleCategory.buttons,
+        title: 'GameDoubleFramedButton',
+        description:
+            'Code-rendered tile with a dark outer shell, broad white frame, '
+            'contrasting inner ring, and softly shaded face.',
+        onOpen: () => open((_) => const GameDoubleFramedButtonPage()),
       ),
       _DocIndexEntry(
         category: DocExampleCategory.buttons,
