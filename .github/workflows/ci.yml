@@ -48,3 +48,33 @@ jobs:
           name: lcov-info-${{ matrix.os }}
           path: coverage/lcov.info
           if-no-files-found: error
+
+      - name: Enforce line-coverage floor
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        env:
+          # Minimum overall line coverage (percent). This is a floor that
+          # guards against large regressions (e.g. a deleted test suite);
+          # ratchet it upward as coverage improves.
+          MIN_LINE_COVERAGE: "10"
+        run: |
+          set -euo pipefail
+          report=$(awk -F: '
+            /^LF:/ { found += $2 }
+            /^LH:/ { hit += $2 }
+            END {
+              if (found == 0) { print "error: no coverage data in lcov.info"; exit 2 }
+              printf "%.2f %d %d\n", 100 * hit / found, hit, found
+            }' coverage/lcov.info)
+          pct=${report%% *}
+          rest=${report#* }
+          hit=${rest%% *}
+          found=${rest#* }
+          echo "Line coverage: ${pct}% (${hit}/${found} lines)" | tee -a "$GITHUB_STEP_SUMMARY"
+          awk -v pct="$pct" -v min="$MIN_LINE_COVERAGE" 'BEGIN {
+            if (pct + 0 < min + 0) {
+              printf "Coverage %.2f%% is below the required minimum of %s%%\n", pct, min
+              exit 1
+            }
+            printf "Coverage %.2f%% meets the %s%% floor\n", pct, min
+          }'
