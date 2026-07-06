@@ -2,4 +2,3 @@
 library;
 
 export 'game_cloud_label.dart';
-export 'labels_assets.dart';

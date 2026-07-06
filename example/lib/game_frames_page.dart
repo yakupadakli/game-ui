@@ -25,10 +25,10 @@ class GameFramesPage extends StatelessWidget {
               title: 'GameFrame',
               subtitle: 'Colored frame panels (5 brand tones)',
               body:
-                  'Rounded decorative frames — the PNG includes shape, rim '
-                  'shading and outer glow, so the container doesn\'t need '
-                  'its own border. Use for profile cards, dialog frames, '
-                  'highlight badges.',
+                  'Rounded decorative wavy-slab frames rendered entirely in '
+                  'code — face, rim shading and gloss included, so the '
+                  'container doesn\'t need its own border. Use for profile '
+                  'cards, dialog frames, highlight badges.',
             ),
             const SizedBox(height: 24),
             const DocSection(

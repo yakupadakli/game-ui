@@ -1,5 +1,4 @@
-/// Public API for colored frame widgets and assets.
+/// Public API for colored frame widgets.
 library;
 
-export 'frames_assets.dart';
 export 'game_frame.dart';

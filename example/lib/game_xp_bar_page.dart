@@ -23,12 +23,12 @@ class GameXpBarPage extends StatelessWidget {
           children: [
             const DocIntro(
               title: 'GameXpBar',
-              subtitle: 'Bundled empty frame + reveal-clipped fill',
+              subtitle: 'Code-rendered track + reveal-clipped fill',
               body:
-                  'XP / progress bar composited from a bundled empty frame and '
-                  'a filled track revealed left-to-right by progress (0..1). '
-                  'The fill is clipped, not stretched, so the art keeps its '
-                  'proportions. 5 GameXpBarStyle pairs.',
+                  'XP / progress bar drawn entirely in code: an empty track '
+                  'plus a fill revealed left-to-right by progress (0..1). '
+                  'The fill is clipped, not stretched, so its shading keeps '
+                  'its proportions. 5 GameXpBarStyle looks.',
             ),
             const SizedBox(height: 24),
             const DocSection(

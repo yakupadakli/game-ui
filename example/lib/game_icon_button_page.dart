@@ -23,16 +23,16 @@ class GameIconButtonPage extends StatelessWidget {
           children: [
             const DocIntro(
               title: 'GameIconButton',
-              subtitle: 'Nav buttons with baked-in glyphs (14)',
+              subtitle: 'Nav buttons with code-drawn glyphs (14)',
               body:
                   'Home / book / settings / play buttons in color, outline, '
-                  'and glossy treatments. The glyph is part of the art — just '
+                  'and glossy treatments — every glyph is drawn in code. Just '
                   'pick a variant, size it, and pass onTap.',
             ),
             const SizedBox(height: 24),
             const DocSection(
               title: 'All variants',
-              description: 'GameIconButtonVariant.values — 14 bundled buttons.',
+              description: 'GameIconButtonVariant.values — 14 code variants.',
               child: _IconButtonGrid(),
             ),
             const DocCode(

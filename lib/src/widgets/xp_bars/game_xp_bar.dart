@@ -1,38 +1,36 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
-import '../../core/game_ui_image.dart';
-import 'xp_bars_assets.dart';
+import '../../core/game_colors.dart';
 
-/// Empty-frame + fill pairings for [GameXpBar] — each style bundles a matching
-/// empty track and filled track from [XpBarAssets].
+part 'game_xp_bar_painters.dart';
+
+/// Visual styles for [GameXpBar] — all rendered entirely in code.
 enum GameXpBarStyle {
-  blue(empty: XpBarAssets.frameBlueEmpty, fill: XpBarAssets.blueFull),
-  purple(empty: XpBarAssets.framePurpleEmpty, fill: XpBarAssets.purpleFull),
-  fire(empty: XpBarAssets.fireEmpty, fill: XpBarAssets.fireFull),
-  rainbow(empty: XpBarAssets.empty, fill: XpBarAssets.rainbowGlossy),
-  orange(empty: XpBarAssets.empty, fill: XpBarAssets.segmentedOrange);
+  /// Blue tube frame with a glossy blue pill fill.
+  blue,
 
-  const GameXpBarStyle({required this.empty, required this.fill});
+  /// Purple tube frame with a glossy purple pill fill.
+  purple,
 
-  /// Bundled empty-track PNG.
-  final String empty;
+  /// Orange banner with a pennant tail, flame badge, and gold segment fill.
+  fire,
 
-  /// Bundled filled-track PNG (revealed left-to-right by progress).
-  final String fill;
+  /// Silver recessed track with a glossy rainbow-gradient fill.
+  rainbow,
+
+  /// Silver recessed track with a gold-rimmed segmented orange fill.
+  orange,
 }
 
-/// XP / progress bar composited from a bundled empty frame and a filled track
-/// revealed left-to-right by [progress] (0..1).
-///
-/// Pick a [style] for a matched empty/fill pair, or override [emptyAsset] /
-/// [fillAsset] with any [XpBarAssets] path. The fill is reveal-clipped (not
-/// stretched), so the art keeps its proportions.
+/// XP / progress bar drawn entirely in code: an empty track plus a fill
+/// revealed left-to-right by [progress] (0..1). The fill is reveal-clipped
+/// (not stretched), so its shading keeps its proportions.
 class GameXpBar extends StatelessWidget {
   const GameXpBar({
     required this.progress,
     this.style = GameXpBarStyle.fire,
-    this.emptyAsset,
-    this.fillAsset,
     this.width = 240,
     this.height = 32,
     this.child,
@@ -43,12 +41,6 @@ class GameXpBar extends StatelessWidget {
   final double progress;
   final GameXpBarStyle style;
 
-  /// Overrides [GameXpBarStyle.empty].
-  final String? emptyAsset;
-
-  /// Overrides [GameXpBarStyle.fill].
-  final String? fillAsset;
-
   final double width;
   final double height;
 
@@ -58,8 +50,6 @@ class GameXpBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = progress.clamp(0.0, 1.0);
-    final empty = emptyAsset ?? style.empty;
-    final fill = fillAsset ?? style.fill;
 
     return SizedBox(
       width: width,
@@ -70,21 +60,17 @@ class GameXpBar extends StatelessWidget {
         // shrink-wraps and ClipRect reveals only the left `p` fraction.
         alignment: Alignment.centerLeft,
         children: [
-          GameUiImage.asset(
-            empty,
-            width: width,
-            height: height,
-            fit: BoxFit.fill,
+          CustomPaint(
+            size: Size(width, height),
+            painter: _XpBarPainter(style: style, fill: false),
           ),
           ClipRect(
             child: Align(
               alignment: Alignment.centerLeft,
               widthFactor: p,
-              child: GameUiImage.asset(
-                fill,
-                width: width,
-                height: height,
-                fit: BoxFit.fill,
+              child: CustomPaint(
+                size: Size(width, height),
+                painter: _XpBarPainter(style: style, fill: true),
               ),
             ),
           ),
