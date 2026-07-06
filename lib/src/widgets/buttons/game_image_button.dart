@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../animations/game_tap_scale.dart';
 import 'game_button_palette.dart';
@@ -39,20 +39,20 @@ const GameButtonPalette _redRect = GameButtonPalette(
   stroke: Color(0xFF8A0A0A),
 );
 const GameButtonPalette _blueSphere = GameButtonPalette(
-  face: Color(0xFF3D9CFF),
+  face: Color(0xFF3E8EF0),
   depth: Color(0xFF0B2E8A),
   innerRing: Color(0xFF071E5E),
-  highlight: Color(0xFFBFE0FF),
-  shadow: Color(0xFF2A72E0),
+  highlight: Color(0xFF8CC6FF),
+  shadow: Color(0xFF2361C8),
   stroke: Color(0xFF06215E),
 );
 const GameButtonPalette _whiteSphere = GameButtonPalette(
   face: Color(0xFFF3ECDD),
-  depth: Color(0xFFB8B8B8),
-  innerRing: Color(0xFFCFCFCF),
+  depth: Color(0xFFA6A6A6),
+  innerRing: Color(0xFF8E8E8E),
   highlight: Color(0xFFFFFFFF),
-  shadow: Color(0xFFD8CFBC),
-  stroke: Color(0xFFAFAFAF),
+  shadow: Color(0xFFD2C9B8),
+  stroke: Color(0xFF909090),
 );
 const GameButtonPalette _greenSquare = GameButtonPalette(
   face: Color(0xFF5CC271),
@@ -95,7 +95,7 @@ const GameButtonPalette _greenSphere = GameButtonPalette(
   stroke: Color(0xFF1E4A0C),
 );
 const GameButtonPalette _outline = GameButtonPalette(
-  face: Color(0x00000000),
+  face: Color(0x2EFFFFFF),
   depth: Color(0xFFFFFFFF),
   innerRing: Color(0xFFFFFFFF),
   highlight: Color(0xFFFFFFFF),
@@ -279,7 +279,8 @@ class GameImageButton extends StatelessWidget {
 }
 
 /// Green glossy badge baked into the orange pill styles — a play button
-/// ([_Decoration.play]) or a small dot ([_Decoration.dot]), pinned to the left.
+/// ([_Decoration.play]) pinned mid-left, or a small status dot
+/// ([_Decoration.dot]) riding the pill's bottom-left corner.
 class _Badge extends StatelessWidget {
   const _Badge({required this.decoration, required this.buttonHeight});
 
@@ -289,10 +290,10 @@ class _Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isPlay = decoration == _Decoration.play;
-    final d = buttonHeight * (isPlay ? 0.9 : 0.42);
+    final d = buttonHeight * (isPlay ? 0.9 : 0.36);
     return Positioned(
-      left: buttonHeight * 0.14,
-      top: isPlay ? null : buttonHeight * 0.5,
+      left: buttonHeight * (isPlay ? 0.14 : 0.12),
+      top: isPlay ? null : buttonHeight * 0.58,
       child: SizedBox(
         width: d,
         height: d,
@@ -306,17 +307,60 @@ class _Badge extends StatelessWidget {
               shape: GameGlossyButtonShape.circle,
             ),
             if (isPlay)
-              Padding(
-                padding: EdgeInsets.only(left: d * 0.06, bottom: d * 0.04),
-                child: Icon(
-                  Icons.play_arrow_rounded,
-                  color: const Color(0xFFFFFFFF),
-                  size: d * 0.55,
-                ),
+              CustomPaint(
+                size: Size.square(d),
+                painter: const _PlayTrianglePainter(),
               ),
           ],
         ),
       ),
     );
   }
+}
+
+/// White rounded play triangle with a dark green casing, drawn with a path so
+/// it needs no icon font.
+class _PlayTrianglePainter extends CustomPainter {
+  const _PlayTrianglePainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.save();
+    canvas.scale(size.shortestSide);
+
+    // Rounded triangle: trim each vertex and bridge with a quadratic.
+    const points = [Offset(0.38, 0.30), Offset(0.38, 0.70), Offset(0.74, 0.5)];
+    const radius = 0.06;
+    final path = Path();
+    for (var i = 0; i < points.length; i++) {
+      final current = points[i];
+      final previous = points[(i - 1 + points.length) % points.length];
+      final next = points[(i + 1) % points.length];
+      final fromPrev = current - previous;
+      final toNext = next - current;
+      final entry = current - fromPrev / fromPrev.distance * radius;
+      final exit = current + toNext / toNext.distance * radius;
+      if (i == 0) {
+        path.moveTo(entry.dx, entry.dy);
+      } else {
+        path.lineTo(entry.dx, entry.dy);
+      }
+      path.quadraticBezierTo(current.dx, current.dy, exit.dx, exit.dy);
+    }
+    path.close();
+
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.08
+        ..strokeJoin = StrokeJoin.round
+        ..color = const Color(0xFF1E5A0E),
+    );
+    canvas.drawPath(path, Paint()..color = const Color(0xFFFFFFFF));
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant _PlayTrianglePainter oldDelegate) => false;
 }

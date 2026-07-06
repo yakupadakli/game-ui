@@ -78,7 +78,7 @@ class GameGlossyButtonSurface extends StatelessWidget {
           decoration: BoxDecoration(
             color: palette.face,
             borderRadius: BorderRadius.circular(r),
-            border: Border.all(color: palette.stroke, width: s * 0.035),
+            border: Border.all(color: palette.stroke, width: s * 0.022),
           ),
         ),
       );

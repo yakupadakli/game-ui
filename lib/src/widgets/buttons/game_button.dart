@@ -41,11 +41,11 @@ class GameButton extends StatelessWidget {
   // Default blue palettes with a deep navy depth rim, matching the original
   // glossy button art.
   static const GameButtonPalette _circlePalette = GameButtonPalette(
-    face: Color(0xFF3D9CFF),
+    face: Color(0xFF3E8EF0),
     depth: Color(0xFF0B2E8A),
     innerRing: Color(0xFF071E5E),
-    highlight: Color(0xFFBFE0FF),
-    shadow: Color(0xFF2A72E0),
+    highlight: Color(0xFF8CC6FF),
+    shadow: Color(0xFF2361C8),
     stroke: Color(0xFF06215E),
   );
   static const GameButtonPalette _squarePalette = GameButtonPalette(
