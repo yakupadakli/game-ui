@@ -4,87 +4,102 @@ import '../../animations/game_tap_scale.dart';
 import 'game_button_palette.dart';
 import 'game_glossy_button_surface.dart';
 
-// Depth palettes for each button style. Colors are picked to match the glossy
-// game-art look the widget used to load from PNGs.
+// Depth palettes for each button style, with tones sampled from the original
+// PNG art. The rect faces are nearly flat (highlight ≈ face ≈ shadow); the
+// dark ring color sits in [GameButtonPalette.depth] and the lighter lip band
+// in [GameButtonPalette.innerRing].
 const GameButtonPalette _blueRect = GameButtonPalette(
-  face: Color(0xFF29A9F0),
-  depth: Color(0xFF0E7AC0),
-  innerRing: Color(0xFF0C6BAA),
-  highlight: Color(0xFF9FDBFF),
-  shadow: Color(0xFF1A8FD6),
-  stroke: Color(0xFF0A5A92),
+  face: Color(0xFF11A6FF),
+  depth: Color(0xFF0057AA),
+  innerRing: Color(0xFF0086EA),
+  highlight: Color(0xFF2BB0FF),
+  shadow: Color(0xFF0D9CF2),
+  stroke: Color(0xFF0057AA),
 );
 const GameButtonPalette _greenRect = GameButtonPalette(
-  face: Color(0xFF8CC63F),
-  depth: Color(0xFF4E9A2E),
-  innerRing: Color(0xFF3E7E24),
-  highlight: Color(0xFFCDE88B),
-  shadow: Color(0xFF6DAF34),
-  stroke: Color(0xFF356E1F),
+  face: Color(0xFF97DD41),
+  depth: Color(0xFF2A7419),
+  innerRing: Color(0xFF398A28),
+  highlight: Color(0xFFA2E14E),
+  shadow: Color(0xFF8ED63A),
+  stroke: Color(0xFF2A7419),
 );
 const GameButtonPalette _purpleRect = GameButtonPalette(
-  face: Color(0xFFB56BEE),
-  depth: Color(0xFF8A3FC0),
-  innerRing: Color(0xFF6E2FA0),
-  highlight: Color(0xFFE0BBF7),
-  shadow: Color(0xFF9B4FD4),
-  stroke: Color(0xFF5A2585),
+  face: Color(0xFFD290FF),
+  depth: Color(0xFF5F2A9D),
+  innerRing: Color(0xFFBC63FB),
+  highlight: Color(0xFFD99CFF),
+  shadow: Color(0xFFCB85FB),
+  stroke: Color(0xFF5F2A9D),
 );
 const GameButtonPalette _redRect = GameButtonPalette(
-  face: Color(0xFFFF2E2E),
-  depth: Color(0xFFC21414),
-  innerRing: Color(0xFF9E0E0E),
-  highlight: Color(0xFFFF9A9A),
-  shadow: Color(0xFFE01E1E),
-  stroke: Color(0xFF8A0A0A),
+  face: Color(0xFFFF0B0C),
+  depth: Color(0xFFA50000),
+  innerRing: Color(0xFF910000),
+  highlight: Color(0xFFFF2222),
+  shadow: Color(0xFFF50808),
+  stroke: Color(0xFFA50000),
 );
+// Spheres: nearly flat vivid faces; the bright inner ring and deep navy edge
+// come from the art's rim shading.
 const GameButtonPalette _blueSphere = GameButtonPalette(
-  face: Color(0xFF3E8EF0),
-  depth: Color(0xFF0B2E8A),
-  innerRing: Color(0xFF071E5E),
-  highlight: Color(0xFF8CC6FF),
-  shadow: Color(0xFF2361C8),
+  face: Color(0xFF3A91FF),
+  depth: Color(0xFF02108E),
+  innerRing: Color(0xFF2470F0),
+  highlight: Color(0xFF4B9EFF),
+  shadow: Color(0xFF4093F8),
   stroke: Color(0xFF06215E),
 );
 const GameButtonPalette _whiteSphere = GameButtonPalette(
-  face: Color(0xFFF3ECDD),
-  depth: Color(0xFFA6A6A6),
-  innerRing: Color(0xFF8E8E8E),
+  face: Color(0xFFF8F2E9),
+  depth: Color(0xFFC9C9C9),
+  innerRing: Color(0xFFB0B0B0),
   highlight: Color(0xFFFFFFFF),
-  shadow: Color(0xFFD2C9B8),
+  shadow: Color(0xFFEFE8DC),
   stroke: Color(0xFF909090),
 );
+// Glossy squares: flat faces; blue/red carry a light inner ring, green and
+// orange sit inside a white sticker border with a dark ring.
+const GameButtonPalette _blueSquare = GameButtonPalette(
+  face: Color(0xFF3D99FF),
+  depth: Color(0xFF0F52E0),
+  innerRing: Color(0xFF7DCAFF),
+  highlight: Color(0xFF50ADFF),
+  shadow: Color(0xFF3C95FF),
+  stroke: Color(0xFF0030A0),
+);
 const GameButtonPalette _greenSquare = GameButtonPalette(
-  face: Color(0xFF5CC271),
-  depth: Color(0xFF2E7D40),
-  innerRing: Color(0xFF236331),
-  highlight: Color(0xFFB6ECC0),
-  shadow: Color(0xFF3EA157),
+  face: Color(0xFF52B45E),
+  depth: Color(0xFF1E7E33),
+  innerRing: Color(0xFF2E9945),
+  highlight: Color(0xFF5FBE6B),
+  shadow: Color(0xFF4CAC58),
   stroke: Color(0xFF1E5A2E),
 );
 const GameButtonPalette _orangeSquare = GameButtonPalette(
-  face: Color(0xFFFF9E1B),
-  depth: Color(0xFFCB6A0E),
-  innerRing: Color(0xFF9E4E08),
-  highlight: Color(0xFFFFD08A),
-  shadow: Color(0xFFE87C10),
-  stroke: Color(0xFF7A3E06),
+  face: Color(0xFFFF9D2E),
+  depth: Color(0xFFCE1C00),
+  innerRing: Color(0xFFE85A10),
+  highlight: Color(0xFFFFAC46),
+  shadow: Color(0xFFFB9526),
+  stroke: Color(0xFF9E3A04),
 );
 const GameButtonPalette _redSquare = GameButtonPalette(
-  face: Color(0xFFF04848),
-  depth: Color(0xFFB01212),
-  innerRing: Color(0xFF8E0E0E),
-  highlight: Color(0xFFFF9C9C),
-  shadow: Color(0xFFD62F2F),
-  stroke: Color(0xFF7E0A0A),
+  face: Color(0xFFFF5350),
+  depth: Color(0xFFC41E1E),
+  innerRing: Color(0xFFFE9897),
+  highlight: Color(0xFFFF6663),
+  shadow: Color(0xFFFE4741),
+  stroke: Color(0xFF9A1414),
 );
+// Orange pills: strong yellow→orange vertical gradient with a deep brown lip.
 const GameButtonPalette _orangePill = GameButtonPalette(
-  face: Color(0xFFFFB020),
-  depth: Color(0xFF8A3B0A),
-  innerRing: Color(0xFFB35410),
-  highlight: Color(0xFFFFDE6E),
-  shadow: Color(0xFFFF7A00),
-  stroke: Color(0xFF7A3305),
+  face: Color(0xFFFFA400),
+  depth: Color(0xFF7A1D00),
+  innerRing: Color(0xFFA03000),
+  highlight: Color(0xFFFFD70A),
+  shadow: Color(0xFFFF7C00),
+  stroke: Color(0xFF913400),
 );
 const GameButtonPalette _greenSphere = GameButtonPalette(
   face: Color(0xFF7CC142),
@@ -95,7 +110,7 @@ const GameButtonPalette _greenSphere = GameButtonPalette(
   stroke: Color(0xFF1E4A0C),
 );
 const GameButtonPalette _outline = GameButtonPalette(
-  face: Color(0x2EFFFFFF),
+  face: Color(0x00000000),
   depth: Color(0xFFFFFFFF),
   innerRing: Color(0xFFFFFFFF),
   highlight: Color(0xFFFFFFFF),
@@ -135,7 +150,7 @@ enum GameImageButtonStyle {
   ),
   circleBlueGlossy(shape: GameGlossyButtonShape.circle, palette: _blueSphere),
   circleWhiteGlossy(shape: GameGlossyButtonShape.circle, palette: _whiteSphere),
-  squareBlueGlossy(shape: GameGlossyButtonShape.squircle, palette: _blueSphere),
+  squareBlueGlossy(shape: GameGlossyButtonShape.squircle, palette: _blueSquare),
   squareGreenGlossy(
     shape: GameGlossyButtonShape.squircle,
     palette: _greenSquare,
@@ -144,6 +159,7 @@ enum GameImageButtonStyle {
   squareOrangeGlossy(
     shape: GameGlossyButtonShape.squircle,
     palette: _orangeSquare,
+    whiteBorder: true,
   ),
   squareRedGlossy(
     shape: GameGlossyButtonShape.squircle,
@@ -163,7 +179,7 @@ enum GameImageButtonStyle {
   orangeWithDot(
     shape: GameGlossyButtonShape.pill,
     palette: _orangePill,
-    aspect: 3.6,
+    aspect: 2.25,
   ),
   outlineWhite(
     shape: GameGlossyButtonShape.roundedRect,
@@ -251,24 +267,26 @@ class GameImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = _size;
-    final badge = _badge;
-    Widget content = Stack(
-      alignment: Alignment.center,
-      children: [
-        GameGlossyButtonSurface(
-          width: size.width,
-          height: size.height,
-          palette: style.palette,
-          shape: style.shape,
-          whiteBorder: style.whiteBorder,
-          outlineOnly: style.outlineOnly,
-          glow: style.glow,
-        ),
-        if (badge != _Decoration.none)
-          _Badge(decoration: badge, buttonHeight: size.height),
-        if (child != null) Padding(padding: padding, child: child),
-      ],
-    );
+    Widget content = switch (_badge) {
+      _Decoration.dot => _buildWithDot(size),
+      final badge => Stack(
+        alignment: Alignment.center,
+        children: [
+          GameGlossyButtonSurface(
+            width: size.width,
+            height: size.height,
+            palette: style.palette,
+            shape: style.shape,
+            whiteBorder: style.whiteBorder,
+            outlineOnly: style.outlineOnly,
+            glow: style.glow,
+          ),
+          if (badge == _Decoration.play)
+            _PlayBadge(diameter: size.height * 0.9),
+          if (child != null) Padding(padding: padding, child: child),
+        ],
+      ),
+    };
 
     if (semanticLabel != null) {
       content = Semantics(label: semanticLabel, button: true, child: content);
@@ -276,41 +294,77 @@ class GameImageButton extends StatelessWidget {
     if (onTap == null) return content;
     return GameTapScale(onTap: onTap, child: content);
   }
+
+  /// The orangeWithDot composition from the art: the pill occupies the top
+  /// band and a detached glossy dot sits below its left end.
+  Widget _buildWithDot(({double width, double height}) size) {
+    final pillHeight = size.height * 0.56;
+    final dot = size.height * 0.32;
+    return SizedBox(
+      width: size.width,
+      height: size.height,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: pillHeight,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                GameGlossyButtonSurface(
+                  width: size.width,
+                  height: pillHeight,
+                  palette: style.palette,
+                  shape: style.shape,
+                ),
+                if (child != null) Padding(padding: padding, child: child),
+              ],
+            ),
+          ),
+          Positioned(
+            left: size.width * 0.035,
+            top: size.height * 0.63,
+            child: GameGlossyButtonSurface(
+              width: dot,
+              height: dot,
+              palette: _greenSphere,
+              shape: GameGlossyButtonShape.circle,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-/// Green glossy badge baked into the orange pill styles — a play button
-/// ([_Decoration.play]) pinned mid-left, or a small status dot
-/// ([_Decoration.dot]) riding the pill's bottom-left corner.
-class _Badge extends StatelessWidget {
-  const _Badge({required this.decoration, required this.buttonHeight});
+/// Green glossy play badge baked into the orangePlay pill, pinned mid-left.
+class _PlayBadge extends StatelessWidget {
+  const _PlayBadge({required this.diameter});
 
-  final _Decoration decoration;
-  final double buttonHeight;
+  final double diameter;
 
   @override
   Widget build(BuildContext context) {
-    final isPlay = decoration == _Decoration.play;
-    final d = buttonHeight * (isPlay ? 0.9 : 0.36);
     return Positioned(
-      left: buttonHeight * (isPlay ? 0.14 : 0.12),
-      top: isPlay ? null : buttonHeight * 0.58,
+      left: diameter * 0.155,
       child: SizedBox(
-        width: d,
-        height: d,
+        width: diameter,
+        height: diameter,
         child: Stack(
           alignment: Alignment.center,
           children: [
             GameGlossyButtonSurface(
-              width: d,
-              height: d,
+              width: diameter,
+              height: diameter,
               palette: _greenSphere,
               shape: GameGlossyButtonShape.circle,
             ),
-            if (isPlay)
-              CustomPaint(
-                size: Size.square(d),
-                painter: const _PlayTrianglePainter(),
-              ),
+            CustomPaint(
+              size: Size.square(diameter),
+              painter: const _PlayTrianglePainter(),
+            ),
           ],
         ),
       ),

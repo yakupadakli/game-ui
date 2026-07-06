@@ -15,7 +15,7 @@ enum GameGlossyButtonShape {
   /// Wide rounded rectangle (color call-to-action buttons).
   roundedRect,
 
-  /// Fully-rounded horizontal pill.
+  /// Wide bar with heavily rounded (but not semicircular) ends.
   pill,
 }
 
@@ -58,11 +58,12 @@ class GameGlossyButtonSurface extends StatelessWidget {
       shape == GameGlossyButtonShape.circle ||
       shape == GameGlossyButtonShape.squircle;
 
+  // Corner radii measured from the original button art.
   double _radius(double s) => switch (shape) {
     GameGlossyButtonShape.circle => s / 2,
-    GameGlossyButtonShape.squircle => s * 0.28,
-    GameGlossyButtonShape.roundedRect => s * 0.24,
-    GameGlossyButtonShape.pill => math.min(width, height) / 2,
+    GameGlossyButtonShape.squircle => s * 0.22,
+    GameGlossyButtonShape.roundedRect => s * 0.28,
+    GameGlossyButtonShape.pill => s * 0.32,
   };
 
   @override
