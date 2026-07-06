@@ -29,7 +29,7 @@ class GameTimeline extends StatelessWidget {
     required this.entries,
     this.dotSize = 24.0,
     this.lineWidth = 2.0,
-    this.lineColor = const Color(0xFFCFD8E3),
+    this.lineColor = GameColors.inactive,
     this.spacing = 16.0,
     super.key,
   });

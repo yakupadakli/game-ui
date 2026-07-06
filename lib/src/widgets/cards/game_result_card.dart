@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 import '../indicators/game_star_rating.dart';
 
@@ -21,7 +22,7 @@ class GameResultCard extends StatelessWidget {
     this.starSize = 60.0,
     this.starRow,
     this.color = Colors.white,
-    this.borderColor = const Color(0xFFB7C8D9),
+    this.borderColor = GameColors.border,
     this.borderWidth = 3.0,
     this.borderRadius = GameDesignTokens.radiusLG,
     this.margin = const EdgeInsets.symmetric(

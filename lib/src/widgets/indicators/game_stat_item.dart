@@ -22,7 +22,7 @@ class GameStatItem extends StatelessWidget {
     this.iconSize = GameStatItemSize.iconSize,
     this.valueFontSize = GameDesignTokens.fontLG,
     this.labelFontSize = GameDesignTokens.fontSM,
-    this.labelColor = const Color(0xFF8B95A5),
+    this.labelColor = GameColors.textMuted,
     this.fontFamily = GameDesignTokens.fontFamily,
     super.key,
   });

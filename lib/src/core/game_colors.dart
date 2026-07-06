@@ -34,7 +34,14 @@ abstract final class GameColors {
   static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textOnPrimary = Color(0xFFFFFFFF);
   static const Color textNavy = Color(0xFF1A2E5C);
+  static const Color textSecondary = Color(0xFF5A6470);
+  static const Color textMuted = Color(0xFF8B95A5);
   static const Color disabled = Color(0xFFB0B0B0);
+
+  // Structural neutrals — card/panel outlines and inactive rails shared by
+  // bordered surfaces (tooltips, dialogs, cards) and progress-style widgets.
+  static const Color border = Color(0xFFB7C8D9);
+  static const Color inactive = Color(0xFFCFD8E3);
 
   // Shadow inks — neutral black at preset opacities. Drive the [GameShadows]
   // drop shadows.

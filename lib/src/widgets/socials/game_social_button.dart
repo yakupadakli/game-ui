@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// Supported third-party identity providers for [GameSocialButton].
@@ -35,9 +36,9 @@ class GameSocialButton extends StatelessWidget {
   _SocialStyle get _style => switch (provider) {
     GameSocialProvider.google => const _SocialStyle(
       background: Colors.white,
-      foreground: Color(0xFF1A1A1A),
+      foreground: GameColors.textPrimary,
       iconColor: Color(0xFFEA4335),
-      borderColor: Color(0xFF1A1A1A),
+      borderColor: GameColors.textPrimary,
       icon: Icons.account_circle,
       defaultLabel: 'Continue with Google',
     ),

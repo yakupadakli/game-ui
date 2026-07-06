@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// Modal card with the chunky game-style border + drop shadow.
@@ -13,7 +14,7 @@ class GameDialog extends StatelessWidget {
     this.content,
     this.actions,
     this.color = Colors.white,
-    this.borderColor = const Color(0xFFB7C8D9),
+    this.borderColor = GameColors.border,
     this.borderWidth = 3.0,
     this.borderRadius = GameDesignTokens.radiusLG,
     this.padding = const EdgeInsets.all(GameDesignTokens.spacingLG),

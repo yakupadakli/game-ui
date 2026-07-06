@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// Horizontal divider line, optionally with a centered widget such as a
@@ -9,7 +10,7 @@ import '../../core/game_design_tokens.dart';
 class GameDivider extends StatelessWidget {
   const GameDivider({
     this.thickness = 2.0,
-    this.color = const Color(0xFFCFD8E3),
+    this.color = GameColors.inactive,
     this.indent = 0.0,
     this.endIndent = 0.0,
     this.center,

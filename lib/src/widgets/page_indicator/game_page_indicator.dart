@@ -14,7 +14,7 @@ class GamePageIndicator extends StatelessWidget {
     required this.count,
     required this.currentIndex,
     this.activeColor = GameColors.primary,
-    this.inactiveColor = const Color(0xFFCFD8E3),
+    this.inactiveColor = GameColors.inactive,
     this.dotSize = 10.0,
     this.activeWidth = 28.0,
     this.spacing = 6.0,

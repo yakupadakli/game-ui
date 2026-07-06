@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// Named default heights for [GameContentCard] (logical pixels). [height] /
@@ -26,7 +27,7 @@ class GameContentCard extends StatelessWidget {
     this.mascot,
     this.bottom,
     this.color = Colors.white,
-    this.borderColor = const Color(0xFFB7C8D9),
+    this.borderColor = GameColors.border,
     this.shadowColor = Colors.black,
     this.borderRadius = GameDesignTokens.radiusLG,
     this.borderWidth = 3.0,

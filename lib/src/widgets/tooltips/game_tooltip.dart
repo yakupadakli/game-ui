@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// Wraps Material's [Tooltip] with a game-style bubble — white surface,
@@ -10,8 +11,8 @@ class GameTooltip extends StatelessWidget {
     required this.message,
     required this.child,
     this.color = const Color(0xFFFFFFFF),
-    this.borderColor = const Color(0xFFB7C8D9),
-    this.textColor = const Color(0xFF1A1A1A),
+    this.borderColor = GameColors.border,
+    this.textColor = GameColors.textPrimary,
     super.key,
   });
 

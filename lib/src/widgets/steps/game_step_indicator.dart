@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../core/game_colors.dart';
+import '../../core/game_ui_strings_theme.dart';
 
 /// Horizontal step / progress indicator — alternating circular dots and
 /// connecting line segments.
@@ -15,9 +16,10 @@ class GameStepIndicator extends StatelessWidget {
     required this.currentIndex,
     this.activeColor = GameColors.primary,
     this.completedColor = GameColors.success,
-    this.inactiveColor = const Color(0xFFCFD8E3),
+    this.inactiveColor = GameColors.inactive,
     this.dotSize = 28.0,
     this.lineHeight = 2.0,
+    this.semanticCurrentStepLabel,
     super.key,
   });
 
@@ -28,6 +30,10 @@ class GameStepIndicator extends StatelessWidget {
   final Color inactiveColor;
   final double dotSize;
   final double lineHeight;
+
+  /// Optional name of the current step, appended to the localized
+  /// "Step N of M" semantics announcement (e.g. "Step 2 of 4, Payment").
+  final String? semanticCurrentStepLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,19 @@ class GameStepIndicator extends StatelessWidget {
         );
       }
     }
-    return Row(children: children);
+    final strings = context.gameUiStrings;
+    final label = currentIndex >= count
+        ? strings.semanticStepAllCompleted(count)
+        : strings.semanticStepCurrent(
+            stepDisplayOneBased: currentIndex + 1,
+            total: count,
+            stepLabel: semanticCurrentStepLabel ?? '',
+          );
+    return Semantics(
+      container: true,
+      label: label,
+      child: ExcludeSemantics(child: Row(children: children)),
+    );
   }
 
   Widget _buildDot(int index) {

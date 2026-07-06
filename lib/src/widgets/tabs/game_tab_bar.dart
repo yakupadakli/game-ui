@@ -23,7 +23,7 @@ class GameTabBar extends StatelessWidget {
     required this.currentIndex,
     required this.onChanged,
     this.activeColor = GameColors.primary,
-    this.inactiveColor = const Color(0xFF8B95A5),
+    this.inactiveColor = GameColors.textMuted,
     this.backgroundColor = const Color(0xFFF0F2F5),
     this.height = GameTabBarSize.height,
     this.animationDuration = const Duration(milliseconds: 220),

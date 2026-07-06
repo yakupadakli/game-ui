@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 /// "Nothing here yet" placeholder — vertical layout with an [illustration]
@@ -17,12 +18,12 @@ class GameEmptyState extends StatelessWidget {
     this.titleStyle = const TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.w700,
-      color: Color(0xFF1A1A1A),
+      color: GameColors.textPrimary,
     ),
     this.messageStyle = const TextStyle(
       fontSize: 14,
       height: 1.45,
-      color: Color(0xFF5A6470),
+      color: GameColors.textSecondary,
     ),
     this.spacing = GameDesignTokens.spacingMD,
     this.padding = const EdgeInsets.all(GameDesignTokens.spacingXL),
