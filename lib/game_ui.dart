@@ -1,4 +1,5 @@
-/// Game-style UI widgets for Flutter: PNG frame assets behind content.
+/// Game-style UI widgets for Flutter: glossy code-rendered chrome, plus
+/// illustrated PNG art where hand-drawn assets shine.
 ///
 /// Import the public API from:
 /// ```dart

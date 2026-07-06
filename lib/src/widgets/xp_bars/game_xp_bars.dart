@@ -2,4 +2,3 @@
 library;
 
 export 'game_xp_bar.dart';
-export 'xp_bars_assets.dart';

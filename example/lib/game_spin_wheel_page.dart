@@ -53,10 +53,10 @@ class _GameSpinWheelPageState extends State<GameSpinWheelPage> {
               title: 'GameSpinWheel',
               subtitle: 'Spinnable reward wheel',
               body:
-                  'Divide the bundled wheel art into equal segments, then '
-                  'drive it with a GameSpinWheelController — spinTo(index) '
-                  'animates it under the top pointer and reports the landed '
-                  'index via onSpinEnd.',
+                  'A code-rendered wheel with a gold bolted rim and colored '
+                  'slices. Drive it with a GameSpinWheelController — '
+                  'spinTo(index) animates it under the top pointer and '
+                  'reports the landed index via onSpinEnd.',
             ),
             const SizedBox(height: 24),
             DocSection(

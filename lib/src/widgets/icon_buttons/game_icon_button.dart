@@ -1,35 +1,37 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
 import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
-import 'icon_buttons_assets.dart';
 
-/// Icon-button art variants — the glyph (home / book / settings / play) is
-/// baked into each PNG. Matches [IconButtonAssets].
+part 'game_icon_button_painters.dart';
+
+/// Icon-button variants — a glyph (home / book / settings gear / play) drawn
+/// entirely in code with a per-variant palette. Outline variants stroke the
+/// silhouette only; filled variants add gradients and detail fills.
 enum GameIconButtonVariant {
-  book(asset: IconButtonAssets.book),
-  bookBlueOutline(asset: IconButtonAssets.bookBlueOutline),
-  bookGray(asset: IconButtonAssets.bookGray),
-  bookPurpleV2(asset: IconButtonAssets.bookPurpleV2),
-  home(asset: IconButtonAssets.home),
-  homeBlue(asset: IconButtonAssets.homeBlue),
-  homeOutline(asset: IconButtonAssets.homeOutline),
-  homePink(asset: IconButtonAssets.homePink),
-  homeRed(asset: IconButtonAssets.homeRed),
-  playGreen(asset: IconButtonAssets.playGreen),
-  settings(asset: IconButtonAssets.settings),
-  settingsGray(asset: IconButtonAssets.settingsGray),
-  settingsOutlineBlue(asset: IconButtonAssets.settingsOutlineBlue),
-  settingsWhite(asset: IconButtonAssets.settingsWhite);
+  book(_IconSpec.book),
+  bookBlueOutline(_IconSpec.bookBlueOutline),
+  bookGray(_IconSpec.bookGray),
+  bookPurpleV2(_IconSpec.bookPurpleV2),
+  home(_IconSpec.home),
+  homeBlue(_IconSpec.homeBlue),
+  homeOutline(_IconSpec.homeOutline),
+  homePink(_IconSpec.homePink),
+  homeRed(_IconSpec.homeRed),
+  playGreen(_IconSpec.playGreen),
+  settings(_IconSpec.settings),
+  settingsGray(_IconSpec.settingsGray),
+  settingsOutlineBlue(_IconSpec.settingsOutlineBlue),
+  settingsWhite(_IconSpec.settingsWhite);
 
-  const GameIconButtonVariant({required this.asset});
+  const GameIconButtonVariant(this._spec);
 
-  /// Bundled PNG path for this icon button.
-  final String asset;
+  final _IconSpec _spec;
 }
 
-/// Tappable nav button whose glyph is part of the bundled art. Press feedback
-/// comes from [GameTapScale].
+/// Tappable nav button whose glyph is rendered entirely in code. Press
+/// feedback comes from [GameTapScale].
 class GameIconButton extends StatelessWidget {
   const GameIconButton({
     required this.variant,
@@ -46,14 +48,14 @@ class GameIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      variant.asset,
-      width: size,
-      height: size,
-      fit: BoxFit.contain,
-      semanticLabel: semanticLabel,
+    Widget glyph = CustomPaint(
+      size: Size.square(size),
+      painter: _IconGlyphPainter(variant._spec),
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
+    if (semanticLabel != null) {
+      glyph = Semantics(label: semanticLabel, button: true, child: glyph);
+    }
+    if (onTap == null) return glyph;
+    return GameTapScale(onTap: onTap, child: glyph);
   }
 }

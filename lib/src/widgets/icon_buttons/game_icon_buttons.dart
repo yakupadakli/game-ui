@@ -2,4 +2,3 @@
 library;
 
 export 'game_icon_button.dart';
-export 'icon_buttons_assets.dart';

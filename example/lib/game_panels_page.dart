@@ -25,10 +25,10 @@ class GamePanelsPage extends StatelessWidget {
               title: 'GamePanel / GameSpeechBubble',
               subtitle: 'Framed surfaces behind text content',
               body:
-                  'GamePanel paints a bundled framed-panel PNG behind a child '
-                  '(blue card, answer box, wooden board). GameSpeechBubble '
-                  'does the same with the answer bubble art (rounded shape + '
-                  'tail).',
+                  'GamePanel draws a framed surface behind a child: the blue '
+                  'card and answer box render entirely in code; the wooden '
+                  'board keeps its illustrated PNG. GameSpeechBubble draws an '
+                  'iridescent soap bubble in code.',
             ),
             SizedBox(height: 24),
             DocSection(
