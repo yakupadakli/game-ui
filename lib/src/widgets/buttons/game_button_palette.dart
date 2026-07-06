@@ -32,4 +32,15 @@ class GameButtonPalette {
 
   /// Outline color for the stroked label text.
   final Color stroke;
+
+  /// The brand-blue rect-button palette shared by the square `GameButton`
+  /// variant and numeric `GameNumpadButton` keys.
+  static const GameButtonPalette blue = GameButtonPalette(
+    face: Color(0xFF4A90FF),
+    depth: Color(0xFF1E5BCC),
+    innerRing: Color(0xFF0030A0),
+    highlight: Color(0xFF80C8FF),
+    shadow: Color(0xFF3070D0),
+    stroke: Color(0xFF003E91),
+  );
 }

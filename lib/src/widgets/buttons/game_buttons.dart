@@ -6,6 +6,7 @@ export 'game_action_button.dart';
 export 'game_action_grid.dart';
 export 'game_button.dart';
 export 'game_button_palette.dart';
+export 'game_button_surface.dart';
 export 'game_button_variant.dart';
 export 'game_difficulty_button.dart';
 export 'game_double_framed_button.dart';

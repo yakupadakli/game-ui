@@ -5,6 +5,7 @@ import '../../core/game_design_tokens.dart';
 import '../../core/game_disabled_overlay.dart';
 import '../text/game_stroked_text.dart';
 import 'game_button_palette.dart';
+import 'game_button_surface.dart';
 
 /// Named default size for [GameTrueFalseButton] (logical pixels). [width] /
 /// [height] also accept any raw number; these are the recommended defaults.
@@ -64,74 +65,40 @@ class GameTrueFalseButton extends StatelessWidget {
     final depthInset = height * 0.07;
     final fontSize = height * 0.42;
 
-    final button = SizedBox(
+    final button = GameButtonSurface(
+      palette: palette,
       width: width,
       height: height,
-      child: Stack(
+      borderRadius: radius,
+      depthInset: depthInset,
+      // Unselected buttons sit on a white plate with the depth tone as the
+      // ring; selecting swaps the plate to the depth tone for a thick border.
+      baseColor: isSelected ? palette.depth : Colors.white,
+      ringColor: palette.depth,
+      faceInsets: EdgeInsets.only(
+        top: depthInset,
+        left: depthInset * 1.4,
+        right: depthInset * 1.4,
+        bottom: depthInset * 2,
+      ),
+      gradientRadius: 1.15,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: isSelected ? palette.depth : Colors.white,
-                borderRadius: BorderRadius.circular(radius),
-              ),
-            ),
+          Icon(
+            isTrue ? Icons.check_circle : Icons.cancel,
+            color: Colors.white,
+            size: fontSize,
           ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.all(depthInset * 0.5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: palette.depth,
-                  borderRadius: BorderRadius.circular(
-                    radius - depthInset * 0.5,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: depthInset,
-                left: depthInset * 1.4,
-                right: depthInset * 1.4,
-                bottom: depthInset * 2,
-              ),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius - depthInset),
-                  gradient: RadialGradient(
-                    center: const Alignment(0, -0.4),
-                    radius: 1.15,
-                    colors: [palette.highlight, palette.face, palette.shadow],
-                    stops: const [0.0, 0.55, 1.0],
-                  ),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        isTrue ? Icons.check_circle : Icons.cancel,
-                        color: Colors.white,
-                        size: fontSize,
-                      ),
-                      SizedBox(width: fontSize * 0.25),
-                      GameStrokedText(
-                        text,
-                        color: Colors.white,
-                        strokeColor: palette.stroke,
-                        fontSize: fontSize,
-                        strokeWidth: fontSize * 0.10,
-                        fontFamily: GameDesignTokens.fontFamilyDisplay,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          SizedBox(width: fontSize * 0.25),
+          GameStrokedText(
+            text,
+            color: Colors.white,
+            strokeColor: palette.stroke,
+            fontSize: fontSize,
+            strokeWidth: fontSize * 0.10,
+            fontFamily: GameDesignTokens.fontFamilyDisplay,
+            fontWeight: FontWeight.w800,
           ),
         ],
       ),

@@ -5,6 +5,8 @@ import '../../core/game_button_size.dart';
 import '../../core/game_disabled_overlay.dart';
 import '../../core/game_ui_image.dart';
 import 'buttons_assets.dart';
+import 'game_button_palette.dart';
+import 'game_button_surface.dart';
 import 'game_button_variant.dart';
 
 /// A game-style button. The [variant] decides what background renders
@@ -78,22 +80,15 @@ Widget _backgroundFor(GameButtonVariant variant, double size, Color? tint) {
 
 /// Code-rendered glossy squircle backdrop.
 ///
-/// Layers, back to front:
-/// 1. Outer purple-blue glow (BoxShadow).
-/// 2. Dark blue depth base (full-size rounded square).
-/// 3. Inner navy ring (slight inset).
-/// 4. Bright blue face with radial-gradient sphere shading.
-/// 5. Curved white specular highlight in the upper-left.
+/// Composes the shared [GameButtonSurface] (depth base → inner ring →
+/// sphere-shaded face) with the square variant's extras: an outer
+/// purple-blue glow behind it and a curved white specular highlight in the
+/// upper-left.
 class _SquareBackground extends StatelessWidget {
   const _SquareBackground({required this.size});
 
   final double size;
 
-  static const Color _face = Color(0xFF4A90FF);
-  static const Color _depth = Color(0xFF1E5BCC);
-  static const Color _innerRing = Color(0xFF0030A0);
-  static const Color _highlight = Color(0xFF80C8FF);
-  static const Color _shadow = Color(0xFF3070D0);
   static const Color _glow = Color(0xFF6B6BFF);
 
   @override
@@ -121,42 +116,15 @@ class _SquareBackground extends StatelessWidget {
               ),
             ),
           ),
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: _depth,
-                borderRadius: BorderRadius.circular(radius),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.all(depthInset * 0.5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: _innerRing,
-                  borderRadius: BorderRadius.circular(
-                    radius - depthInset * 0.5,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.all(depthInset),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius - depthInset),
-                  gradient: const RadialGradient(
-                    center: Alignment(-0.2, -0.4),
-                    radius: 1.2,
-                    colors: [_highlight, _face, _shadow],
-                    stops: [0.0, 0.5, 1.0],
-                  ),
-                ),
-              ),
-            ),
+          GameButtonSurface(
+            palette: GameButtonPalette.blue,
+            width: size,
+            height: size,
+            borderRadius: radius,
+            depthInset: depthInset,
+            gradientCenter: const Alignment(-0.2, -0.4),
+            gradientRadius: 1.2,
+            gradientStops: const [0.0, 0.5, 1.0],
           ),
           Positioned(
             top: size * 0.14,
