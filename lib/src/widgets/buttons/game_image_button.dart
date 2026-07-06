@@ -71,12 +71,12 @@ const GameButtonPalette _orangeSquare = GameButtonPalette(
   stroke: Color(0xFF7A3E06),
 );
 const GameButtonPalette _redSquare = GameButtonPalette(
-  face: Color(0xFFFF6B6B),
-  depth: Color(0xFFD32F2F),
-  innerRing: Color(0xFFB71C1C),
-  highlight: Color(0xFFFFB3B3),
-  shadow: Color(0xFFF04A4A),
-  stroke: Color(0xFF9A1414),
+  face: Color(0xFFF04848),
+  depth: Color(0xFFB01212),
+  innerRing: Color(0xFF8E0E0E),
+  highlight: Color(0xFFFF9C9C),
+  shadow: Color(0xFFD62F2F),
+  stroke: Color(0xFF7E0A0A),
 );
 const GameButtonPalette _orangePill = GameButtonPalette(
   face: Color(0xFFFFB020),

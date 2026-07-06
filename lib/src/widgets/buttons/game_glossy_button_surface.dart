@@ -158,9 +158,22 @@ class GameGlossyButtonSurface extends StatelessWidget {
               ),
             ),
           ),
-          // Upper-left specular sheen.
-          _sheen(s, alignRight: false),
-          if (shape == GameGlossyButtonShape.pill) _sheen(s, alignRight: true),
+          // Upper-left specular sheen: a crescent hugging the shoulder on
+          // round shapes, soft blobs on rectangular ones.
+          if (_isRound)
+            Positioned.fill(
+              child: CustomPaint(
+                painter: _CrescentSheenPainter(
+                  faceInset: border + di,
+                  circle: shape == GameGlossyButtonShape.circle,
+                ),
+              ),
+            )
+          else ...[
+            _sheen(s, alignRight: false),
+            if (shape == GameGlossyButtonShape.pill)
+              _sheen(s, alignRight: true),
+          ],
         ],
       ),
     );
@@ -184,6 +197,7 @@ class GameGlossyButtonSurface extends StatelessWidget {
     );
   }
 
+  /// Soft rotated highlight blob (rectangular shapes and pill ends).
   Widget _sheen(double s, {required bool alignRight}) {
     final w = _isRound ? s * 0.34 : s * 0.26;
     final h = s * 0.15;
@@ -210,4 +224,65 @@ class GameGlossyButtonSurface extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Curved specular crescent on the upper-left shoulder of a round glossy
+/// face — an arc stroke with round caps plus a small companion dot, matching
+/// the classic candy-button art.
+class _CrescentSheenPainter extends CustomPainter {
+  const _CrescentSheenPainter({required this.faceInset, required this.circle});
+
+  /// Distance from the widget edge to the visible face edge.
+  final double faceInset;
+
+  /// True for a full circle face, false for a squircle.
+  final bool circle;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final s = size.shortestSide;
+    final white = const Color(0xFFFFFFFF).withValues(alpha: 0.85);
+
+    final Rect arcRect;
+    if (circle) {
+      // Arc riding just inside the face's edge.
+      final radius = s / 2 - faceInset - s * 0.12;
+      arcRect = Rect.fromCircle(
+        center: Offset(size.width / 2, size.height / 2),
+        radius: radius,
+      );
+    } else {
+      // Arc hugging the squircle's top-left corner curve.
+      final corner = s * 0.28 - faceInset;
+      final c = faceInset + corner;
+      arcRect = Rect.fromCircle(
+        center: Offset(c + s * 0.04, c + s * 0.04),
+        radius: corner * 0.95,
+      );
+    }
+
+    // ~65 degree sweep across the upper-left shoulder.
+    canvas.drawArc(
+      arcRect,
+      math.pi * 1.08,
+      math.pi * 0.36,
+      false,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = s * (circle ? 0.075 : 0.06)
+        ..strokeCap = StrokeCap.round
+        ..color = white,
+    );
+
+    // Small companion dot past the crescent's lower tip.
+    final dotAngle = math.pi * 1.02;
+    final dotCenter =
+        arcRect.center +
+        Offset(math.cos(dotAngle), math.sin(dotAngle)) * (arcRect.width / 2);
+    canvas.drawCircle(dotCenter, s * 0.035, Paint()..color = white);
+  }
+
+  @override
+  bool shouldRepaint(covariant _CrescentSheenPainter oldDelegate) =>
+      oldDelegate.faceInset != faceInset || oldDelegate.circle != circle;
 }
