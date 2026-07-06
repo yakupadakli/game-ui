@@ -295,7 +295,7 @@ class _StringsDemo extends StatelessWidget {
     final rows = <(String, String)>[
       ('dialogOk', s.dialogOk),
       ('dialogCancel', s.dialogCancel),
-      ('searchDefaultHint', s.searchDefaultHint),
+      ('semanticSnackBar', s.semanticSnackBar),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

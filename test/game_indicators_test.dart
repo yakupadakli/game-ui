@@ -33,6 +33,25 @@ void main() {
       expect(find.byIcon(Icons.star_rounded), findsNWidgets(5));
     });
 
+    testWidgets('exposes the localized semantics label', (tester) async {
+      await pump(tester, const GameStarRating(starCount: 2, maxStars: 5));
+
+      expect(find.bySemanticsLabel('Star rating'), findsOneWidget);
+    });
+
+    testWidgets('semanticLabel overrides the default', (tester) async {
+      await pump(
+        tester,
+        const GameStarRating(
+          starCount: 1,
+          maxStars: 3,
+          semanticLabel: 'Level score',
+        ),
+      );
+
+      expect(find.bySemanticsLabel('Level score'), findsOneWidget);
+    });
+
     testWidgets('uses iconBuilder when provided', (tester) async {
       await pump(
         tester,

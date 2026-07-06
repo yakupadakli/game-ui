@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
+import '../../core/game_ui_strings_theme.dart';
 
 /// Semantic variants for [GameSnackBar].
 enum GameSnackBarType { info, success, warning, error }
@@ -27,33 +28,38 @@ class GameSnackBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = _backgroundFor(type);
     final glyph = icon ?? _iconFor(type);
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: GameDesignTokens.spacingMD,
-        vertical: GameDesignTokens.spacingMD,
-      ),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(GameDesignTokens.radiusMD),
-        border: Border.all(color: Colors.white, width: 2),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(glyph, color: Colors.white, size: 20),
-          const SizedBox(width: GameDesignTokens.spacingSM),
-          Expanded(
-            child: Text(
-              message,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                height: 1.3,
+    return Semantics(
+      container: true,
+      liveRegion: true,
+      label: context.gameUiStrings.semanticSnackBar,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: GameDesignTokens.spacingMD,
+          vertical: GameDesignTokens.spacingMD,
+        ),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(GameDesignTokens.radiusMD),
+          border: Border.all(color: Colors.white, width: 2),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(glyph, color: Colors.white, size: 20),
+            const SizedBox(width: GameDesignTokens.spacingSM),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  height: 1.3,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

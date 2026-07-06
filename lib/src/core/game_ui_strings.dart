@@ -9,15 +9,6 @@ const String kGameDialogOk = 'OK';
 const String kGameDialogCancel = 'Cancel';
 
 // ---------------------------------------------------------------------------
-// Inputs — hints & tooltips
-// ---------------------------------------------------------------------------
-
-const String kGameSearchDefaultHint = 'Search...';
-
-const String kGamePasswordShowTooltip = 'Show password';
-const String kGamePasswordHideTooltip = 'Hide password';
-
-// ---------------------------------------------------------------------------
 // Toggle — default on/off labels
 // ---------------------------------------------------------------------------
 
@@ -28,15 +19,7 @@ const String kGameToggleOffLabel = 'OFF';
 // Semantics — defaults
 // ---------------------------------------------------------------------------
 
-const String kGameSemanticRangeDefaultLabel = 'Range';
-
-const String kGameSemanticRangeSliderHint =
-    'Drag each handle or tap the track to adjust the range';
-
 const String kGameSemanticStarRatingDefault = 'Star rating';
-
-const String kGameSemanticStarHalfHint =
-    'Left half or right half for different values';
 
 String kGameSemanticStarIndexLabel(int indexOneBased, int maxStars) =>
     'Star $indexOneBased of $maxStars';
@@ -47,15 +30,13 @@ String kGameSemanticStepCurrent({
   required int stepDisplayOneBased,
   required int total,
   required String stepLabel,
-}) => 'Step $stepDisplayOneBased of $total, $stepLabel';
-
-const String kGameSemanticDividerDefault = 'Divider';
+}) =>
+    'Step $stepDisplayOneBased of $total'
+    '${stepLabel.isEmpty ? '' : ', $stepLabel'}';
 
 const String kGameSemanticBannerDefault = 'Banner';
 
 const String kGameSemanticLoadingDefault = 'Loading';
-
-const String kGameSemanticTooltipDefault = 'Tooltip';
 
 const String kGameSemanticSnackBarDefault = 'Notification';
 

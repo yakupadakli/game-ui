@@ -32,19 +32,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   const GameUiStringsTheme({
     this.dialogOk,
     this.dialogCancel,
-    this.searchDefaultHint,
-    this.passwordShowTooltip,
-    this.passwordHideTooltip,
     this.toggleOnLabel,
     this.toggleOffLabel,
-    this.semanticRangeLabel,
-    this.semanticRangeSliderHint,
     this.semanticStarRatingDefault,
-    this.semanticStarHalfHint,
-    this.semanticDivider,
     this.semanticBanner,
     this.semanticLoading,
-    this.semanticTooltip,
     this.semanticSnackBar,
     this.semanticBottomSheet,
     this.semanticDismiss,
@@ -58,20 +50,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   factory GameUiStringsTheme.en() => const GameUiStringsTheme(
     dialogOk: 'OK',
     dialogCancel: 'Cancel',
-    searchDefaultHint: 'Search...',
-    passwordShowTooltip: 'Show password',
-    passwordHideTooltip: 'Hide password',
     toggleOnLabel: 'ON',
     toggleOffLabel: 'OFF',
-    semanticRangeLabel: 'Range',
-    semanticRangeSliderHint:
-        'Drag each handle or tap the track to adjust the range',
     semanticStarRatingDefault: 'Star rating',
-    semanticStarHalfHint: 'Left half or right half for different values',
-    semanticDivider: 'Divider',
     semanticBanner: 'Banner',
     semanticLoading: 'Loading',
-    semanticTooltip: 'Tooltip',
     semanticSnackBar: 'Notification',
     semanticBottomSheet: 'Bottom sheet',
     semanticDismiss: 'Dismiss',
@@ -86,20 +69,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   factory GameUiStringsTheme.tr() => const GameUiStringsTheme(
     dialogOk: 'Tamam',
     dialogCancel: 'Vazgeç',
-    searchDefaultHint: 'Ara...',
-    passwordShowTooltip: 'Şifreyi göster',
-    passwordHideTooltip: 'Şifreyi gizle',
     toggleOnLabel: 'AÇIK',
     toggleOffLabel: 'KAPALI',
-    semanticRangeLabel: 'Aralık',
-    semanticRangeSliderHint:
-        'Aralığı ayarlamak için her tutamağı sürükleyin veya iz üzerine dokunun',
     semanticStarRatingDefault: 'Yıldız değerlendirmesi',
-    semanticStarHalfHint: 'Farklı değerler için sol yarı veya sağ yarı',
-    semanticDivider: 'Ayırıcı',
     semanticBanner: 'Afiş',
     semanticLoading: 'Yükleniyor',
-    semanticTooltip: 'İpucu',
     semanticSnackBar: 'Bildirim',
     semanticBottomSheet: 'Alt panel',
     semanticDismiss: 'Kapat',
@@ -122,19 +96,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
 
   final String? dialogOk;
   final String? dialogCancel;
-  final String? searchDefaultHint;
-  final String? passwordShowTooltip;
-  final String? passwordHideTooltip;
   final String? toggleOnLabel;
   final String? toggleOffLabel;
-  final String? semanticRangeLabel;
-  final String? semanticRangeSliderHint;
   final String? semanticStarRatingDefault;
-  final String? semanticStarHalfHint;
-  final String? semanticDivider;
   final String? semanticBanner;
   final String? semanticLoading;
-  final String? semanticTooltip;
   final String? semanticSnackBar;
   final String? semanticBottomSheet;
   final String? semanticDismiss;
@@ -157,19 +123,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   GameUiStringsTheme copyWith({
     String? dialogOk,
     String? dialogCancel,
-    String? searchDefaultHint,
-    String? passwordShowTooltip,
-    String? passwordHideTooltip,
     String? toggleOnLabel,
     String? toggleOffLabel,
-    String? semanticRangeLabel,
-    String? semanticRangeSliderHint,
     String? semanticStarRatingDefault,
-    String? semanticStarHalfHint,
-    String? semanticDivider,
     String? semanticBanner,
     String? semanticLoading,
-    String? semanticTooltip,
     String? semanticSnackBar,
     String? semanticBottomSheet,
     String? semanticDismiss,
@@ -180,21 +138,12 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     return GameUiStringsTheme(
       dialogOk: dialogOk ?? this.dialogOk,
       dialogCancel: dialogCancel ?? this.dialogCancel,
-      searchDefaultHint: searchDefaultHint ?? this.searchDefaultHint,
-      passwordShowTooltip: passwordShowTooltip ?? this.passwordShowTooltip,
-      passwordHideTooltip: passwordHideTooltip ?? this.passwordHideTooltip,
       toggleOnLabel: toggleOnLabel ?? this.toggleOnLabel,
       toggleOffLabel: toggleOffLabel ?? this.toggleOffLabel,
-      semanticRangeLabel: semanticRangeLabel ?? this.semanticRangeLabel,
-      semanticRangeSliderHint:
-          semanticRangeSliderHint ?? this.semanticRangeSliderHint,
       semanticStarRatingDefault:
           semanticStarRatingDefault ?? this.semanticStarRatingDefault,
-      semanticStarHalfHint: semanticStarHalfHint ?? this.semanticStarHalfHint,
-      semanticDivider: semanticDivider ?? this.semanticDivider,
       semanticBanner: semanticBanner ?? this.semanticBanner,
       semanticLoading: semanticLoading ?? this.semanticLoading,
-      semanticTooltip: semanticTooltip ?? this.semanticTooltip,
       semanticSnackBar: semanticSnackBar ?? this.semanticSnackBar,
       semanticBottomSheet: semanticBottomSheet ?? this.semanticBottomSheet,
       semanticDismiss: semanticDismiss ?? this.semanticDismiss,
@@ -219,19 +168,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
     return other is GameUiStringsTheme &&
         dialogOk == other.dialogOk &&
         dialogCancel == other.dialogCancel &&
-        searchDefaultHint == other.searchDefaultHint &&
-        passwordShowTooltip == other.passwordShowTooltip &&
-        passwordHideTooltip == other.passwordHideTooltip &&
         toggleOnLabel == other.toggleOnLabel &&
         toggleOffLabel == other.toggleOffLabel &&
-        semanticRangeLabel == other.semanticRangeLabel &&
-        semanticRangeSliderHint == other.semanticRangeSliderHint &&
         semanticStarRatingDefault == other.semanticStarRatingDefault &&
-        semanticStarHalfHint == other.semanticStarHalfHint &&
-        semanticDivider == other.semanticDivider &&
         semanticBanner == other.semanticBanner &&
         semanticLoading == other.semanticLoading &&
-        semanticTooltip == other.semanticTooltip &&
         semanticSnackBar == other.semanticSnackBar &&
         semanticBottomSheet == other.semanticBottomSheet &&
         semanticDismiss == other.semanticDismiss &&
@@ -244,19 +185,11 @@ class GameUiStringsTheme extends ThemeExtension<GameUiStringsTheme> {
   int get hashCode => Object.hashAll([
     dialogOk,
     dialogCancel,
-    searchDefaultHint,
-    passwordShowTooltip,
-    passwordHideTooltip,
     toggleOnLabel,
     toggleOffLabel,
-    semanticRangeLabel,
-    semanticRangeSliderHint,
     semanticStarRatingDefault,
-    semanticStarHalfHint,
-    semanticDivider,
     semanticBanner,
     semanticLoading,
-    semanticTooltip,
     semanticSnackBar,
     semanticBottomSheet,
     semanticDismiss,
@@ -282,42 +215,18 @@ class GameUiStringsResolved {
 
   String get dialogCancel => _theme?.dialogCancel ?? kGameDialogCancel;
 
-  String get searchDefaultHint =>
-      _theme?.searchDefaultHint ?? kGameSearchDefaultHint;
-
-  String get passwordShowTooltip =>
-      _theme?.passwordShowTooltip ?? kGamePasswordShowTooltip;
-
-  String get passwordHideTooltip =>
-      _theme?.passwordHideTooltip ?? kGamePasswordHideTooltip;
-
   String get toggleOnLabel => _theme?.toggleOnLabel ?? kGameToggleOnLabel;
 
   String get toggleOffLabel => _theme?.toggleOffLabel ?? kGameToggleOffLabel;
 
-  String get semanticRangeLabel =>
-      _theme?.semanticRangeLabel ?? kGameSemanticRangeDefaultLabel;
-
-  String get semanticRangeSliderHint =>
-      _theme?.semanticRangeSliderHint ?? kGameSemanticRangeSliderHint;
-
   String get semanticStarRatingDefault =>
       _theme?.semanticStarRatingDefault ?? kGameSemanticStarRatingDefault;
-
-  String get semanticStarHalfHint =>
-      _theme?.semanticStarHalfHint ?? kGameSemanticStarHalfHint;
-
-  String get semanticDivider =>
-      _theme?.semanticDivider ?? kGameSemanticDividerDefault;
 
   String get semanticBanner =>
       _theme?.semanticBanner ?? kGameSemanticBannerDefault;
 
   String get semanticLoading =>
       _theme?.semanticLoading ?? kGameSemanticLoadingDefault;
-
-  String get semanticTooltip =>
-      _theme?.semanticTooltip ?? kGameSemanticTooltipDefault;
 
   String get semanticSnackBar =>
       _theme?.semanticSnackBar ?? kGameSemanticSnackBarDefault;
@@ -350,4 +259,6 @@ String _trStepCurrent({
   required int stepDisplayOneBased,
   required int total,
   required String stepLabel,
-}) => 'Adım $stepDisplayOneBased / $total, $stepLabel';
+}) =>
+    'Adım $stepDisplayOneBased / $total'
+    '${stepLabel.isEmpty ? '' : ', $stepLabel'}';

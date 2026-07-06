@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_ui_strings_theme.dart';
+
 /// Named size presets for [GameStarRating] (per-star, logical pixels).
 /// [GameStarRating.size] also accepts any raw number; these are the
 /// recommended defaults.
@@ -28,6 +30,7 @@ class GameStarRating extends StatelessWidget {
     this.unearnedColor = const Color(0xFFFFC107),
     this.spacing = 4.0,
     this.iconBuilder,
+    this.semanticLabel,
     super.key,
   });
 
@@ -45,28 +48,40 @@ class GameStarRating extends StatelessWidget {
   /// Signature: `(BuildContext, indexZeroBased, isEarned) → Widget`.
   final Widget Function(BuildContext, int, bool)? iconBuilder;
 
+  /// Override for the semantics label. Falls back to the localized
+  /// [GameUiStringsTheme.semanticStarRatingDefault].
+  final String? semanticLabel;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(maxStars, (index) {
-        final isEarned = index < starCount;
-        final star =
-            iconBuilder?.call(context, index, isEarned) ??
-            Icon(
-              icon,
-              size: size,
-              color: isEarned ? earnedColor : unearnedColor,
+    final strings = context.gameUiStrings;
+    return Semantics(
+      container: true,
+      label: semanticLabel ?? strings.semanticStarRatingDefault,
+      value: strings.semanticStarIndexLabel(starCount, maxStars),
+      child: ExcludeSemantics(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(maxStars, (index) {
+            final isEarned = index < starCount;
+            final star =
+                iconBuilder?.call(context, index, isEarned) ??
+                Icon(
+                  icon,
+                  size: size,
+                  color: isEarned ? earnedColor : unearnedColor,
+                );
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: spacing / 2),
+              child: Opacity(
+                opacity: isEarned ? earnedOpacity : unearnedOpacity,
+                child: star,
+              ),
             );
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: spacing / 2),
-          child: Opacity(
-            opacity: isEarned ? earnedOpacity : unearnedOpacity,
-            child: star,
-          ),
-        );
-      }),
+          }),
+        ),
+      ),
     );
   }
 }
