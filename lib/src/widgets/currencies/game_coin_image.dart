@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'currencies_assets.dart';
 
 /// Bundled coin / currency tokens — matches the PNGs in [CurrencyAssets].
@@ -17,7 +16,7 @@ enum GameCoin {
 }
 
 /// Renders a bundled coin / currency PNG. Pass [onTap] to make it interactive
-/// (wraps in [GameTapScale]).
+/// (wraps in [GameAssetImage]).
 class GameCoinImage extends StatelessWidget {
   const GameCoinImage({
     required this.coin,
@@ -43,14 +42,14 @@ class GameCoinImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      coin.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: coin.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

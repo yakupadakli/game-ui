@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import '../cards/game_operation_card.dart' show GameOperation;
 import 'operations_assets.dart';
 
@@ -20,7 +19,7 @@ extension GameOperationLabelAsset on GameOperation {
 /// Renders a bundled themed operation sign (addition / subtraction /
 /// multiplication / division) — use as a level or section header. Reuses the
 /// shared [GameOperation] enum so it stays in sync with [GameOperationCard].
-/// Pass [onTap] to make it interactive (wraps in [GameTapScale]).
+/// Pass [onTap] to make it interactive (wraps in [GameAssetImage]).
 class GameOperationLabel extends StatelessWidget {
   const GameOperationLabel({
     required this.operation,
@@ -46,14 +45,14 @@ class GameOperationLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      operation.labelAsset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: operation.labelAsset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

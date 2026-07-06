@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'level_platforms_assets.dart';
 
 /// Bundled grounded-platform map nodes — matches [LevelPlatformAssets].
@@ -39,7 +38,7 @@ enum GameLevelPlatform {
 }
 
 /// Renders a bundled [GameLevelPlatform] map node. Pass [onTap] to make it
-/// interactive (wraps in [GameTapScale]).
+/// interactive (wraps in [GameAssetImage]).
 class GameLevelPlatformImage extends StatelessWidget {
   const GameLevelPlatformImage({
     required this.platform,
@@ -65,14 +64,14 @@ class GameLevelPlatformImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      platform.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: platform.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

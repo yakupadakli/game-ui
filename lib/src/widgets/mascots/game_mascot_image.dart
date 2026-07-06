@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'game_mascot.dart';
 import 'mascots_assets.dart';
 
@@ -56,10 +56,11 @@ class GameMascotImage extends StatelessWidget {
     final asset = pose != null
         ? MascotAssets.bearPath(pose)
         : MascotAssets.pathFor(mascot, this.pose);
-    return GameUiImage.asset(
-      asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
     );
   }
