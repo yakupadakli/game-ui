@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'icon_buttons_assets.dart';
 
 /// Icon-button art variants — the glyph (home / book / settings / play) is
@@ -29,7 +28,7 @@ enum GameIconButtonVariant {
 }
 
 /// Tappable nav button whose glyph is part of the bundled art. Press feedback
-/// comes from [GameTapScale].
+/// comes from [GameAssetImage]'s tap scale.
 class GameIconButton extends StatelessWidget {
   const GameIconButton({
     required this.variant,
@@ -46,14 +45,11 @@ class GameIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      variant.asset,
-      width: size,
-      height: size,
-      fit: BoxFit.contain,
+    return GameAssetImage(
+      assetPath: variant.asset,
+      size: size,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

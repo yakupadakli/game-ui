@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'items_assets.dart';
 
 /// Bundled collectible items — matches the PNGs in [ItemAssets].
@@ -21,7 +20,7 @@ enum GameItem {
 }
 
 /// Renders a bundled [GameItem] prop. Pass [onTap] to make it interactive
-/// (wraps in [GameTapScale]).
+/// (wraps in [GameAssetImage]).
 class GameItemImage extends StatelessWidget {
   const GameItemImage({
     required this.item,
@@ -47,14 +46,14 @@ class GameItemImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      item.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: item.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

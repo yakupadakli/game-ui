@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'flags_assets.dart';
 
 /// Color variants for [GameFlagImage] — matches the bundled flag PNGs.
@@ -18,7 +17,7 @@ enum GameFlag {
 }
 
 /// Renders a bundled checkpoint / goal flag PNG. Pass [onTap] to make it
-/// interactive (wraps in [GameTapScale]).
+/// interactive (wraps in [GameAssetImage]).
 class GameFlagImage extends StatelessWidget {
   const GameFlagImage({
     required this.flag,
@@ -44,14 +43,14 @@ class GameFlagImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      flag.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      assetPath: flag.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

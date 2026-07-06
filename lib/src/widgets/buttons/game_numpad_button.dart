@@ -5,6 +5,7 @@ import '../../core/game_design_tokens.dart';
 import '../../core/game_disabled_overlay.dart';
 import '../text/game_stroked_text.dart';
 import 'game_button_palette.dart';
+import 'game_button_surface.dart';
 
 /// Visual variants of [GameNumpadButton]. The variant decides which palette
 /// the button uses (digits get the calm blue palette, special keys get
@@ -44,14 +45,6 @@ class GameNumpadButton extends StatelessWidget {
   final bool enabled;
 
   // Palettes — face, depth, innerRing, highlight, shadow, stroke.
-  static const GameButtonPalette _blue = GameButtonPalette(
-    face: Color(0xFF4A90FF),
-    depth: Color(0xFF1E5BCC),
-    innerRing: Color(0xFF0030A0),
-    highlight: Color(0xFF80C8FF),
-    shadow: Color(0xFF3070D0),
-    stroke: Color(0xFF003E91),
-  );
   static const GameButtonPalette _red = GameButtonPalette(
     face: Color(0xFFE45A5A),
     depth: Color(0xFFAF2B2B),
@@ -70,7 +63,7 @@ class GameNumpadButton extends StatelessWidget {
   );
 
   GameButtonPalette get _palette => switch (type) {
-    GameNumpadButtonType.number => _blue,
+    GameNumpadButtonType.number => GameButtonPalette.blue,
     GameNumpadButtonType.delete => _red,
     GameNumpadButtonType.clear => _orange,
   };
@@ -82,65 +75,26 @@ class GameNumpadButton extends StatelessWidget {
     final depthInset = height * 0.06;
     final fontSize = height * 0.45;
 
-    final button = SizedBox(
+    final button = GameButtonSurface(
+      palette: palette,
       width: width,
       height: height,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: palette.depth,
-                borderRadius: BorderRadius.circular(radius),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.all(depthInset * 0.5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: palette.innerRing,
-                  borderRadius: BorderRadius.circular(
-                    radius - depthInset * 0.5,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: depthInset * 0.5,
-                left: depthInset,
-                right: depthInset,
-                bottom: depthInset * 1.5,
-              ),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius - depthInset),
-                  gradient: RadialGradient(
-                    center: const Alignment(0, -0.4),
-                    radius: 1.1,
-                    colors: [palette.highlight, palette.face, palette.shadow],
-                    stops: const [0.0, 0.55, 1.0],
-                  ),
-                ),
-                child: Center(
-                  child: GameStrokedText(
-                    value,
-                    color: Colors.white,
-                    strokeColor: palette.stroke,
-                    fontSize: fontSize,
-                    strokeWidth: fontSize * 0.10,
-                    fontFamily: GameDesignTokens.fontFamilyDisplay,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+      borderRadius: radius,
+      depthInset: depthInset,
+      faceInsets: EdgeInsets.only(
+        top: depthInset * 0.5,
+        left: depthInset,
+        right: depthInset,
+        bottom: depthInset * 1.5,
+      ),
+      child: GameStrokedText(
+        value,
+        color: Colors.white,
+        strokeColor: palette.stroke,
+        fontSize: fontSize,
+        strokeWidth: fontSize * 0.10,
+        fontFamily: GameDesignTokens.fontFamilyDisplay,
+        fontWeight: FontWeight.w800,
       ),
     );
 

@@ -49,6 +49,7 @@ flutter:
     - assets/images/spin_wheel/
     - assets/images/streaks/
     - assets/images/toggles/
+    - assets/images/treasures/
     - assets/images/xp_bars/
 
   fonts:

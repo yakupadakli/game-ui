@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
 
+import '../core/game_colors.dart';
+
 /// A blinking text cursor — fades in and out on a fixed interval.
 ///
 /// Use next to an input value to suggest the active editing position
 /// (typical in game numpads, name entry screens).
 class GameBlinkingCursor extends StatefulWidget {
   const GameBlinkingCursor({
-    this.color = const Color(0xFF1A1A1A),
+    this.color = GameColors.textPrimary,
     this.width = 3.0,
     this.height = 28.0,
     this.duration = const Duration(milliseconds: 500),

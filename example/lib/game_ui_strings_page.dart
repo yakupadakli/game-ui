@@ -70,9 +70,9 @@ class _GameUiStringsPageState extends State<GameUiStringsPage> {
                         final rows = <(String, String)>[
                           ('dialogOk', s.dialogOk),
                           ('dialogCancel', s.dialogCancel),
-                          ('searchDefaultHint', s.searchDefaultHint),
-                          ('passwordShowTooltip', s.passwordShowTooltip),
-                          ('passwordHideTooltip', s.passwordHideTooltip),
+                          ('toggleOnLabel', s.toggleOnLabel),
+                          ('toggleOffLabel', s.toggleOffLabel),
+                          ('semanticDismiss', s.semanticDismiss),
                           ('semanticLoading', s.semanticLoading),
                         ];
                         return Column(
@@ -136,7 +136,7 @@ class _DefaultsRow extends StatelessWidget {
     final rows = <(String, String)>[
       ('dialogOk', s.dialogOk),
       ('dialogCancel', s.dialogCancel),
-      ('searchDefaultHint', s.searchDefaultHint),
+      ('semanticSnackBar', s.semanticSnackBar),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
+import '../../core/game_ui_strings_theme.dart';
 
 /// Modal bottom sheet with the chunky game-style border, rounded top corners,
 /// and a drag handle.
@@ -14,7 +16,7 @@ class GameBottomSheet extends StatelessWidget {
     required this.child,
     this.actions,
     this.color = Colors.white,
-    this.borderColor = const Color(0xFFB7C8D9),
+    this.borderColor = GameColors.border,
     super.key,
   });
 
@@ -26,75 +28,83 @@ class GameBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(GameDesignTokens.radiusLG),
-          topRight: Radius.circular(GameDesignTokens.radiusLG),
-        ),
-        border: Border.all(color: borderColor, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.18),
-            blurRadius: 18,
-            offset: const Offset(0, -4),
+    return Semantics(
+      container: true,
+      label: context.gameUiStrings.semanticBottomSheet,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(GameDesignTokens.radiusLG),
+            topRight: Radius.circular(GameDesignTokens.radiusLG),
           ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: GameDesignTokens.spacingMD),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: const Color(0xFFCFD8E3),
-                borderRadius: BorderRadius.circular(2),
-              ),
+          border: Border.all(color: borderColor, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.18),
+              blurRadius: 18,
+              offset: const Offset(0, -4),
             ),
-            if (title != null) ...[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  GameDesignTokens.spacingLG,
-                  GameDesignTokens.spacingLG,
-                  GameDesignTokens.spacingLG,
-                  GameDesignTokens.spacingMD,
-                ),
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                    fontSize: GameDesignTokens.fontXL,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF1A1A1A),
-                  ),
-                  child: title!,
-                ),
-              ),
-              const Divider(height: 1, thickness: 1, color: Color(0xFFE5E9F0)),
-            ],
-            Padding(
-              padding: const EdgeInsets.all(GameDesignTokens.spacingLG),
-              child: child,
-            ),
-            if (actions != null && actions!.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  GameDesignTokens.spacingLG,
-                  0,
-                  GameDesignTokens.spacingLG,
-                  GameDesignTokens.spacingLG,
-                ),
-                child: Wrap(
-                  spacing: GameDesignTokens.spacingMD,
-                  runSpacing: GameDesignTokens.spacingMD,
-                  alignment: WrapAlignment.center,
-                  children: actions!,
-                ),
-              ),
           ],
+        ),
+        child: SafeArea(
+          top: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: GameDesignTokens.spacingMD),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: GameColors.inactive,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              if (title != null) ...[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    GameDesignTokens.spacingLG,
+                    GameDesignTokens.spacingLG,
+                    GameDesignTokens.spacingLG,
+                    GameDesignTokens.spacingMD,
+                  ),
+                  child: DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: GameDesignTokens.fontXL,
+                      fontWeight: FontWeight.w700,
+                      color: GameColors.textPrimary,
+                    ),
+                    child: title!,
+                  ),
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: Color(0xFFE5E9F0),
+                ),
+              ],
+              Padding(
+                padding: const EdgeInsets.all(GameDesignTokens.spacingLG),
+                child: child,
+              ),
+              if (actions != null && actions!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    GameDesignTokens.spacingLG,
+                    0,
+                    GameDesignTokens.spacingLG,
+                    GameDesignTokens.spacingLG,
+                  ),
+                  child: Wrap(
+                    spacing: GameDesignTokens.spacingMD,
+                    runSpacing: GameDesignTokens.spacingMD,
+                    alignment: WrapAlignment.center,
+                    children: actions!,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

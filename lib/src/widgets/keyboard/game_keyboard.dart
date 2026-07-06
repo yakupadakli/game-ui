@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../animations/game_tap_scale.dart';
+import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
 
 const List<String> _row1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
@@ -22,8 +23,8 @@ class GameKeyboard extends StatelessWidget {
     this.keyHeight = 44.0,
     this.keySpacing = 4.0,
     this.keyColor = Colors.white,
-    this.keyTextColor = const Color(0xFF1A1A1A),
-    this.keyShadowColor = const Color(0xFFCFD8E3),
+    this.keyTextColor = GameColors.textPrimary,
+    this.keyShadowColor = GameColors.inactive,
     super.key,
   });
 
