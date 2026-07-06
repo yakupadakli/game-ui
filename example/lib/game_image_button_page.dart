@@ -23,12 +23,12 @@ class GameImageButtonPage extends StatelessWidget {
           children: [
             const DocIntro(
               title: 'GameImageButton',
-              subtitle: 'PNG-backed button + optional centered child',
+              subtitle: 'code-rendered glossy button + optional centered child',
               body:
-                  'Tappable button drawn from a bundled button PNG (rect '
-                  'colors, glossy circle/square, orange pill, white outline). '
-                  'Drop a label or icon in child; press feedback via '
-                  'GameTapScale.',
+                  'Tappable glossy game button drawn entirely in code (rect '
+                  'colors, glossy circle/square, orange pill, white outline) — '
+                  'no PNG assets. Drop a label or icon in child; press '
+                  'feedback via GameTapScale.',
             ),
             const SizedBox(height: 24),
             const DocSection(
@@ -38,7 +38,7 @@ class GameImageButtonPage extends StatelessWidget {
             ),
             const DocSection(
               title: 'All styles',
-              description: 'GameImageButtonStyle.values — 14 bundled bases.',
+              description: 'GameImageButtonStyle.values — 14 code styles.',
               child: _StyleGrid(),
             ),
             const DocCode(

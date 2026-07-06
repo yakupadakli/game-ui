@@ -30,13 +30,14 @@ class _GameButtonPageState extends State<GameButtonPage> {
           children: [
             const DocIntro(
               title: 'GameButton',
-              subtitle: 'PNG-asset · variant-based · pixel-perfect',
+              subtitle: 'code-rendered · variant-based · glossy',
               body:
                   'Single button widget driven by a [GameButtonVariant]. The '
-                  'variant chooses which bundled PNG renders behind the '
-                  'optional child. Currently only `circle` ships; future '
-                  'variants (primary, secondary, warning…) will land as the '
-                  'asset library grows.',
+                  'variant chooses which glossy silhouette renders behind the '
+                  'optional child — drawn entirely in code, no PNG assets. '
+                  'Currently `circle` and `square` ship; future variants '
+                  '(primary, secondary, warning…) will land as the palette '
+                  'library grows.',
             ),
             const SizedBox(height: 24),
             DocSection(
@@ -61,32 +62,31 @@ class _GameButtonPageState extends State<GameButtonPage> {
             const DocSection(
               title: 'Sizes',
               description:
-                  '48 · 64 · 96 · 128. The PNG scales via fit.contain and '
-                  'the child font scales proportionally.',
+                  '48 · 64 · 96 · 128. The glossy background scales with '
+                  'size and the child font scales proportionally.',
               child: _SizeRow(),
             ),
             const DocSection(
               title: 'Custom child',
               description:
                   'Pass any widget as child — number, icon, or composed '
-                  'content. Note: if the bundled PNG has a label baked in, '
-                  'the child renders ON TOP of it; swap to a blank template '
-                  'for fully custom content.',
+                  'content. It renders centered on the visible face.',
               child: _ChildRow(),
             ),
             const DocSection(
               title: 'Tint',
               description:
-                  'Optional [tint] applies BlendMode.modulate to the bundled '
-                  'PNG. Works best with grayscale / white-base assets; '
-                  'preserves highlights and shadows.',
+                  'Optional [tint] recolors the glossy face: a full depth '
+                  'palette is derived from the color via '
+                  'GameButtonPalette.fromSeed, so highlights and shadows '
+                  'follow the hue.',
               child: _TintRow(),
             ),
             const DocSection(
               title: 'Disabled',
               description:
                   'GameDisabledOverlay applies Opacity(0.38) to the whole '
-                  'image; GameTapScale is also disabled so no animation fires.',
+                  'button; GameTapScale is also disabled so no animation fires.',
               child: _DisabledRow(),
             ),
             const DocCode(

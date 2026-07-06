@@ -32,4 +32,21 @@ class GameButtonPalette {
 
   /// Outline color for the stroked label text.
   final Color stroke;
+
+  /// Derives a full depth palette from a single [seed] face color by
+  /// lightening / darkening it in HSL space. Handy for tinting a code-rendered
+  /// button to an arbitrary color without hand-picking every layer.
+  factory GameButtonPalette.fromSeed(Color seed) {
+    final hsl = HSLColor.fromColor(seed);
+    Color shade(double delta) =>
+        hsl.withLightness((hsl.lightness + delta).clamp(0.0, 1.0)).toColor();
+    return GameButtonPalette(
+      face: seed,
+      highlight: shade(0.22),
+      shadow: shade(-0.12),
+      innerRing: shade(-0.30),
+      depth: shade(-0.22),
+      stroke: shade(-0.40),
+    );
+  }
 }
