@@ -18,16 +18,12 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
 flutter:
-  # Asset directories are added here as PNG/font files arrive.
-  # Example (uncomment + adjust when assets are added):
-  #
   assets:
     - assets/images/avatars/
     - assets/images/awards/
     - assets/images/backgrounds/
     - assets/images/balloons/
     - assets/images/buttons/
-    - assets/images/cards/
     - assets/images/characters/
     - assets/images/currencies/
     - assets/images/decorations/
@@ -49,6 +45,7 @@ flutter:
     - assets/images/spin_wheel/
     - assets/images/streaks/
     - assets/images/toggles/
+    - assets/images/treasures/
     - assets/images/xp_bars/
 
   fonts:
