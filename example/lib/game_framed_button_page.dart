@@ -157,18 +157,26 @@ class _FramedButtonRow extends StatelessWidget {
         Divider(color: Colors.transparent, thickness: 0),
         GameFramedButton.icon(
           Icons.play_arrow_rounded,
-          size: GameButtonSize.xLarge,
+          size: GameButtonSize.extraLarge,
           onTap: () {},
         ),
-        GameFramedButton.text('5', size: GameButtonSize.xLarge, onTap: () {}),
+        GameFramedButton.text(
+          '5',
+          size: GameButtonSize.extraLarge,
+          onTap: () {},
+        ),
 
         Divider(color: Colors.transparent, thickness: 0),
         GameFramedButton.icon(
           Icons.play_arrow_rounded,
-          size: GameButtonSize.xxLarge,
+          size: GameButtonSize.extraExtraLarge,
           onTap: () {},
         ),
-        GameFramedButton.text('5', size: GameButtonSize.xxLarge, onTap: () {}),
+        GameFramedButton.text(
+          '5',
+          size: GameButtonSize.extraExtraLarge,
+          onTap: () {},
+        ),
       ],
     );
   }

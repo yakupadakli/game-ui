@@ -80,12 +80,12 @@ class GameTileButtonPage extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children:
                     const [
-                          GameButtonSize.xSmall,
+                          GameButtonSize.extraSmall,
                           GameButtonSize.small,
                           GameButtonSize.medium,
                           GameButtonSize.large,
-                          GameButtonSize.xLarge,
-                          GameButtonSize.xxLarge,
+                          GameButtonSize.extraLarge,
+                          GameButtonSize.extraExtraLarge,
                         ]
                         .map(
                           (s) => GameTileButton(
@@ -183,7 +183,7 @@ class GameTileButtonPage extends StatelessWidget {
               '// Sized (shared scale):\n'
               'GameTileButton(\n'
               '  color: GameColors.primary,\n'
-              '  size: GameButtonSize.xLarge,\n'
+              '  size: GameButtonSize.extraLarge,\n'
               "  child: const Text('7'),\n"
               ')',
             ),

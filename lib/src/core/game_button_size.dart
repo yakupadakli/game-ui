@@ -8,14 +8,15 @@
 /// number for full control.
 ///
 /// The ramp spans from a compact back-button size up to a large tile:
-/// `xSmall 48 · small 64 · medium 88 · large 112 · xLarge 140 · xxLarge 168`.
+/// `extraSmall 48 · small 64 · medium 88 · large 112 · extraLarge 140 ·
+/// extraExtraLarge 168`.
 abstract final class GameButtonSize {
   GameButtonSize._();
 
-  static const double xSmall = 48;
+  static const double extraSmall = 48;
   static const double small = 64;
   static const double medium = 88;
   static const double large = 112;
-  static const double xLarge = 140;
-  static const double xxLarge = 168;
+  static const double extraLarge = 140;
+  static const double extraExtraLarge = 168;
 }

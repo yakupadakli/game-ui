@@ -68,7 +68,7 @@ class GameDifficultyButtonPage extends StatelessWidget {
                   ),
                   GameDifficultyButton(
                     difficulty: GameDifficulty.easy,
-                    size: GameButtonSize.xLarge,
+                    size: GameButtonSize.extraLarge,
                   ),
                 ],
               ),
@@ -117,7 +117,7 @@ class GameDifficultyButtonPage extends StatelessWidget {
               '  difficulty: GameDifficulty.hard,\n'
               "  label: 'Boss',\n"
               '  color: GameColors.accent,\n'
-              '  size: GameButtonSize.xLarge,\n'
+              '  size: GameButtonSize.extraLarge,\n'
               ')',
             ),
           ],
