@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'treasures_assets.dart';
 
 /// Bundled treasure-chest illustrations — matches the PNGs in [TreasureAssets].
@@ -48,14 +47,14 @@ class GameTreasureImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      treasure.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: treasure.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

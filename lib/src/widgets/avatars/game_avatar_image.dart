@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'avatars_assets.dart';
 
 /// Bundled avatar faces — matches the PNGs in [AvatarAssets].
@@ -42,14 +41,14 @@ class GameAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      avatar.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: avatar.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

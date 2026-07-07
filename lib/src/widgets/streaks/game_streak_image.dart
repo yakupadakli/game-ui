@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'streaks_assets.dart';
 
 /// Bundled streak / combo HUD pieces — matches the PNGs in [StreakAssets].
@@ -48,17 +47,15 @@ class GameStreakImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      streak.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: streak.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
+      child: child,
     );
-    final content = child == null
-        ? image
-        : Stack(alignment: Alignment.center, children: [image, child!]);
-    if (onTap == null) return content;
-    return GameTapScale(onTap: onTap, child: content);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'level_islands_assets.dart';
 
 /// Bundled floating-island map nodes — matches the PNGs in [LevelIslandAssets].
@@ -92,14 +91,14 @@ class GameLevelIslandImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      island.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: island.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

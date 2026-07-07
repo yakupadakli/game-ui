@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'decorations_assets.dart';
 
 /// Ambient scenery decorations — clouds and flowers from [DecorationAssets].
@@ -45,10 +45,11 @@ class GameDecorationImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameUiImage.asset(
-      decoration.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: decoration.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
       excludeFromSemantics: semanticLabel == null,

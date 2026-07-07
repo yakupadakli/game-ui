@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'awards_assets.dart';
 
 /// Bundled award illustrations — medals, trophies, badges, ribbons, and
@@ -60,14 +59,14 @@ class GameAwardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      award.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: award.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }

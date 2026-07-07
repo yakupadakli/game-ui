@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
-import '../../core/game_ui_image.dart';
+import '../../core/game_asset_image.dart';
 import 'balloons_assets.dart';
 
 /// Color variants for [GameBalloonImage] — matches the bundled balloon PNGs.
@@ -44,14 +43,14 @@ class GameBalloonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = GameUiImage.asset(
-      balloon.asset,
-      width: width ?? size,
-      height: height ?? size,
+    return GameAssetImage(
+      asset: balloon.asset,
+      size: size,
+      width: width,
+      height: height,
       fit: fit,
       semanticLabel: semanticLabel,
+      onTap: onTap,
     );
-    if (onTap == null) return image;
-    return GameTapScale(onTap: onTap, child: image);
   }
 }
