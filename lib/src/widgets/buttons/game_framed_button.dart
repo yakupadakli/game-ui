@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_button_size.dart';
-import '../../core/game_disabled_overlay.dart';
+import '../../core/game_colors.dart';
+import '../../core/game_pressable.dart';
 import '../../core/game_text_styles.dart';
 
 /// A white-framed glossy blue tile button rendered entirely in Flutter.
@@ -254,30 +254,27 @@ class _GameFramedButtonBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(
-        scaleDown: 0.86,
-        enabled: enabled && (onTap != null || onLongPress != null),
-        onTap: onTap,
-        onLongPress: onLongPress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            _FramedButtonSurface(
-              width: width,
-              height: height,
-              backgroundColor: backgroundColor,
+    return GamePressable(
+      scaleDown: 0.86,
+      onTap: onTap,
+      onLongPress: onLongPress,
+      enabled: enabled,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          _FramedButtonSurface(
+            width: width,
+            height: height,
+            backgroundColor: backgroundColor,
+          ),
+          Positioned.fill(
+            child: FractionallySizedBox(
+              widthFactor: contentWidthFactor,
+              heightFactor: contentHeightFactor,
+              child: FittedBox(fit: BoxFit.scaleDown, child: child),
             ),
-            Positioned.fill(
-              child: FractionallySizedBox(
-                widthFactor: contentWidthFactor,
-                heightFactor: contentHeightFactor,
-                child: FittedBox(fit: BoxFit.scaleDown, child: child),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -300,9 +297,9 @@ class _FramedButtonSurface extends StatelessWidget {
     final outerRadius = height * 0.17;
     final innerRadius = height * 0.14;
     final edgeWidth = height * 0.006;
-    final top = Color.lerp(backgroundColor, Colors.white, 0.08)!;
-    final bottom = Color.lerp(backgroundColor, Colors.black, 0.14)!;
-    final insetEdge = Color.lerp(backgroundColor, Colors.black, 0.24)!;
+    final top = GameColors.tint(backgroundColor, 0.08);
+    final bottom = GameColors.shade(backgroundColor, 0.14);
+    final insetEdge = GameColors.shade(backgroundColor, 0.24);
 
     return SizedBox(
       width: width,

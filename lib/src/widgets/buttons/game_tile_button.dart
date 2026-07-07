@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_button_size.dart';
-import '../../core/game_disabled_overlay.dart';
 import '../../core/game_gloss_surface.dart';
+import '../../core/game_pressable.dart';
 
 /// Glossy rounded-square tile button, drawn entirely in code from a single
 /// [color]: a white outer frame with a soft drop shadow, a rounded inner face
@@ -53,37 +52,34 @@ class GameTileButton extends StatelessWidget {
     final innerRadius = size * 0.14;
     final innerSize = size - frameThickness * 2;
 
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(
-        enabled: enabled && (onTap != null || onLongPress != null),
-        onTap: onTap,
-        onLongPress: onLongPress,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: frameColor,
-            borderRadius: BorderRadius.circular(outerRadius),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.5),
-                blurRadius: size * 0.0547,
-                offset: Offset(0, size * 0.0195),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(frameThickness),
-            child: SizedBox.square(
-              dimension: innerSize,
-              child: GameGlossSurface(
-                color: color,
-                borderRadius: BorderRadius.circular(innerRadius),
-                referenceSize: innerSize,
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(innerSize * 0.15),
-                    child: child,
-                  ),
+    return GamePressable(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      enabled: enabled,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: frameColor,
+          borderRadius: BorderRadius.circular(outerRadius),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.5),
+              blurRadius: size * 0.0547,
+              offset: Offset(0, size * 0.0195),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(frameThickness),
+          child: SizedBox.square(
+            dimension: innerSize,
+            child: GameGlossSurface(
+              color: color,
+              borderRadius: BorderRadius.circular(innerRadius),
+              referenceSize: innerSize,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(innerSize * 0.15),
+                  child: child,
                 ),
               ),
             ),

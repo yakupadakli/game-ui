@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
-import '../../core/game_disabled_overlay.dart';
+import '../../core/game_pressable.dart';
 import '../../painters/game_gloss_painter.dart';
 import '../text/game_stroked_text.dart';
 
@@ -68,74 +67,71 @@ class GameActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(
-        enabled: enabled,
-        onTap: onTap,
-        child: SizedBox(
-          width: width,
-          height: height,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: outerColor,
-                    borderRadius: BorderRadius.circular(borderRadius),
-                  ),
+    return GamePressable(
+      onTap: onTap,
+      enabled: enabled,
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: outerColor,
+                  borderRadius: BorderRadius.circular(borderRadius),
                 ),
               ),
-              Positioned(
-                top: _innerPadding,
-                left: _innerPadding,
-                right: _innerPadding,
-                bottom: _innerPadding,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.circular(borderRadius),
-                    border: Border.all(
-                      color: _effectiveBorderColor,
-                      width: borderWidth,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 2,
-                        spreadRadius: 1,
-                        offset: const Offset(0, 10),
-                      ),
-                    ],
+            ),
+            Positioned(
+              top: _innerPadding,
+              left: _innerPadding,
+              right: _innerPadding,
+              bottom: _innerPadding,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  border: Border.all(
+                    color: _effectiveBorderColor,
+                    width: borderWidth,
                   ),
-                  child: Center(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: GameDesignTokens.spacingSM,
-                        ),
-                        child: GameStrokedText(
-                          label,
-                          color: textColor,
-                          strokeColor: _effectiveStrokeColor,
-                          fontSize: fontSize,
-                        ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      blurRadius: 2,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: GameDesignTokens.spacingSM,
+                      ),
+                      child: GameStrokedText(
+                        label,
+                        color: textColor,
+                        strokeColor: _effectiveStrokeColor,
+                        fontSize: fontSize,
                       ),
                     ),
                   ),
                 ),
               ),
-              Positioned(
-                top: height * 0.20,
-                left: width * 0.10,
-                child: CustomPaint(
-                  size: Size(width * 0.15, height * 0.20),
-                  painter: GameGlossPainter(color: _effectiveGlossColor),
-                ),
+            ),
+            Positioned(
+              top: height * 0.20,
+              left: width * 0.10,
+              child: CustomPaint(
+                size: Size(width * 0.15, height * 0.20),
+                painter: GameGlossPainter(color: _effectiveGlossColor),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

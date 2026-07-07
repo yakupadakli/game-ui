@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_design_tokens.dart';
-import '../../core/game_disabled_overlay.dart';
+import '../../core/game_pressable.dart';
 import '../text/game_stroked_text.dart';
 import 'game_button_palette.dart';
 
@@ -137,9 +136,6 @@ class GameTrueFalseButton extends StatelessWidget {
       ),
     );
 
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(enabled: enabled, onTap: onTap, child: button),
-    );
+    return GamePressable(onTap: onTap, enabled: enabled, child: button);
   }
 }

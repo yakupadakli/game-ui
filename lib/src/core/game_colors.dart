@@ -75,4 +75,17 @@ abstract final class GameColors {
         .withSaturation((hsl.saturation + saturateAmount).clamp(0.0, 1.0))
         .toColor();
   }
+
+  /// Returns [color] mixed [amount] (0–1) of the way toward white in RGB space
+  /// (a straight [Color.lerp]). Unlike [lighten] (HSL lightness), this also
+  /// desaturates, giving the even, milky top-highlight bands that read best on
+  /// glossy button faces.
+  static Color tint(Color color, double amount) =>
+      Color.lerp(color, const Color(0xFFFFFFFF), amount)!;
+
+  /// Returns [color] mixed [amount] (0–1) of the way toward black in RGB space
+  /// (a straight [Color.lerp]). The RGB counterpart to [tint], for bottom-lip
+  /// and inset-edge shades on glossy surfaces.
+  static Color shade(Color color, double amount) =>
+      Color.lerp(color, const Color(0xFF000000), amount)!;
 }

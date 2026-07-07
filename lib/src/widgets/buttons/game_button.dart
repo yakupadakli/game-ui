@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_button_size.dart';
-import '../../core/game_disabled_overlay.dart';
+import '../../core/game_pressable.dart';
 import '../../core/game_ui_image.dart';
 import 'buttons_assets.dart';
 import 'game_button_variant.dart';
@@ -41,22 +40,19 @@ class GameButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(
-        enabled: enabled && (onTap != null || onLongPress != null),
-        onTap: onTap,
-        onLongPress: onLongPress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            _backgroundFor(variant, size, tint),
-            Padding(
-              padding: EdgeInsets.only(bottom: size * variant.faceLiftRatio),
-              child: child,
-            ),
-          ],
-        ),
+    return GamePressable(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      enabled: enabled,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          _backgroundFor(variant, size, tint),
+          Padding(
+            padding: EdgeInsets.only(bottom: size * variant.faceLiftRatio),
+            child: child,
+          ),
+        ],
       ),
     );
   }

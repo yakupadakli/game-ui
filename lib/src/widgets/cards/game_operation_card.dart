@@ -1,10 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_colors.dart';
 import '../../core/game_design_tokens.dart';
-import '../../core/game_disabled_overlay.dart';
 import '../../core/game_gloss_surface.dart';
+import '../../core/game_pressable.dart';
 import '../mascots/game_mascot.dart';
 import '../mascots/game_mascot_image.dart';
 import '../text/game_stroked_text.dart';
@@ -54,8 +53,7 @@ enum GameOperation {
 /// The [operation] picks the mascot and the default face [color] (override
 /// [color] for a custom hue). The mascot badge spans the full [height] and pops
 /// slightly above and below the pill, so keep the card clear of tight clips.
-/// Press scale and the disabled state come from
-/// [GameTapScale] / [GameDisabledOverlay].
+/// Press scale and the disabled state come from [GamePressable].
 class GameOperationCard extends StatelessWidget {
   const GameOperationCard({
     required this.operation,
@@ -109,61 +107,58 @@ class GameOperationCard extends StatelessWidget {
       label: '$title, $subtitle',
       onTap: interactive ? onTap : null,
       child: ExcludeSemantics(
-        child: GameDisabledOverlay(
-          disabled: !interactive,
-          child: GameTapScale(
-            enabled: interactive,
-            onTap: onTap,
-            child: SizedBox(
-              height: h,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  // Glossy color pill, inset top/bottom so the mascot can pop out.
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    top: pillInset,
-                    height: pillHeight,
-                    child: GameGlossSurface(
-                      color: face,
-                      borderRadius: BorderRadius.circular(pillHeight / 2),
-                      referenceSize: pillHeight,
-                      highlightScale: 2.2,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: textLeftPad,
-                          right: h * 0.26,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.centerLeft,
-                                child: _OperationText(
-                                  title: title,
-                                  subtitle: subtitle,
-                                  face: face,
-                                  pillHeight: pillHeight,
-                                ),
+        child: GamePressable(
+          onTap: onTap,
+          enabled: interactive,
+          child: SizedBox(
+            height: h,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // Glossy color pill, inset top/bottom so the mascot can pop out.
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: pillInset,
+                  height: pillHeight,
+                  child: GameGlossSurface(
+                    color: face,
+                    borderRadius: BorderRadius.circular(pillHeight / 2),
+                    referenceSize: pillHeight,
+                    highlightScale: 2.2,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: textLeftPad,
+                        right: h * 0.26,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: _OperationText(
+                                title: title,
+                                subtitle: subtitle,
+                                face: face,
+                                pillHeight: pillHeight,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  // Circular white mascot badge, spanning the full card height.
-                  Positioned(
-                    left: h * 0.02,
-                    top: 0,
-                    width: h,
-                    height: h,
-                    child: _MascotBadge(mascot: operation.mascot, diameter: h),
-                  ),
-                ],
-              ),
+                ),
+                // Circular white mascot badge, spanning the full card height.
+                Positioned(
+                  left: h * 0.02,
+                  top: 0,
+                  width: h,
+                  height: h,
+                  child: _MascotBadge(mascot: operation.mascot, diameter: h),
+                ),
+              ],
             ),
           ),
         ),

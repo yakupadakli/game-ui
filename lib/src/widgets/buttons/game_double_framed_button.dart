@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../animations/game_tap_scale.dart';
 import '../../core/game_button_size.dart';
-import '../../core/game_disabled_overlay.dart';
+import '../../core/game_colors.dart';
+import '../../core/game_pressable.dart';
 import '../../core/game_text_styles.dart';
 
 /// A layered square button with two contrasting frames.
@@ -112,31 +112,28 @@ class GameDoubleFramedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameDisabledOverlay(
-      disabled: !enabled,
-      child: GameTapScale(
-        enabled: enabled && (onTap != null || onLongPress != null),
-        onTap: onTap,
-        onLongPress: onLongPress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            _DoubleFramedSurface(
-              size: size,
-              backgroundColor: backgroundColor,
-              outerBorderColor: outerBorderColor,
-              frameColor: frameColor,
-              innerBorderColor: innerBorderColor,
+    return GamePressable(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      enabled: enabled,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          _DoubleFramedSurface(
+            size: size,
+            backgroundColor: backgroundColor,
+            outerBorderColor: outerBorderColor,
+            frameColor: frameColor,
+            innerBorderColor: innerBorderColor,
+          ),
+          Positioned.fill(
+            child: FractionallySizedBox(
+              widthFactor: 0.58,
+              heightFactor: 0.58,
+              child: FittedBox(fit: BoxFit.scaleDown, child: child),
             ),
-            Positioned.fill(
-              child: FractionallySizedBox(
-                widthFactor: 0.58,
-                heightFactor: 0.58,
-                child: FittedBox(fit: BoxFit.scaleDown, child: child),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -205,7 +202,8 @@ class _DoubleFramedPainter extends CustomPainter {
       side * 0.868,
     );
     final facePath = _organicSquircle(faceRect);
-    final ringColor = innerBorderColor ?? _derivedRingColor(backgroundColor);
+    final ringColor =
+        innerBorderColor ?? GameColors.deepen(backgroundColor, 0.28, 0.26);
 
     canvas.drawShadow(
       outerPath,
@@ -234,9 +232,9 @@ class _DoubleFramedPainter extends CustomPainter {
         center: const Alignment(-0.42, -0.52),
         radius: 1.30,
         colors: [
-          Color.lerp(backgroundColor, Colors.white, 0.16)!,
+          GameColors.tint(backgroundColor, 0.16),
           backgroundColor,
-          Color.lerp(backgroundColor, Colors.black, 0.07)!,
+          GameColors.shade(backgroundColor, 0.07),
         ],
         stops: const [0, 0.58, 1],
       ).createShader(faceRect);
@@ -265,14 +263,6 @@ class _DoubleFramedPainter extends CustomPainter {
         ..strokeWidth = strokeWidth
         ..color = strokeColor,
     );
-  }
-
-  static Color _derivedRingColor(Color color) {
-    final hsl = HSLColor.fromColor(color);
-    return hsl
-        .withSaturation((hsl.saturation + 0.26).clamp(0.0, 1.0))
-        .withLightness((hsl.lightness - 0.28).clamp(0.0, 1.0))
-        .toColor();
   }
 
   static Path _organicSquircle(Rect rect) {
